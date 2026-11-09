@@ -34,8 +34,8 @@ export function KindsCard({
   return (
     <Card style={{ ...card(theme), gap: 8 }}>
       <CardTitle
-        title={zh ? "Token 类型" : "Token kinds"}
-        right={zh ? "占比" : "Share"}
+        title={zh ? "Token 類型" : "Token kinds"}
+        right={zh ? "佔比" : "Share"}
         theme={theme}
       />
       {total > 0 && (
@@ -134,7 +134,7 @@ export function ModelsCard({
             <span
               style={{ width: 64, textAlign: "right", whiteSpace: "nowrap" }}
             >
-              {zh ? "缓存命中" : "Cache hits"}
+              {zh ? "快取命中" : "Cache hits"}
             </span>
             <span
               style={{ width: 48, textAlign: "right", whiteSpace: "nowrap" }}

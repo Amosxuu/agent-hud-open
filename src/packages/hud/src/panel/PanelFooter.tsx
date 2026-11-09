@@ -53,8 +53,8 @@ export function PanelFooter({
       <Button
         variant="ghost"
         size="icon-sm"
-        aria-label={language === "zh" ? "设置" : "Settings"}
-        title={language === "zh" ? "设置" : "Settings"}
+        aria-label={language.startsWith("zh") ? "設定" : "Settings"}
+        title={language.startsWith("zh") ? "設定" : "Settings"}
         disabled={!onConfigure}
         onClick={onConfigure}
         style={footerButton(colors.secondary)}
@@ -76,10 +76,12 @@ export function PanelFooter({
               variant="ghost"
               size="icon-sm"
               aria-label={
-                language === "zh" ? "发现新版本" : "New version available"
+                language.startsWith("zh")
+                  ? "發現新版本"
+                  : "New version available"
               }
               title={
-                language === "zh"
+                language.startsWith("zh")
                   ? `更新至 ${update.version}`
                   : `Update to ${update.version}`
               }
@@ -97,8 +99,10 @@ export function PanelFooter({
         <Button
           variant="ghost"
           size="icon-sm"
-          aria-label={language === "zh" ? "用量统计" : "Usage statistics"}
-          title={language === "zh" ? "用量统计" : "Usage statistics"}
+          aria-label={
+            language.startsWith("zh") ? "用量統計" : "Usage statistics"
+          }
+          title={language.startsWith("zh") ? "用量統計" : "Usage statistics"}
           disabled={!onStats}
           onClick={onStats}
           style={footerButton(colors.secondary)}

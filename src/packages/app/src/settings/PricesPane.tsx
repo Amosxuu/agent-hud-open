@@ -59,16 +59,16 @@ export function PricesPane({ snapshot, action }: SettingsPaneProps) {
   const multipliers = snapshot.settings.relayMultipliers ?? {};
   const localKinds = snapshot.settings.localKinds ?? {};
   const origins: Record<string, [string, PillTone]> = {
-    catalog: [t("List price", "价目表"), "gray"],
-    relay: [t("Relay's list", "中转站价格表"), "gray"],
+    catalog: [t("List price", "價目表"), "gray"],
+    relay: [t("Relay's list", "中轉站價格表"), "gray"],
     multiplier: [t("Multiplier", "倍率"), "gray"],
-    custom: [t("Custom", "自定义"), "blue"],
+    custom: [t("Custom", "自定義"), "blue"],
     local: [t("Local", "本地"), "green"],
   };
   const origin = (row: PriceRow): [string, PillTone] =>
     row.price
       ? (origins[row.price.origin] ?? [row.price.origin, "gray"])
-      : [t("Unpriced", "未计价"), "orange"];
+      : [t("Unpriced", "未計價"), "orange"];
   const money = (value: number, currency: string) =>
     moneyAmount(value, currency, language, true);
   /** Tokens in 30 days, then the input and output rates. */
@@ -78,10 +78,10 @@ export function PricesPane({ snapshot, action }: SettingsPaneProps) {
       `${tokensShort(row.tokens)} Token`,
     );
     if (!row.price) return tokens;
-    if (row.price.origin === "local") return `${tokens} · ${t("Free", "免费")}`;
+    if (row.price.origin === "local") return `${tokens} · ${t("Free", "免費")}`;
     const input = money(row.price.input, row.price.currency);
     const output = money(row.price.output, row.price.currency);
-    return `${tokens} · ${t(`${input} in · ${output} out`, `输入 ${input} · 输出 ${output}`)}`;
+    return `${tokens} · ${t(`${input} in · ${output} out`, `輸入 ${input} · 輸出 ${output}`)}`;
   };
   // The agents in the order the list names them, each with its models.
   const groups = new Map<string, PriceRow[]>();
@@ -97,8 +97,8 @@ export function PricesPane({ snapshot, action }: SettingsPaneProps) {
           {editing !== row.id && (
             <LinkButton disabled={pending} onClick={() => setEditing(row.id)}>
               {custom
-                ? t("Edit price", "修改价格")
-                : t("Set price", "设置价格")}
+                ? t("Edit price", "修改價格")
+                : t("Set price", "設定價格")}
             </LinkButton>
           )}
         </Row>
@@ -125,7 +125,7 @@ export function PricesPane({ snapshot, action }: SettingsPaneProps) {
       {error && <Notice tone="error">{error}</Notice>}
       {list === null && !error && (
         <Section>
-          <Row muted title={t("Reading prices…", "正在读取价格…")} />
+          <Row muted title={t("Reading prices…", "正在讀取價格…")} />
         </Section>
       )}
       {list && list.models.length === 0 && (
@@ -134,7 +134,7 @@ export function PricesPane({ snapshot, action }: SettingsPaneProps) {
             muted
             title={t(
               "No model used in the last 30 days",
-              "最近 30 天没有用过模型",
+              "最近 30 天沒有用過模型",
             )}
           />
         </Section>
@@ -144,7 +144,7 @@ export function PricesPane({ snapshot, action }: SettingsPaneProps) {
           plain
           footer={t(
             "Models used in the last 30 days, per million tokens.",
-            "最近 30 天用过的模型，按每百万 Token 计价。",
+            "最近 30 天用過的模型，按每百萬 Token 計價。",
           )}
         >
           {[...groups].map(([client, rows]) => {
@@ -159,12 +159,12 @@ export function PricesPane({ snapshot, action }: SettingsPaneProps) {
                   <>
                     <span className="settings-row-subtitle">
                       {rows.length === 1
-                        ? t("1 model", "1 个模型")
-                        : t(`${rows.length} models`, `${rows.length} 个模型`)}
+                        ? t("1 model", "1 個模型")
+                        : t(`${rows.length} models`, `${rows.length} 個模型`)}
                     </span>
                     {unpriced > 0 && (
                       <Pill tone="orange">
-                        {t(`${unpriced} unpriced`, `${unpriced} 个未计价`)}
+                        {t(`${unpriced} unpriced`, `${unpriced} 個未計價`)}
                       </Pill>
                     )}
                   </>
@@ -178,10 +178,10 @@ export function PricesPane({ snapshot, action }: SettingsPaneProps) {
       )}
       {list && list.relays.length > 0 && (
         <Section
-          title={t("Relay multipliers", "中转站倍率")}
+          title={t("Relay multipliers", "中轉站倍率")}
           subtitle={t(
             "List price × multiplier, for relays without a price list.",
-            "没有价格表的中转站，按官方价 × 倍率计价。",
+            "沒有價格表的中轉站，按官方價 × 倍率計價。",
           )}
         >
           {list.relays.map((relay) => (
@@ -190,8 +190,8 @@ export function PricesPane({ snapshot, action }: SettingsPaneProps) {
               title={relay.host}
               detail={
                 relay.listed
-                  ? t("Uses its own price list", "按它自己的价格表计价")
-                  : t("No price list found", "没有读到价格表")
+                  ? t("Uses its own price list", "按它自己的價格表計價")
+                  : t("No price list found", "沒有讀到價格表")
               }
             >
               <MultiplierInput
@@ -212,14 +212,14 @@ export function PricesPane({ snapshot, action }: SettingsPaneProps) {
       )}
       {list && list.localHosts.length > 0 && (
         <Section
-          title={t("Addresses on this computer", "本机地址")}
+          title={t("Addresses on this computer", "本機地址")}
           subtitle={t(
             "A model server is free; a gateway uses list prices.",
-            "本地模型免费；本地网关按官方价计价。",
+            "本地模型免費；本地網關按官方價計價。",
           )}
           footer={t(
             "Automatic counts a model with a list price as a gateway call.",
-            "自动：价目表里有的模型按网关算，其他按本地模型算。",
+            "自動：價目表裡有的模型按網關算，其他按本地模型算。",
           )}
         >
           {list.localHosts.map((local) => (
@@ -229,9 +229,9 @@ export function PricesPane({ snapshot, action }: SettingsPaneProps) {
                 value={localKinds[local.host] ?? "auto"}
                 disabled={pending}
                 options={[
-                  ["auto", t("Automatic", "自动")],
+                  ["auto", t("Automatic", "自動")],
                   ["model", t("Model server", "本地模型")],
-                  ["gateway", t("Gateway", "本地网关")],
+                  ["gateway", t("Gateway", "本地網關")],
                 ]}
                 change={(kind) => {
                   const next = { ...localKinds };

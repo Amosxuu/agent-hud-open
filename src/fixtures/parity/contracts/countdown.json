@@ -457,7 +457,7 @@
       },
       "expected" : {
         "en" : "1h",
-        "zh" : "1小时"
+        "zh" : "1小時"
       },
       "fn" : "Countdown.forecast",
       "name" : "forecast-3600"
@@ -468,7 +468,7 @@
       },
       "expected" : {
         "en" : "1h 1m",
-        "zh" : "1小时1分"
+        "zh" : "1小時1分"
       },
       "fn" : "Countdown.forecast",
       "name" : "forecast-3660"
@@ -479,7 +479,7 @@
       },
       "expected" : {
         "en" : "2h",
-        "zh" : "2小时"
+        "zh" : "2小時"
       },
       "fn" : "Countdown.forecast",
       "name" : "forecast-7200"
@@ -490,7 +490,7 @@
       },
       "expected" : {
         "en" : "2h 15m",
-        "zh" : "2小时15分"
+        "zh" : "2小時15分"
       },
       "fn" : "Countdown.forecast",
       "name" : "forecast-8040.5"
@@ -644,7 +644,7 @@
       },
       "expected" : {
         "en" : "Next Mon 16:10",
-        "zh" : "下周一 16:10"
+        "zh" : "下週一 16:10"
       },
       "fn" : "Countdown.resetLabel",
       "name" : "reset-monday-week-start-sunday"
@@ -658,7 +658,7 @@
       },
       "expected" : {
         "en" : "Next Mon 16:10",
-        "zh" : "下周一 16:10"
+        "zh" : "下週一 16:10"
       },
       "fn" : "Countdown.resetLabelCompact",
       "name" : "reset-compact-monday-week-start-sunday"
@@ -700,7 +700,7 @@
       },
       "expected" : {
         "en" : "Tue 27 Oct at 09:00",
-        "zh" : "下下周二 09:00"
+        "zh" : "下下週二 09:00"
       },
       "fn" : "Countdown.resetLabel",
       "name" : "reset-two-weeks"
@@ -714,7 +714,7 @@
       },
       "expected" : {
         "en" : "Tue 27 Oct at 09:00",
-        "zh" : "下下周二 09:00"
+        "zh" : "下下週二 09:00"
       },
       "fn" : "Countdown.resetLabelCompact",
       "name" : "reset-compact-two-weeks"
@@ -728,7 +728,7 @@
       },
       "expected" : {
         "en" : "Tue 3 Nov at 09:00",
-        "zh" : "下下下周二 09:00"
+        "zh" : "下下下週二 09:00"
       },
       "fn" : "Countdown.resetLabel",
       "name" : "reset-three-weeks"
@@ -742,7 +742,7 @@
       },
       "expected" : {
         "en" : "Tue 3 Nov at 09:00",
-        "zh" : "下下下周二 09:00"
+        "zh" : "下下下週二 09:00"
       },
       "fn" : "Countdown.resetLabelCompact",
       "name" : "reset-compact-three-weeks"
@@ -756,7 +756,7 @@
       },
       "expected" : {
         "en" : "Fri 20 Nov at 09:00",
-        "zh" : "11月20日 周五 09:00"
+        "zh" : "11月20日 週五 09:00"
       },
       "fn" : "Countdown.resetLabel",
       "name" : "reset-five-weeks"
@@ -770,7 +770,7 @@
       },
       "expected" : {
         "en" : "Fri 20 Nov at 09:00",
-        "zh" : "11月20日 周五 09:00"
+        "zh" : "11月20日 週五 09:00"
       },
       "fn" : "Countdown.resetLabelCompact",
       "name" : "reset-compact-five-weeks"

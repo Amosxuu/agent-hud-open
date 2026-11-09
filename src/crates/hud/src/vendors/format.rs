@@ -58,7 +58,7 @@ pub fn recent_label(snapshot: &Value, key: &str) -> Option<String> {
         Some((_, amount)) if amount == 0.0 && unpriced <= 0.0 && costs.len() == 1 => {
             // Calls to a model on this computer cost nothing.
             if snapshot["language"] == "zh" {
-                "免费"
+                "免費"
             } else {
                 "Free"
             }

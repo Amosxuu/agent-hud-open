@@ -33,17 +33,17 @@ impl std::fmt::Display for IpcError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         use agent_hud_core::l10n::text;
         match self {
-            Self::Unavailable => f.write_str(&text("无法连接 Codex", "Codex could not be reached")),
+            Self::Unavailable => f.write_str(&text("無法連接 Codex", "Codex could not be reached")),
             Self::TimedOut => {
-                f.write_str(&text("Codex 没有及时回应", "Codex did not answer in time"))
+                f.write_str(&text("Codex 沒有及時回應", "Codex did not answer in time"))
             }
             Self::Protocol => f.write_str(&text(
-                "Codex 的回应无法识别",
+                "Codex 的回應無法識別",
                 "Codex answered in a way Agent HUD cannot read",
             )),
             Self::Rejected(reason) => {
                 if agent_hud_core::l10n::chinese() {
-                    write!(f, "Codex 拒绝了这个回应：{reason}")
+                    write!(f, "Codex 拒絕了這個回應：{reason}")
                 } else {
                     write!(f, "Codex declined the answer: {reason}")
                 }

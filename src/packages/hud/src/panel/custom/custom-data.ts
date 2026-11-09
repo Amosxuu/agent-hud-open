@@ -60,7 +60,8 @@ function time(value: unknown): number | null {
   return Number.isFinite(at) ? at : null;
 }
 
-const locale = (language: Language) => (language === "zh" ? "zh-CN" : "en-US");
+const locale = (language: Language) =>
+  language.startsWith("zh") ? "zh-TW" : "en-US";
 
 /** One value as text, in `format` or the field's own. */
 export function formatted(
@@ -104,12 +105,12 @@ export function formatted(
       return Number.isFinite(number) ? tokensShort(number) : "—";
     case "countdown": {
       // As the panel's rows write a reset: the time left within a day, else
-      // the weekday and time ("Next Tue 19:59", "下周二 19:59").
+      // the weekday and time ("Next Tue 19:59", "下週二 19:59").
       const at = time(value);
       if (at == null) return "—";
       if (at <= scope.now)
         return path.endsWith(".resetsAt")
-          ? scope.language === "zh"
+          ? scope.language.startsWith("zh")
             ? "等待更新"
             : "Pending update"
           : "—";

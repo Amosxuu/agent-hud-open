@@ -133,7 +133,7 @@ export function SettingsWindow({
         <div className="apple-app" data-theme={theme}>
           <aside className="apple-sidebar">
             <div className="sidebar-drag-space" data-tauri-drag-region />
-            <nav aria-label={chinese ? "设置" : "Settings"}>
+            <nav aria-label={chinese ? "設定" : "Settings"}>
               {pageGroups.map((group) => {
                 const items = allPages.filter((item) => item.group === group);
                 if (!items.length) return null;
@@ -178,7 +178,7 @@ export function SettingsWindow({
                       ? "演示"
                       : "Demo"
                     : chinese
-                      ? "实时"
+                      ? "實時"
                       : "Live"}
                 </span>
               </div>
@@ -212,7 +212,7 @@ export function SettingsWindow({
                     <CircleHelp />
                     <AlertTitle>
                       {chinese
-                        ? "无法连接数据服务"
+                        ? "無法連接資料服務"
                         : "Couldn’t connect to the runtime"}
                     </AlertTitle>
                     <AlertDescription>{error}</AlertDescription>
@@ -223,14 +223,14 @@ export function SettingsWindow({
                     label={
                       loading
                         ? chinese
-                          ? "正在读取本机活动…"
+                          ? "正在讀取本機活動…"
                           : "Reading local activity…"
                         : chinese
-                          ? "数据服务不可用"
+                          ? "資料服務不可用"
                           : "The runtime is unavailable"
                     }
                     failed={!loading}
-                    retryLabel={chinese ? "重试" : "Retry"}
+                    retryLabel={chinese ? "重試" : "Retry"}
                     onRetry={() => void refresh()}
                   />
                 ) : (

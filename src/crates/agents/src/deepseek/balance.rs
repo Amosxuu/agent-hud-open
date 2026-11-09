@@ -17,7 +17,7 @@ impl Balances {
     pub(super) fn notice(&self) -> Option<String> {
         (!self.available).then(|| {
             l10n::text(
-                "DeepSeek 表示此余额当前不能用于 API 调用",
+                "DeepSeek 表示此餘額目前不能用於 API 呼叫",
                 "DeepSeek reports that this balance is unavailable for API calls.",
             )
         })
@@ -32,7 +32,7 @@ pub(super) fn api_balance(host: &dyn Host, credential: &str) -> Result<Balances,
         .any(|byte| matches!(byte, 0 | b'\r' | b'\n'))
     {
         return Err(l10n::text(
-            "DeepSeek 凭据格式无法识别",
+            "DeepSeek 憑據格式無法識別",
             "DeepSeek credentials have an unsupported format.",
         )
         .into());
@@ -48,7 +48,7 @@ pub(super) fn api_balance(host: &dyn Host, credential: &str) -> Result<Balances,
         .map_err(|failure| {
             let unreachable = || {
                 l10n::text(
-                    "DeepSeek 余额读取失败，请检查网络后重试",
+                    "DeepSeek 餘額讀取失敗，請檢查網路後重試",
                     "DeepSeek balance could not be reached; check the connection.",
                 )
             };
@@ -60,13 +60,13 @@ pub(super) fn api_balance(host: &dyn Host, credential: &str) -> Result<Balances,
         })?;
     let unsupported = || {
         Unread::from(l10n::text(
-            "DeepSeek 余额返回的数据格式无法识别",
+            "DeepSeek 餘額返回的資料格式無法識別",
             "DeepSeek balance response has an unsupported format.",
         ))
     };
     let invalid = || {
         Unread::from(l10n::text(
-            "DeepSeek 余额金额无效",
+            "DeepSeek 餘額金額無效",
             "DeepSeek balance response has an invalid amount.",
         ))
     };
@@ -79,7 +79,7 @@ pub(super) fn api_balance(host: &dyn Host, credential: &str) -> Result<Balances,
             Some("USD") => "USD",
             _ => {
                 return Err(l10n::text(
-                    "DeepSeek 余额的币种无法识别",
+                    "DeepSeek 餘額的幣種無法識別",
                     "DeepSeek balance response has an unsupported currency.",
                 )
                 .into())

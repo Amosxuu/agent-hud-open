@@ -97,7 +97,7 @@ pub(super) fn parse(state: &Value, thread: &str, owner: &str) -> Result<Vec<Pend
                         .unwrap_or(app);
                     (
                         if l10n::chinese() {
-                            format!("允许 ChatGPT 使用 {display}？")
+                            format!("允許 ChatGPT 使用 {display}？")
                         } else {
                             format!("Allow ChatGPT to use {display}?")
                         },
@@ -135,7 +135,7 @@ pub(super) fn parse(state: &Value, thread: &str, owner: &str) -> Result<Vec<Pend
                     let summary =
                         if let Some(origin) = origin.filter(|_| tool == "access_browser_origin") {
                             if l10n::chinese() {
-                                format!("允许 {name} 访问 {origin}？")
+                                format!("允許 {name} 訪問 {origin}？")
                             } else {
                                 format!("Allow {name} to access {origin}?")
                             }
@@ -158,7 +158,7 @@ pub(super) fn parse(state: &Value, thread: &str, owner: &str) -> Result<Vec<Pend
             };
         let mut card = view(thread, &summary, &tool, &state["cwd"], "permission");
         let detail = [
-            (metadata["riskLevel"] == "high").then(|| l10n::text("较高风险", "Elevated Risk")),
+            (metadata["riskLevel"] == "high").then(|| l10n::text("較高風險", "Elevated Risk")),
             text(&metadata["subtitle"]).map(str::to_owned),
             subject,
         ]
@@ -183,7 +183,7 @@ pub(super) fn parse(state: &Value, thread: &str, owner: &str) -> Result<Vec<Pend
         card["allowLabel"] = json!(if website && !scopes.iter().any(|v| v == "session") {
             l10n::text("批准一次", "Allow once")
         } else {
-            l10n::text("允许此对话", "Allow this conversation")
+            l10n::text("允許此對話", "Allow this conversation")
         });
         card["badge"] = json!(if website { "WEB" } else { "APP" });
         let id = identity("codex-desktop-permission", thread, owner, wire);

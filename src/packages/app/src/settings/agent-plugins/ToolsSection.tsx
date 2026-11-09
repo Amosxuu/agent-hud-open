@@ -32,12 +32,12 @@ export function ToolsSection({
 }) {
   const { unavailable, problem } = tools.state;
   return (
-    <Section title={t("Agent tools", "智能体工具")}>
+    <Section title={t("Agent tools", "Agent工具")}>
       <ToolSwitchRow
-        title={t("Let agents arrange the HUD", "允许智能体调整 HUD")}
+        title={t("Let agents arrange the HUD", "允許Agent調整 HUD")}
         description={t(
           "Changes stay drafts until you save them in the panel.",
-          "改动先是草稿，在面板里保存后才生效。",
+          "改動先是草稿，在面板里儲存後才生效。",
         )}
         checked={tools.on}
         pending={tools.pending}

@@ -46,7 +46,7 @@ export function AgentBreakdown({
     count === undefined
       ? ""
       : zh
-        ? ` · ${count} 个会话`
+        ? ` · ${count} 個工作階段`
         : ` · ${count} ${count === 1 ? "session" : "sessions"}`;
   // An agent's models in its colour, a step lighter each, largest first.
   const ground = light ? "#fff" : "#2e2e2e";
@@ -90,14 +90,14 @@ export function AgentBreakdown({
       title={
         opened
           ? `${opened.name} · ${t("models", "模型")}`
-          : t("Share by agent", "各 Agent 占比")
+          : t("Share by agent", "各 Agent 佔比")
       }
       meta={
         opened
-          ? t("Share of its tokens", "占它的 Token")
+          ? t("Share of its tokens", "佔它的 Token")
           : t(
               "Share of tokens · click an agent for its models",
-              "Token 占比 · 点一个 Agent 看它的模型",
+              "Token 佔比 · 點一個 Agent 看它的模型",
             )
       }
       actions={
@@ -136,7 +136,7 @@ export function AgentBreakdown({
         </div>
       ) : !providers.length ? (
         <span style={{ fontSize: 12, color: theme.secondary }}>
-          {t("No usage in this range", "这段时间没有用量")}
+          {t("No usage in this range", "這段時間沒有用量")}
         </span>
       ) : (
         <div className="stats-donut-layout stats-reveal">
@@ -225,7 +225,7 @@ export function AgentBreakdown({
               >
                 {t(
                   `${providers.length - SHOWN} more, ${rest}% together`,
-                  `另有 ${providers.length - SHOWN} 个，合计 ${rest}%`,
+                  `另有 ${providers.length - SHOWN} 個，合計 ${rest}%`,
                 )}
               </span>
             )}

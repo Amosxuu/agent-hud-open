@@ -1,3 +1,4 @@
+import { text } from "../format/language";
 import * as React from "react";
 import { cn } from "../lib/utils";
 import { XIcon } from "lucide-react";
@@ -54,7 +55,7 @@ function DialogContent({
 }: React.ComponentProps<typeof DialogPrimitive.Content> & {
   showCloseButton?: boolean;
 }) {
-  const closeLabel = useFormat().language === "zh" ? "关闭" : "Close";
+  const closeLabel = text(useFormat().language, "關閉", "Close");
   return (
     <DialogPortal data-slot="dialog-portal">
       <DialogOverlay />
@@ -99,7 +100,7 @@ function DialogFooter({
 }: React.ComponentProps<"div"> & {
   showCloseButton?: boolean;
 }) {
-  const closeLabel = useFormat().language === "zh" ? "关闭" : "Close";
+  const closeLabel = text(useFormat().language, "關閉", "Close");
   return (
     <div
       data-slot="dialog-footer"

@@ -58,7 +58,7 @@ impl crate::AgentHudCore {
                 if result.is_err() {
                     self.meters.view = None;
                     self.storage_issue = Some(l10n::text(
-                        "无法从本地数据库读取用量指标",
+                        "無法從本地資料庫讀取用量指標",
                         "Usage metrics could not be read from SQLite",
                     ))
                 }
@@ -76,7 +76,7 @@ impl crate::AgentHudCore {
                     Ok(samples) => self.meters.samples = Some(samples),
                     Err(_) => {
                         self.storage_issue = Some(l10n::text(
-                            "无法从本地数据库读取额度记录",
+                            "無法從本地資料庫讀取額度記錄",
                             "Quota history could not be read from SQLite",
                         ))
                     }

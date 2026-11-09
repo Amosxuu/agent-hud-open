@@ -51,26 +51,34 @@ export function SourceBalances({
           selected === "burn"
             ? [
                 {
-                  name: language === "zh" ? "每日消耗" : "Consumption / day",
+                  name: language.startsWith("zh")
+                    ? "每日消耗"
+                    : "Consumption / day",
                   value: burn ? `${money(burn.perDay, burn.currency)}/d` : "—",
                 },
                 {
-                  name: language === "zh" ? "预计用完" : "Estimated depletion",
+                  name: language.startsWith("zh")
+                    ? "預計用完"
+                    : "Estimated depletion",
                   value: metrics?.runsOutAt
-                    ? dateFormat(language === "zh" ? "zh-CN" : "en-US").format(
-                        new Date(metrics.runsOutAt),
-                      )
+                    ? dateFormat(
+                        language.startsWith("zh") ? "zh-TW" : "en-US",
+                      ).format(new Date(metrics.runsOutAt))
                     : "—",
                 },
               ]
             : selected === "cost"
               ? [
                   {
-                    name: language === "zh" ? "估算花费" : "Estimated cost",
+                    name: language.startsWith("zh")
+                      ? "估算花費"
+                      : "Estimated cost",
                     value: cost ? money(cost.amount, cost.currency) : "—",
                   },
                   {
-                    name: language === "zh" ? "输出速度" : "Output speed",
+                    name: language.startsWith("zh")
+                      ? "輸出速度"
+                      : "Output speed",
                     value: metrics?.replyRate
                       ? `${metrics.replyRate.lowerBound ? "≥" : ""}${metrics.replyRate.tokensPerSecond.toFixed(1)} tok/s`
                       : "—",
@@ -79,11 +87,14 @@ export function SourceBalances({
               : [
                   {
                     name:
-                      account.label || (language === "zh" ? "余额" : "Balance"),
+                      account.label ||
+                      (language.startsWith("zh") ? "餘額" : "Balance"),
                     value: money(account.amount, account.currency),
                   },
                   {
-                    name: language === "zh" ? "估算花费" : "Estimated cost",
+                    name: language.startsWith("zh")
+                      ? "估算花費"
+                      : "Estimated cost",
                     value: cost ? money(cost.amount, cost.currency) : "—",
                   },
                 ];
@@ -108,7 +119,9 @@ export function SourceBalances({
               </strong>
               <div
                 role="group"
-                aria-label={language === "zh" ? "余额指标" : "Balance metric"}
+                aria-label={
+                  language.startsWith("zh") ? "餘額指標" : "Balance metric"
+                }
                 style={{ display: "flex", gap: 2 }}
               >
                 {balanceMeasures
@@ -117,19 +130,19 @@ export function SourceBalances({
                     ...{
                       quota: {
                         Icon: Percent,
-                        title: language === "zh" ? "余额" : "Balance",
+                        title: language.startsWith("zh") ? "餘額" : "Balance",
                       },
                       burn: {
                         Icon: Flame,
-                        title:
-                          language === "zh"
-                            ? "每日消耗"
-                            : "Consumption per day",
+                        title: language.startsWith("zh")
+                          ? "每日消耗"
+                          : "Consumption per day",
                       },
                       cost: {
                         Icon: DollarSign,
-                        title:
-                          language === "zh" ? "估算花费" : "Estimated cost",
+                        title: language.startsWith("zh")
+                          ? "估算花費"
+                          : "Estimated cost",
                       },
                     }[key],
                   }))
@@ -166,7 +179,9 @@ export function SourceBalances({
             )}
             <div
               role="group"
-              aria-label={language === "zh" ? "消耗时段" : "Consumption period"}
+              aria-label={
+                language.startsWith("zh") ? "消耗時段" : "Consumption period"
+              }
               style={{ display: "flex", gap: 2, justifyContent: "flex-end" }}
             >
               {(["day", "week", "month"] as const).map((value) => (
@@ -191,8 +206,8 @@ export function SourceBalances({
             {layout.widget === "chart" ? (
               <div
                 aria-label={
-                  language === "zh"
-                    ? "估算花费记录"
+                  language.startsWith("zh")
+                    ? "估算花費記錄"
                     : "Estimated spending history"
                 }
                 title={metrics?.coverage.notice ?? undefined}

@@ -45,15 +45,15 @@ export function waited(seconds: number) {
   return value < 60 ? `${Math.trunc(value)}s` : countdownCompact(value);
 }
 
-/** A forecast in whole minutes rounded up: "2h 14m" / "2小时14分", "2h" / "2小时". */
+/** A forecast in whole minutes rounded up: "2h 14m" / "2小時14分", "2h" / "2小時". */
 export function forecast(seconds: number, language: Language) {
   const minutes = Math.min(Math.ceil(seconds / 60), 2_147_483_647);
   const hours = Math.floor(minutes / 60);
   if (hours > 0) {
-    if (minutes % 60 === 0) return text(language, `${hours}小时`, `${hours}h`);
+    if (minutes % 60 === 0) return text(language, `${hours}小時`, `${hours}h`);
     return text(
       language,
-      `${hours}小时${minutes % 60}分`,
+      `${hours}小時${minutes % 60}分`,
       `${hours}h ${minutes % 60}m`,
     );
   }

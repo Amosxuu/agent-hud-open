@@ -141,7 +141,7 @@ export function QuotaHistorySection({
   bare?: boolean;
 }) {
   const { language, quotaDisplay } = useFormat();
-  const zh = language === "zh";
+  const zh = language.startsWith("zh");
   const initial: Period =
     layout.period === "week" ? "7d" : layout.period === "month" ? "30d" : "24h";
   const [period, setPeriod] = useState<Period>(initial);
@@ -181,7 +181,7 @@ export function QuotaHistorySection({
       }}
     >
       <AddedSectionHeading
-        title={zh ? "额度历史" : "Quota history"}
+        title={zh ? "額度歷史" : "Quota history"}
         colors={colors}
       >
         <PeriodButtons
@@ -193,12 +193,12 @@ export function QuotaHistorySection({
       </AddedSectionHeading>
       {!query.data && (
         <SectionNote colors={colors}>
-          {query.error ?? (zh ? "正在加载额度历史…" : "Loading quota history…")}
+          {query.error ?? (zh ? "正在載入額度歷史…" : "Loading quota history…")}
         </SectionNote>
       )}
       {query.data && !windows.length && (
         <SectionNote colors={colors}>
-          {zh ? "暂无可显示的额度窗口" : "No quota windows to show"}
+          {zh ? "暫無可顯示的額度視窗" : "No quota windows to show"}
         </SectionNote>
       )}
       {quotaGroups(windows).map((group) => (

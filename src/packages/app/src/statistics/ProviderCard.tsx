@@ -65,12 +65,12 @@ export const ProviderCard = memo(function ProviderCard({
   // context back from the cache, and sending it again after the cache lapsed.
   const moneyNote = [
     provider.cacheReadShare != null
-      ? (zh ? "缓存读占费用 " : "Cache reads ") +
+      ? (zh ? "快取讀佔費用 " : "Cache reads ") +
         `${Math.round(provider.cacheReadShare * 100)}%` +
         (zh ? "" : " of cost")
       : null,
     provider.recachedCost != null
-      ? (zh ? "缓存重写 " : "Cache rewrites ") +
+      ? (zh ? "快取重寫 " : "Cache rewrites ") +
         `≈${moneyAmount(provider.recachedCost, "USD", zh ? "zh" : "en")}`
       : null,
   ]
@@ -92,7 +92,7 @@ export const ProviderCard = memo(function ProviderCard({
     />,
   ]);
   cells.push([
-    zh ? "费用" : "Cost",
+    zh ? "費用" : "Cost",
     <span title={costHelp(provider.cost, zh)}>
       {costText(provider.cost, zh)}
     </span>,
@@ -135,7 +135,7 @@ export const ProviderCard = memo(function ProviderCard({
         <span
           title={
             theme.zh
-              ? "在所选时段、智能体、模型和 Token 类型中的占比"
+              ? "在所選時段、Agent、模型和 Token 類型中的佔比"
               : "Share of the selected range, agents, models and token kinds"
           }
           style={{
@@ -230,7 +230,7 @@ export const ProviderCard = memo(function ProviderCard({
           <span>{moneyNote}</span>
           {providerBilling.length > 0 && (
             <span style={number}>
-              {zh ? "API 余额 " : "API balance "}
+              {zh ? "API 餘額 " : "API balance "}
               {moneyAmount(
                 providerBilling[0].amount,
                 providerBilling[0].currency,
@@ -264,7 +264,7 @@ export const ProviderCard = memo(function ProviderCard({
             />
             <div style={{ display: "grid", gap: 4, minWidth: 0, flex: 1 }}>
               <span style={{ fontSize: 11, color: theme.secondary }}>
-                {zh ? "每天的额度" : "Quota by day"}
+                {zh ? "每天的額度" : "Quota by day"}
               </span>
               <QuotaRows
                 rows={quota.rows}

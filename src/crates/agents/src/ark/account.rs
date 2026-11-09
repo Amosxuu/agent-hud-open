@@ -36,13 +36,13 @@ const PRODUCTS: [(&str, &str, &str); 4] = [
 
 fn signed_out() -> Unread {
     Unread::SignedOut(l10n::text(
-        "arkcli 已退出登录，运行 arkcli auth login 后更新额度",
+        "arkcli 已結束登入，運行 arkcli auth login 後更新額度",
         "arkcli is signed out. Run arkcli auth login to update the quota",
     ))
 }
 fn unreadable() -> Unread {
     l10n::text(
-        "arkcli 的输出无法识别，请更新 arkcli",
+        "arkcli 的輸出無法識別，請更新 arkcli",
         "arkcli's output could not be read; update arkcli",
     )
     .into()
@@ -58,7 +58,7 @@ fn says_signed_out(text: &str) -> bool {
         "login required",
         "please login",
         "please log in",
-        "未登录",
+        "未登入",
     ]
     .iter()
     .any(|words| text.contains(words))
@@ -69,7 +69,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
     let Some(executable) = host.executable("arkcli") else {
         let mut reading = Reading::empty("ark");
         reading.notice = Some(l10n::text(
-            "未找到 arkcli（火山方舟命令行）；安装并运行 arkcli auth login 后显示套餐额度",
+            "未找到 arkcli（火山方舟命令行）；安裝並運行 arkcli auth login 後顯示套餐額度",
             "arkcli (Volcengine Ark's command line) was not found; install it and run arkcli auth login to show the plan quota",
         ));
         return Ok(reading);
@@ -84,7 +84,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
     let body = process.joined(Instant::now() + WAIT);
     if !process.ended() {
         return Err(Unread::transient(l10n::text(
-            "arkcli 没有在 20 秒内返回用量，稍后自动重试",
+            "arkcli 沒有在 20 秒內返回用量，稍後自動重試",
             "arkcli returned no usage within 20 s; retrying later",
         )));
     }
@@ -237,7 +237,7 @@ fn parse(body: &Value, now: i64) -> Result<Reading, Unread> {
     }
     let failure = (!failed.is_empty()).then(|| {
         if l10n::chinese() {
-            format!("arkcli 未能读取：{}", failed.join("、"))
+            format!("arkcli 未能讀取：{}", failed.join("、"))
         } else {
             format!("arkcli could not read: {}", failed.join(", "))
         }
@@ -247,7 +247,7 @@ fn parse(body: &Value, now: i64) -> Result<Reading, Unread> {
             return Err(failure.into());
         }
         reading.notice = Some(l10n::text(
-            "这个火山方舟账号没有生效中的 Coding Plan 或 Agent Plan",
+            "這個火山方舟賬號沒有生效中的 Coding Plan 或 Agent Plan",
             "This Volcengine Ark account has no active Coding Plan or Agent Plan",
         ));
     } else {
@@ -396,7 +396,7 @@ mod tests {
         let said = json!({"error": "not logged in, run arkcli auth login"});
         assert!(matches!(parse(&said, 0), Err(Unread::SignedOut(_))));
         assert!(says_signed_out("Error: Please log in first"));
-        assert!(says_signed_out("错误：未登录"));
+        assert!(says_signed_out("錯誤：未登入"));
         assert!(!says_signed_out("network unreachable"));
         assert_eq!(parse(&json!({"oops": 1}), 0).err(), Some(unreadable()));
     }

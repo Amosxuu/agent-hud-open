@@ -15,6 +15,6 @@ test("the budget names its points either way, and on track in words", () => {
   );
   assert.equal(
     budgetText({ paceDelta: -8.2, status: "behind" }, "zh"),
-    "比预算少用 8 个点",
+    "比預算少用 8 個點",
   );
 });

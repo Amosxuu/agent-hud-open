@@ -47,7 +47,7 @@ pub(crate) fn relay_sources(ctx: &AccountContext) -> Result<Value, String> {
 
 fn unreadable_relays() -> String {
     l10n::text(
-        "无法读取手动添加的中转站",
+        "無法讀取手動添加的中轉站",
         "Could not read the relays added by hand",
     )
 }
@@ -63,7 +63,7 @@ pub(crate) fn add_relay_source(ctx: &AccountContext, params: &Value) -> Result<V
     let list = sources["sources"].as_array_mut().unwrap();
     if list.len() >= RELAY_LIMIT {
         return Err(l10n::text(
-            "手动添加的中转站已达上限",
+            "手動添加的中轉站已達上限",
             "Too many relays added by hand",
         ));
     }
@@ -93,7 +93,7 @@ pub(crate) fn set_relay_kind(ctx: &AccountContext, params: &Value) -> Result<Val
         Some(choice) => {
             if !kinds.contains_key(&host) && kinds.len() >= RELAY_LIMIT {
                 return Err(l10n::text(
-                    "手选类型的中转站已达上限",
+                    "手選類型的中轉站已達上限",
                     "Too many relays with a chosen type",
                 ));
             }
@@ -119,11 +119,11 @@ pub(super) fn relay_kind(params: &Value) -> Result<(String, Option<Value>), Stri
         .filter(|host| {
             !host.is_empty() && base_url_host(&format!("https://{host}")).as_deref() == Some(*host)
         })
-        .ok_or_else(|| invalid("Unknown relay address", "无法识别的中转站地址"))?
+        .ok_or_else(|| invalid("Unknown relay address", "無法識別的中轉站地址"))?
         .to_owned();
     let kind = params["kind"].as_str().unwrap_or("auto");
     if !agent_hud_agents::relays::KINDS.contains(&kind) {
-        return Err(invalid("Unknown relay type", "无法识别的中转站类型"));
+        return Err(invalid("Unknown relay type", "無法識別的中轉站類型"));
     }
     if kind == "auto" {
         return Ok((host, None));
@@ -158,7 +158,7 @@ pub(super) fn relay_kind(params: &Value) -> Result<(String, Option<Value>), Stri
         {
             return Err(invalid(
                 "A custom relay needs its balance endpoint on its own address, the JSON path of the balance, a positive divisor and USD or CNY",
-                "自定义中转站需要它自己地址上的余额接口、余额在返回 JSON 里的位置、大于 0 的除数，以及 USD 或 CNY",
+                "自定義中轉站需要它自己地址上的餘額接口、餘額在返回 JSON 里的位置、大於 0 的除數，以及 USD 或 CNY",
             ));
         }
         choice["custom"] = json!({"url": endpoint, "remaining": remaining, "divisor": divisor, "currency": currency, "header": header});
@@ -191,20 +191,20 @@ pub(super) fn relay_source(params: &Value) -> Result<Value, String> {
         Some(_) => text("name", 40).ok_or_else(|| {
             invalid(
                 "Keep the name to 40 characters on one line",
-                "名称最多 40 个字，不能换行",
+                "名稱最多 40 個字，不能換行",
             )
         })?,
     };
     let base = text("baseUrl", 2048)
-        .ok_or_else(|| invalid("Enter the relay's address", "请填写中转站地址"))?;
+        .ok_or_else(|| invalid("Enter the relay's address", "請填寫中轉站地址"))?;
     let address = agent_hud_agents::endpoints::https_address(base).ok_or_else(|| {
         invalid(
             "The relay's address must be an HTTPS address",
-            "中转站地址必须是 HTTPS 地址",
+            "中轉站地址必須是 HTTPS 地址",
         )
     })?;
     let key =
-        text("key", 4096).ok_or_else(|| invalid("Enter the relay's key", "请填写中转站的 key"))?;
+        text("key", 4096).ok_or_else(|| invalid("Enter the relay's key", "請填寫中轉站的 key"))?;
     // Which agents use it is seen from their configuration and calls.
     Ok(json!({"name": name, "baseUrl": address, "key": key}))
 }
@@ -213,5 +213,5 @@ pub(super) fn relay_source(params: &Value) -> Result<Value, String> {
 fn write_relays(ctx: &AccountContext, sources: &Value) -> Result<(), String> {
     private_folder(&folder(ctx))?;
     crate::claude_plugin::write_private(&relays_path(ctx), sources.to_string().as_bytes())
-        .map_err(|_| l10n::text("无法保存中转站", "Could not save the relays"))
+        .map_err(|_| l10n::text("無法儲存中轉站", "Could not save the relays"))
 }

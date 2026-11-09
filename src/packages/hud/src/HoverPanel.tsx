@@ -254,7 +254,9 @@ export const SourceHoverPanel = memo(function SourceHoverPanel({
       />
       {services?.draft?.heldUntil && (
         <Button size="xs" variant="ghost" onClick={services.draft.release}>
-          {snapshotLanguage(snapshot) === "zh" ? "完成编辑" : "Finish editing"}
+          {snapshotLanguage(snapshot).startsWith("zh")
+            ? "完成編輯"
+            : "Finish editing"}
         </Button>
       )}
       <PanelFooter

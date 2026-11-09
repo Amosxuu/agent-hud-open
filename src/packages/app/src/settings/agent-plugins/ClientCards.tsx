@@ -84,13 +84,13 @@ export function OtherAgentsCard({
 }) {
   const [copied, setCopied] = useBriefly<true>(2000);
   return (
-    <Collapsible icon={icon} title={t("Other agents", "其他智能体")}>
+    <Collapsible icon={icon} title={t("Other agents", "其他Agent")}>
       <Row
         title={t("HUD tools", "HUD 工具")}
         tag="MCP"
         subtitle={t(
           "Paste into the agent's MCP settings.",
-          "粘贴到智能体的 MCP 设置里。",
+          "粘貼到Agent的 MCP 設定里。",
         )}
       >
         <SmallButton
@@ -105,10 +105,10 @@ export function OtherAgentsCard({
           {copied ? (
             <>
               <Check size={13} aria-hidden />
-              {t("Copied", "已复制")}
+              {t("Copied", "已複製")}
             </>
           ) : (
-            t("Copy settings", "复制设置")
+            t("Copy settings", "複製設定")
           )}
         </SmallButton>
       </Row>

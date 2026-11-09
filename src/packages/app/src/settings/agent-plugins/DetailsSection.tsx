@@ -22,15 +22,15 @@ export function DetailsSection({
     snapshot.providers.find((provider) => provider.id === source)?.name ??
     source;
   return (
-    <Collapsible title={t("Details", "详细信息")}>
-      <Row title={t("Hook receiver", "回调接收器")}>
+    <Collapsible title={t("Details", "詳細資訊")}>
+      <Row title={t("Hook receiver", "回呼接收器")}>
         {hooks?.enabled ? (
           <Pill tone="green" dot>
-            {t("Listening", "正在监听")}
+            {t("Listening", "正在監聽")}
           </Pill>
         ) : (
           <Pill tone="gray" dot>
-            {t("Off", "未运行")}
+            {t("Off", "未運行")}
           </Pill>
         )}
       </Row>
@@ -42,40 +42,40 @@ export function DetailsSection({
         >
           <Pill tone={client.installed ? "green" : "gray"} dot>
             {client.installed
-              ? t("Hooks installed", "回调已安装")
-              : t("No hooks", "未安装回调")}
+              ? t("Hooks installed", "回呼已安裝")
+              : t("No hooks", "未安裝回呼")}
           </Pill>
         </Row>
       ))}
       <Row
-        title={t("HUD tools server", "HUD 工具服务")}
+        title={t("HUD tools server", "HUD 工具服務")}
         subtitle={local?.notice ?? undefined}
       >
         {!local?.supported ? (
           <Pill tone="gray" dot>
-            {t("Not supported", "不支持")}
+            {t("Not supported", "不支援")}
           </Pill>
         ) : !tools.on ? (
           <Pill tone="gray" dot>
-            {t("Off", "已关闭")}
+            {t("Off", "已關閉")}
           </Pill>
         ) : tools.listening ? (
           <Pill tone="green" dot>
-            {t("Listening", "正在监听")}
+            {t("Listening", "正在監聽")}
           </Pill>
         ) : (
           <Pill tone="red" dot>
-            {t("Not running", "未运行")}
+            {t("Not running", "未運行")}
           </Pill>
         )}
       </Row>
       <Row
-        title={t("HUD tools setup", "HUD 工具安装")}
+        title={t("HUD tools setup", "HUD 工具安裝")}
         subtitle={clients?.notice ?? undefined}
       >
         {clients === null ? (
           <Pill tone="gray" dot>
-            {t("Checking…", "正在检查…")}
+            {t("Checking…", "正在檢查…")}
           </Pill>
         ) : clients.ready ? (
           <Pill tone="green" dot>

@@ -48,12 +48,12 @@ export function DayTip({
       <strong style={{ fontWeight: 600, fontSize: 12 }}>{title}</strong>
       {pending && (
         <span style={{ color: theme.secondary }}>
-          {t("Still being read", "还在读取")}
+          {t("Still being read", "還在讀取")}
         </span>
       )}
       {day.outside ? (
         <span style={{ color: theme.secondary }}>
-          {t("Before the record starts", "记录开始之前")}
+          {t("Before the record starts", "記錄開始之前")}
         </span>
       ) : (
         <>
@@ -71,7 +71,7 @@ export function DayTip({
                 {moneyShort(bucket.cost, "USD", zh ? "zh" : "en")}
                 {bucket.sessions !== null
                   ? zh
-                    ? ` · ${bucket.sessions} 个会话`
+                    ? ` · ${bucket.sessions} 個工作階段`
                     : ` · ${bucket.sessions} ${bucket.sessions === 1 ? "session" : "sessions"}`
                   : ""}
               </span>

@@ -59,14 +59,14 @@ pub fn endpoint(provider: &str, base: Option<&str>) -> Result<String, String> {
         "opencode" => "https://opencode.ai/zen/go/v1",
         _ => {
             return Err(l10n::text(
-                "不支持为此服务配置凭据",
+                "不支援為此服務配置憑據",
                 "Unsupported configurable provider",
             ))
         }
     };
     let raw = base.unwrap_or(default).trim_end_matches('/');
     let url = url::Url::parse(raw)
-        .map_err(|_| l10n::text("官方 API 地址无效", "Invalid official API address"))?;
+        .map_err(|_| l10n::text("官方 API 地址無效", "Invalid official API address"))?;
     if url.scheme() != "https"
         || !url.username().is_empty()
         || url.password().is_some()
@@ -75,7 +75,7 @@ pub fn endpoint(provider: &str, base: Option<&str>) -> Result<String, String> {
         || url.port_or_known_default() != Some(443)
     {
         return Err(l10n::text(
-            "只支持服务商官方的 HTTPS Coding Plan 地址",
+            "只支援服務商官方的 HTTPS Coding Plan 地址",
             "Only the provider's official HTTPS coding endpoint is supported",
         ));
     }
@@ -96,7 +96,7 @@ pub fn endpoint(provider: &str, base: Option<&str>) -> Result<String, String> {
     };
     if !allowed {
         return Err(l10n::text(
-            "此地址属于其他 API 产品或代理，无法读取这个套餐的额度",
+            "此地址屬於其他 API 產品或代理，無法讀取這個套餐的額度",
             "This address is a different API product or proxy; it cannot read this plan's quota",
         ));
     }

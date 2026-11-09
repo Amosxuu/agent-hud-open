@@ -47,7 +47,7 @@ function ChartLegend({
     >
       {measure === "cost" ? (
         <ColorKey color={theme.accent}>
-          {zh ? "按 API 价，含缓存读取" : "API prices, cache reads included"}
+          {zh ? "按 API 價，含快取讀取" : "API prices, cache reads included"}
         </ColorKey>
       ) : (
         kinds.map((kind) => (
@@ -61,10 +61,10 @@ function ChartLegend({
           <Layers size={10} aria-hidden="true" />
           {measure === "cost"
             ? zh
-              ? "子 agent 参与"
+              ? "子 agent 參與"
               : "Sub-agents helped"
             : zh
-              ? "子 agent 参与，淡色为其部分"
+              ? "子 agent 參與，淡色為其部分"
               : "Sub-agents helped, their part faded"}
         </span>
       )}
@@ -76,7 +76,7 @@ function ChartLegend({
             strokeWidth={2.6}
             aria-hidden="true"
           />
-          {zh ? "缓存过期，上下文重发" : "Cache expired, context sent again"}
+          {zh ? "快取過期，上下文重發" : "Cache expired, context sent again"}
         </span>
       )}
       {compacted && (
@@ -89,7 +89,7 @@ function ChartLegend({
               borderLeft: `1.5px dashed ${theme.compaction}`,
             }}
           />
-          {zh ? "上下文压缩" : "Compacted"}
+          {zh ? "上下文壓縮" : "Compacted"}
         </span>
       )}
     </div>
@@ -129,14 +129,14 @@ export function TurnChartCard({
         title={
           !byPrompt
             ? zh
-              ? "Token 随时间变化"
+              ? "Token 隨時間變化"
               : "Tokens over time"
             : shown === "cost"
               ? zh
-                ? "每轮费用"
+                ? "每輪費用"
                 : "Cost per turn"
               : zh
-                ? "每轮新增 Token"
+                ? "每輪新增 Token"
                 : "New tokens per turn"
         }
         right={
@@ -176,7 +176,7 @@ export function TurnChartCard({
                         "background-color 160ms ease, box-shadow 160ms ease",
                     }}
                   >
-                    {value === "tokens" ? "Token" : zh ? "费用" : "Cost"}
+                    {value === "tokens" ? "Token" : zh ? "費用" : "Cost"}
                   </TabsTrigger>
                 ))}
               </TabsList>
@@ -205,7 +205,7 @@ export function TurnChartCard({
             }}
           >
             {zh
-              ? "数字为最大的几轮 · 点击一轮看调用"
+              ? "數字為最大的幾輪 · 點選一輪看呼叫"
               : "Largest turns labelled · click a turn for its calls"}
           </span>
         )}
@@ -231,7 +231,7 @@ export function TurnChartCard({
             fontSize: 11,
           }}
         >
-          {zh ? "暂无已记录的用量" : "No recorded usage"}
+          {zh ? "暫無已記錄的用量" : "No recorded usage"}
         </div>
       )}
       {hasContext && (
@@ -244,9 +244,9 @@ export function TurnChartCard({
             }}
           />
           <CardTitle
-            title={zh ? "上下文窗口" : "Context window"}
+            title={zh ? "上下文視窗" : "Context window"}
             right={
-              (zh ? "缓存读取 + 新增输入" : "Cache read + new input") +
+              (zh ? "快取讀取 + 新增輸入" : "Cache read + new input") +
               (detail.contextWindow != null && detail.contextWindow > 0
                 ? (zh ? " · 上限 " : " · limit ") +
                   compact(detail.contextWindow)

@@ -25,7 +25,7 @@ impl AccountService {
             let Some(entry) = state.entries.get(provider) else {
                 result.providers.insert(
                     provider.into(),
-                    json!({"status":"loading","checkedAt":null,"notice":l10n::text("正在读取额度", "Reading account usage")}),
+                    json!({"status":"loading","checkedAt":null,"notice":l10n::text("正在讀取額度", "Reading account usage")}),
                 );
                 continue;
             };
@@ -144,7 +144,7 @@ impl AccountService {
             .flatten()
         {
             if let Some(provider) = metadata["provider"].as_str() {
-                let entry=result.providers.entry(provider.into()).or_insert_with(||json!({"status":"unavailable","checkedAt":null,"notice":l10n::text("可以在 Agent HUD 中配置 API 凭据", "API credentials can be configured in Agent HUD")}));
+                let entry=result.providers.entry(provider.into()).or_insert_with(||json!({"status":"unavailable","checkedAt":null,"notice":l10n::text("可以在 Agent HUD 中配置 API 憑據", "API credentials can be configured in Agent HUD")}));
                 entry["configurableFields"] = metadata["configurableFields"].clone();
                 entry["configured"] = metadata["configured"].clone();
             }

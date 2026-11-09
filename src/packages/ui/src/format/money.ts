@@ -10,7 +10,7 @@ function currency(
   digits: [number, number],
   rounding: "halfEven" | "halfExpand",
 ) {
-  return numberFormat(language === "zh" ? "zh-CN" : "en-US", {
+  return numberFormat(language.startsWith("zh") ? "zh-TW" : "en-US", {
     style: "currency",
     currency: code,
     currencyDisplay: "narrowSymbol",

@@ -13,6 +13,7 @@ export {
   interfaceLanguage,
   resolveLanguage,
   snapshotLanguage,
+  text,
   type Language,
 } from "./format/language.ts";
 export {

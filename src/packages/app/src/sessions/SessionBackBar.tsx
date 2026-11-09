@@ -52,8 +52,8 @@ export function SessionBackBar({
       {onClose && (
         <button
           type="button"
-          aria-label={zh ? "关闭" : "Close"}
-          title={zh ? "关闭（⌘[）" : "Close (⌘[)"}
+          aria-label={zh ? "關閉" : "Close"}
+          title={zh ? "關閉（⌘[）" : "Close (⌘[)"}
           onClick={onClose}
           style={{
             ...plain,
@@ -93,7 +93,7 @@ export function NoSessionPicked({ theme }: { theme: Theme }) {
       <NoSessionArt theme={theme} />
       <span>
         {zh
-          ? "选一个会话，查看它的回合、Token 和子 Agent"
+          ? "選一個工作階段，查看它的回合、Token 和子 Agent"
           : "Pick a session to see its turns, tokens and agents"}
       </span>
     </div>

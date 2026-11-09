@@ -58,7 +58,7 @@ export const cost = (value: number | null, zh = false, partial = false) =>
     : value === 0 && !partial
       ? // Calls to a model on this computer cost nothing.
         zh
-        ? "免费"
+        ? "免費"
         : "Free"
       : `≈${moneyAmount(value, "USD", zh ? "zh" : "en")}${partial ? "+" : ""}`;
 
@@ -86,7 +86,7 @@ export const plain: CSSProperties = {
 
 /** The Sessions page's colours in the window's look (`light`, App's theme), as Open's `Theme.forScheme`. */
 export function themeFor(snapshot: Snapshot, light: boolean): Theme {
-  const base = statsTheme(light, snapshotLanguage(snapshot) === "zh");
+  const base = statsTheme(light, snapshotLanguage(snapshot).startsWith("zh"));
   return light
     ? {
         ...base,
@@ -153,7 +153,7 @@ export function statusLine(session: Session, now: number, zh = false): string {
   const turns =
     session.turnCount != null && session.turnCount > 0
       ? zh
-        ? `${session.turnCount} 轮`
+        ? `${session.turnCount} 輪`
         : `${session.turnCount} ${session.turnCount === 1 ? "turn" : "turns"}`
       : null;
   return [turns, sinceLabel(session, now, zh)].filter(Boolean).join(" · ");
@@ -165,7 +165,7 @@ export function titleForDay(day: number, today: number, zh = false) {
   const yesterday = new Date(today);
   yesterday.setDate(yesterday.getDate() - 1);
   if (day === yesterday.getTime()) return zh ? "昨天" : "Yesterday";
-  return dateFormat(zh ? "zh-CN" : "en-GB", {
+  return dateFormat(zh ? "zh-TW" : "en-GB", {
     weekday: "long",
     month: "long",
     day: "numeric",
@@ -175,7 +175,7 @@ export function titleForDay(day: number, today: number, zh = false) {
 export function timeLabel(at: string, zh = false) {
   const time = Date.parse(at);
   return Number.isFinite(time)
-    ? dateFormat(zh ? "zh-CN" : "en-GB", {
+    ? dateFormat(zh ? "zh-TW" : "en-GB", {
         weekday: "short",
         hour: "2-digit",
         minute: "2-digit",
@@ -194,13 +194,13 @@ export function durationLabel(
   const seconds = Math.max(0, Math.round((endMs - startMs) / 1000));
   if (seconds < 60) return zh ? `${seconds} 秒` : `${seconds}s`;
   const minutes = Math.floor(seconds / 60);
-  if (minutes < 60) return zh ? `${minutes} 分钟` : `${minutes}m`;
+  if (minutes < 60) return zh ? `${minutes} 分鐘` : `${minutes}m`;
   const hours = Math.floor(minutes / 60);
   const remMin = minutes % 60;
   return zh
     ? remMin > 0
-      ? `${hours} 小时 ${remMin} 分钟`
-      : `${hours} 小时`
+      ? `${hours} 小時 ${remMin} 分鐘`
+      : `${hours} 小時`
     : remMin > 0
       ? `${hours}h ${remMin}m`
       : `${hours}h`;
@@ -213,7 +213,7 @@ export function projectName(path: string | null, zh = false) {
         .split(/[\\/]/)
         .at(-1) || path
     : zh
-      ? "未归属项目"
+      ? "未歸屬專案"
       : "Unassigned";
 }
 

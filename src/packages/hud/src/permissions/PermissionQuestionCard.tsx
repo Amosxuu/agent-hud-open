@@ -1,3 +1,5 @@
+import { text as localizedText } from "@agent-hud/ui/format";
+import { useFormat } from "@agent-hud/ui/format-context";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Check, ChevronLeft, LoaderCircle } from "lucide-react";
 import type {
@@ -41,7 +43,9 @@ export function PermissionQuestionCard({
   /** Settings, on a page such as "agent-plugins"; without it the card only says where to go. */
   openSettings?: (page: string) => void;
 }) {
-  const t = (en: string, cn: string) => (zh ? cn : en);
+  const { language } = useFormat();
+  const t = (en: string, cn: string) =>
+    localizedText(zh ? (language === "zh-TW" ? language : "zh") : "en", cn, en);
   const [answers, setAnswers] = useState<Record<string, Draft>>(
     () => drafts.get(request.id)?.answers ?? {},
   );
@@ -215,7 +219,7 @@ export function PermissionQuestionCard({
         </div>
         {q.multiSelect && (
           <div style={{ fontSize: 10, color: tertiary }}>
-            {t("Choose any", "可多选")}
+            {t("Choose any", "可多選")}
           </div>
         )}
       </div>
@@ -254,7 +258,7 @@ export function PermissionQuestionCard({
           color={secondary}
         >
           <ArrowRight size={9} strokeWidth={2.6} />
-          {t("Skip", "跳过")}
+          {t("Skip", "跳過")}
         </CardButton>
         <span style={{ flex: 1, minWidth: 8 }} />
         {safePage > 0 && (
@@ -286,7 +290,7 @@ export function PermissionQuestionCard({
             <Check size={9} strokeWidth={2.6} />
           )}
           {safePage + 1 < questions.length
-            ? t("Next", "继续")
+            ? t("Next", "繼續")
             : t("Submit", "提交")}
         </CardButton>
       </div>

@@ -71,7 +71,7 @@ export function PanelBody({
                 snapshot={snapshot}
                 light={light}
                 botLogos={config.botLogos}
-                zh={snapshotLanguage(snapshot) === "zh"}
+                zh={snapshotLanguage(snapshot).startsWith("zh")}
                 onOpen={() => {
                   dismissNews();
                   footer.stats?.();

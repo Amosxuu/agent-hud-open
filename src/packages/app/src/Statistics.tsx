@@ -37,7 +37,7 @@ import {
   usd,
   rangeSpan,
 } from "./statistics/dashboard/model";
-import { snapshotLanguage, systemTimeZone } from "@agent-hud/ui/format";
+import { snapshotLanguage, systemTimeZone, text } from "@agent-hud/ui/format";
 import { indexingText } from "@agent-hud/ui/text/indexing";
 
 interface StatisticsProps {
@@ -75,9 +75,10 @@ export default function Statistics({
   const revision = snapshot.statisticsRevision ?? 0;
   const end = useStatisticsEnd(revision, refresh, active);
   const timeZone = useMemo(systemTimeZone, []);
-  const zh = snapshotLanguage(snapshot) === "zh";
+  const language = snapshotLanguage(snapshot);
+  const zh = language.startsWith("zh");
   const indexing = indexingText(snapshot.indexing, zh ? "zh" : "en");
-  const t = (en: string, cn: string) => (zh ? cn : en);
+  const t = (en: string, cn: string) => text(language, cn, en);
   const theme = useMemo(() => themeFor(light, zh), [light, zh]);
   const kindsLabel = dimensionsLabel(selectedKinds, zh);
   const span = useMemo(() => rangeSpan(range, end), [range, end]);

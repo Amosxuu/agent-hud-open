@@ -246,7 +246,7 @@ test("a reset reads as the panel's rows write it", () => {
   assert.equal(read("2026-11-10T19:59:00Z"), "Next Tue 19:59");
   assert.equal(
     read("2026-11-10T19:59:00Z", { language: "zh" }),
-    "下周二 19:59",
+    "下週二 19:59",
   );
   assert.equal(read("2026-11-04T10:00:30Z"), "<1m");
   assert.equal(read("2026-11-04T09:00:00Z"), "Pending update");

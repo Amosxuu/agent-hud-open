@@ -42,14 +42,14 @@ pub(super) fn read(
     };
     let status = dashboard(host, token, "GetSandUsageStatus").map_err(|failure| match failure {
         HttpFailure::Unreachable => failure.unread_as(l10n::text(
-            "无法读取 Grok Bot 的周额度，请检查网络",
+            "無法讀取 Grok Bot 的周額度，請檢查網路",
             "Grok Bot's weekly usage could not be reached; check the connection.",
         )),
         other => other.unread(),
     })?;
     if !status.is_object() {
         return Err(Unread::from(l10n::text(
-            "Grok Bot 的周额度格式无法识别",
+            "Grok Bot 的周額度格式無法識別",
             "Grok Bot's weekly usage has an unsupported format.",
         )));
     }

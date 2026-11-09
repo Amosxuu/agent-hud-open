@@ -16,22 +16,22 @@ function usageSubtitle(
     case "rings":
       return t(
         "One ring per window round the logo, the first outermost.",
-        "每项一圈，套在标志外，第一项在最外圈。",
+        "每項一圈，套在標誌外，第一項在最外圈。",
       );
     case "segments":
       return t(
         "One ring round the logo, split into a segment per window.",
-        "标志外一圈，按项分段，第一段在最上面。",
+        "標誌外一圈，按項分段，第一段在最上面。",
       );
     case "bars":
       return t(
         "One bar per window beside the logo, the first on top.",
-        "标志旁每项一条，第一项在最上面。",
+        "標誌旁每項一條，第一項在最上面。",
       );
     case "numbers":
       return t(
         "The most used window's percentage beside the logo.",
-        "标志旁只写用得最多那项的百分比。",
+        "標誌旁只寫用得最多那項的百分比。",
       );
   }
 }
@@ -51,35 +51,35 @@ export function HUDSection({
 
   const modeSubtitle =
     config.mode === "simple"
-      ? t("A small floating panel, with no glow.", "悬浮的小面板，没有光晕。")
+      ? t("A small floating panel, with no glow.", "懸浮的小面板，沒有光暈。")
       : config.hasNotch
-        ? t("Uses this screen's notch.", "使用这块屏幕的刘海。")
+        ? t("Uses this screen's notch.", "使用這塊螢幕的劉海。")
         : t(
             "No notch here, so it draws a stand-in bar.",
-            "这块屏幕没有刘海，画一条替代条。",
+            "這塊螢幕沒有劉海，畫一條替代條。",
           );
 
   const dragHint =
     config.mode === "notch"
       ? t(
           "Drag the HUD on screen to move it. Dragging the notch switches to Simple.",
-          "直接拖动屏幕上的 HUD 来移动它；拖动刘海会切换为「简约」。",
+          "直接拖動螢幕上的 HUD 來移動它；拖動劉海會切換為「簡約」。",
         )
       : t(
           "Drag the HUD on screen to move it.",
-          "直接拖动屏幕上的 HUD 来移动它。",
+          "直接拖動螢幕上的 HUD 來移動它。",
         );
 
   return (
     <Section title="HUD" footer={dragHint}>
       <SmallHUDPreview snapshot={snapshot} config={config} active={active} />
-      <Row title={t("Mode", "形态")} subtitle={modeSubtitle}>
+      <Row title={t("Mode", "形態")} subtitle={modeSubtitle}>
         <Segments
-          label={t("Mode", "形态")}
+          label={t("Mode", "形態")}
           value={config.mode}
           options={[
-            ["notch", t("Notch", "刘海")],
-            ["simple", t("Simple", "简约")],
+            ["notch", t("Notch", "劉海")],
+            ["simple", t("Simple", "簡約")],
           ]}
           change={(value) =>
             update({
@@ -100,24 +100,24 @@ export function HUDSection({
           {slider("simpleSize", t("Size", "大小"), 20, 60, 1, pt)}
           {slider(
             "simpleGapScale",
-            t("Logo spacing", "Logo 间距"),
+            t("Logo spacing", "Logo 間距"),
             0.1,
             0.6,
             0.05,
             (value) => pt(value * config.simpleSize),
           )}
           <Row
-            title={t("Usage", "用量画法")}
+            title={t("Usage", "用量畫法")}
             subtitle={usageSubtitle(config.simpleStyle, t)}
           >
             <Segments
-              label={t("Usage", "用量画法")}
+              label={t("Usage", "用量畫法")}
               value={config.simpleStyle}
               options={[
-                ["rings", t("Rings", "年轮")],
-                ["segments", t("Segments", "分段环")],
-                ["bars", t("Bars", "进度条")],
-                ["numbers", t("Numbers", "数字")],
+                ["rings", t("Rings", "年輪")],
+                ["segments", t("Segments", "分段環")],
+                ["bars", t("Bars", "進度條")],
+                ["numbers", t("Numbers", "數字")],
               ]}
               change={(value) =>
                 update({ simpleStyle: value as HUDConfig["simpleStyle"] })
@@ -128,8 +128,8 @@ export function HUDSection({
             slider(
               "ringWidth",
               config.simpleStyle === "bars"
-                ? t("Bar thickness", "进度条粗细")
-                : t("Ring thickness", "圆环粗细"),
+                ? t("Bar thickness", "進度條粗細")
+                : t("Ring thickness", "圓環粗細"),
               1,
               4,
               0.5,
@@ -139,39 +139,39 @@ export function HUDSection({
           {config.simpleStyle !== "numbers" &&
             toggle(
               "showsNumbers",
-              t("Show numbers", "显示数字"),
+              t("Show numbers", "顯示數字"),
               t(
                 "The most used window's percentage beside each logo.",
-                "标志旁写出用得最多那项的百分比。",
+                "標誌旁寫出用得最多那項的百分比。",
               ),
             )}
           {toggle(
             "separatesAgents",
-            t("Separate agents", "按智能体分开"),
+            t("Separate agents", "按Agent分開"),
             t(
               "Hovering a logo opens only its agent.",
-              "悬停标志只展开该智能体。",
+              "懸停標誌只展開該Agent。",
             ),
           )}
         </>
       )}
       <Row
-        title={t("Appearance", "外观")}
+        title={t("Appearance", "外觀")}
         subtitle={
           config.hasNotch && config.mode === "notch"
             ? t(
                 "The notch stays black; its panel uses this.",
-                "刘海保持纯黑，展开的面板用这个外观。",
+                "劉海保持純黑，展開的面板用這個外觀。",
               )
             : undefined
         }
       >
         <Segments
-          label={t("HUD appearance", "HUD 外观")}
+          label={t("HUD appearance", "HUD 外觀")}
           value={config.appearance}
           options={[
-            ["system", t("System", "跟随系统")],
-            ["light", t("Light", "浅色")],
+            ["system", t("System", "跟隨系統")],
+            ["light", t("Light", "淺色")],
             ["dark", t("Dark", "深色")],
           ]}
           change={(value) =>

@@ -16,10 +16,10 @@ import { SmallButton } from "../SettingsControls";
 import { FieldRow } from "../SettingsFields";
 
 const labels: Record<string, [string, string]> = {
-  apiKey: ["API key", "API 密钥"],
+  apiKey: ["API key", "API 密鑰"],
   baseUrl: ["API endpoint", "API 地址"],
-  organization: ["Organization", "组织"],
-  project: ["Project", "项目"],
+  organization: ["Organization", "組織"],
+  project: ["Project", "專案"],
 };
 
 export function Connection({
@@ -58,12 +58,12 @@ export function Connection({
           ? configured
             ? t(
                 "Saved; type a new key to replace it",
-                "已保存，输入新密钥可替换",
+                "已儲存，輸入新密鑰可替換",
               )
             : undefined
           : key === "baseUrl"
-            ? t("Default", "默认")
-            : t("Team plans only", "仅团队套餐需要"),
+            ? t("Default", "預設")
+            : t("Team plans only", "僅團隊套餐需要"),
     }),
   );
   if (!fields.length) return null;
@@ -92,14 +92,14 @@ export function Connection({
   return (
     <>
       <Section
-        title={t("Connection", "连接配置")}
+        title={t("Connection", "連接配置")}
         action={
           configured === undefined ? undefined : configured ? (
             <Pill tone="green" dot>
-              {t("Saved", "已保存")}
+              {t("Saved", "已儲存")}
             </Pill>
           ) : (
-            <Pill>{t("Not set", "未设置")}</Pill>
+            <Pill>{t("Not set", "未設定")}</Pill>
           )
         }
         plain
@@ -149,7 +149,7 @@ export function Connection({
               className="settings-button"
               disabled={pending || !complete}
             >
-              {t("Save", "保存")}
+              {t("Save", "儲存")}
             </Button>
           </Row>
           {error && <Notice tone="error">{error}</Notice>}
@@ -161,13 +161,13 @@ export function Connection({
             <DialogTitle>
               {t(
                 `Remove the saved credentials for ${source.name}?`,
-                `移除 ${source.name} 已保存的凭据？`,
+                `移除 ${source.name} 已儲存的憑據？`,
               )}
             </DialogTitle>
             <DialogDescription>
               {t(
                 "Agent HUD stops reading this account until you add them again.",
-                "重新添加之前，Agent HUD 不再读取这个账户。",
+                "重新添加之前，Agent HUD 不再讀取這個帳戶。",
               )}
             </DialogDescription>
           </DialogHeader>

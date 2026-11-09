@@ -85,8 +85,8 @@ export function AgentDetail({
   const optInApprovals = snapshot.settings.optInApprovals ?? [];
   const live = preferences[source.id]?.live !== false;
   const reminders = preferences[source.id]?.reminders !== false;
-  const offReason = t("Turn on Enabled first.", "请先启用。");
-  const refreshLabel = t("Read all agents again", "重新读取所有智能体");
+  const offReason = t("Turn on Enabled first.", "請先啟用。");
+  const refreshLabel = t("Read all agents again", "重新讀取所有Agent");
 
   return (
     <Page>
@@ -95,7 +95,7 @@ export function AgentDetail({
         <div className="agents-detail-title">
           <h2>{source.name}</h2>
           {!source.detected && (
-            <p>{t("Not on this computer", "未在这台电脑上发现")}</p>
+            <p>{t("Not on this computer", "未在這台電腦上發現")}</p>
           )}
         </div>
         <Tooltip>
@@ -118,7 +118,7 @@ export function AgentDetail({
           tone="error"
           action={
             <LinkButton onClick={() => setError(null)}>
-              {t("Dismiss", "关闭")}
+              {t("Dismiss", "關閉")}
             </LinkButton>
           }
         >
@@ -127,7 +127,7 @@ export function AgentDetail({
       )}
       <Section footer={source.notice ?? hookStep ?? undefined}>
         <ToggleRow
-          title={t("Enabled", "启用")}
+          title={t("Enabled", "啟用")}
           checked={enabled}
           disabled={pending}
           change={(value) =>
@@ -137,10 +137,10 @@ export function AgentDetail({
           }
         />
         <ToggleRow
-          title={t("Live status", "实时状态")}
+          title={t("Live status", "實時狀態")}
           subtitle={t(
             "Running and waiting sessions on the HUD.",
-            "在 HUD 上显示运行和等待中的会话。",
+            "在 HUD 上顯示運行和等待中的工作階段。",
           )}
           checked={live}
           disabled={pending || !enabled}
@@ -157,7 +157,7 @@ export function AgentDetail({
             !enabled
               ? offReason
               : !live
-                ? t("Needs Live status.", "需要先打开实时状态。")
+                ? t("Needs Live status.", "需要先打開實時狀態。")
                 : undefined
           }
           change={(value) =>
@@ -172,7 +172,7 @@ export function AgentDetail({
         {source.id === "codex" && (
           <AccountHomes
             t={t}
-            label={t("More Codex accounts", "更多 Codex 账户")}
+            label={t("More Codex accounts", "更多 Codex 帳戶")}
             variable="CODEX_HOME"
             placeholder="~/.codex-work"
             homes={snapshot.settings.codexHomes ?? []}
@@ -184,7 +184,7 @@ export function AgentDetail({
         {source.id === "claude" && (
           <AccountHomes
             t={t}
-            label={t("More Claude Code accounts", "更多 Claude Code 账户")}
+            label={t("More Claude Code accounts", "更多 Claude Code 帳戶")}
             variable="CLAUDE_CONFIG_DIR"
             placeholder="~/.claude-work"
             homes={snapshot.settings.claudeHomes ?? []}
@@ -203,10 +203,10 @@ export function AgentDetail({
         {source.id === "copilot" && (
           <Section>
             <ToggleRow
-              title={t("Read GitHub Copilot quota", "读取 GitHub Copilot 额度")}
+              title={t("Read GitHub Copilot quota", "讀取 GitHub Copilot 額度")}
               subtitle={t(
                 "Uses the GitHub sign-in on this computer.",
-                "使用这台电脑上已登录的 GitHub 账号。",
+                "使用這台電腦上已登入的 GitHub 賬號。",
               )}
               checked={snapshot.settings.readCopilotQuota === true}
               disabled={pending}
@@ -225,18 +225,18 @@ export function AgentDetail({
                 ? undefined
                 : t(
                     "Takes effect once client hooks are on in Agent plugins.",
-                    "在「智能体插件」里打开客户端回调后生效。",
+                    "在「Agent插件」里打開用戶端回呼後生效。",
                   )
             }
           >
             <ToggleRow
               title={t(
                 "Answer permission requests in the HUD",
-                "在 HUD 上回答权限请求",
+                "在 HUD 上回答權限請求",
               )}
               subtitle={t(
                 "Copilot then asks Agent HUD before its own rules and this session's approvals, so every tool call it would run or ask about waits for your answer in the HUD. Runs started with -p, --allow-all-tools, --allow-all or --yolo stay with Copilot.",
-                "Copilot 会先问 Agent HUD，再看自己的规则和本会话的批准，所以它要运行或询问的每次工具调用都会在 HUD 上等你回答。用 -p、--allow-all-tools、--allow-all 或 --yolo 启动的运行仍由 Copilot 自己处理。",
+                "Copilot 會先問 Agent HUD，再看自己的規則和本工作階段的批准，所以它要運行或詢問的每次工具呼叫都會在 HUD 上等你回答。用 -p、--allow-all-tools、--allow-all 或 --yolo 啓動的運行仍由 Copilot 自己處理。",
               )}
               checked={optInApprovals.includes(source.id)}
               disabled={pending}

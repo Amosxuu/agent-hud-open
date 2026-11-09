@@ -116,7 +116,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
     }
     if !empty.is_empty() {
         reading.notice = Some(l10n::text(
-            &format!("{} 当前没有可用的额度", empty.join("、")),
+            &format!("{} 目前沒有可用的額度", empty.join("、")),
             &format!(
                 "{} reports no allowance for this account.",
                 empty.join(", ")

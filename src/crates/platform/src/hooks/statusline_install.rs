@@ -22,14 +22,14 @@ fn supported() -> bool {
 
 fn unavailable() -> String {
     l10n::text(
-        "此系统暂不支持 Antigravity CLI 状态栏回调，设置未作改动。",
+        "此系統暫不支援 Antigravity CLI 狀態欄回呼，設定未作改動。",
         "Antigravity CLI status-line callbacks are unavailable on this system; settings were not changed.",
     )
 }
 
 fn conflict() -> String {
     l10n::text(
-        "Antigravity CLI 的状态栏或 Agent HUD 安装记录已被其他程序修改，请先恢复原有配置。",
+        "Antigravity CLI 的狀態欄或 Agent HUD 安裝記錄已被其他程序修改，請先恢復原有配置。",
         "The Antigravity CLI status line or Agent HUD installation record was modified externally; restore its previous configuration first.",
     )
 }
@@ -45,7 +45,7 @@ pub(super) fn status(context: Option<&InstallContext>) -> Value {
         install::canonical(context).err()
     } else {
         Some(l10n::text(
-            "尚未指定固定的回调程序，Antigravity CLI 设置未作改动。",
+            "尚未指定固定的回呼程序，Antigravity CLI 設定未作改動。",
             "No fixed hook-owner executable has been delegated; Antigravity CLI settings were not changed.",
         ))
     };
@@ -57,7 +57,7 @@ pub(super) fn status(context: Option<&InstallContext>) -> Value {
 fn configuration(path: &Path) -> Result<PathBuf, String> {
     if !path.is_absolute() {
         return Err(l10n::text(
-            "请使用 CLI 设置文件的绝对路径。",
+            "請使用 CLI 設定檔案的絕對路徑。",
             "Use an absolute path to the CLI settings file.",
         ));
     }
@@ -107,7 +107,7 @@ impl FileChange {
             || install::contents(&self.target)? != *expected
         {
             return Err(l10n::text(
-                "准备状态栏改动后 CLI 设置又发生了变化，请重新操作。",
+                "準備狀態欄改動後 CLI 設定又發生了變化，請重新操作。",
                 "CLI settings changed after this status-line plan was prepared; prepare a new plan.",
             ));
         }
@@ -142,7 +142,7 @@ fn rollback(writes: &[FileChange]) -> Result<(), String> {
         Ok(())
     } else {
         Err(l10n::text(
-            "部分 CLI 设置在保存后发生变化，未覆盖这些文件，状态栏改动未能全部恢复。",
+            "部分 CLI 設定在儲存後發生變化，未覆蓋這些檔案，狀態欄改動未能全部恢復。",
             "Some CLI settings changed after the write and were left untouched; not all status-line edits could be rolled back.",
         ))
     }
@@ -223,7 +223,7 @@ pub(super) fn set_accounts(
     next: &[PathBuf],
 ) -> Result<AntigravityCliChange, String> {
     let context = context.ok_or_else(|| l10n::text(
-        "尚未指定固定的回调程序，Antigravity CLI 设置未作改动。",
+        "尚未指定固定的回呼程序，Antigravity CLI 設定未作改動。",
         "No fixed hook-owner executable has been delegated; Antigravity CLI settings were not changed.",
     ))?;
     apply(plan(context, data, previous, next)?)

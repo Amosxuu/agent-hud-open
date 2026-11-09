@@ -733,9 +733,9 @@ fn chinese_labels_follow_the_app_language() {
     let id = answer["id"].as_str().unwrap();
     let sent = world.codex.0.lock().unwrap()[0].text.clone();
     assert!(sent.starts_with(&format!(
-        "[Agent HUD · 来自 Claude Code · Fix the login · {id}]"
+        "[Agent HUD · 來自 Claude Code · Fix the login · {id}]"
     )));
-    assert!(sent.ends_with(&format!("请用 agent-hud 的 MCP 工具 mcp__agent_hud__send_message 回复，reply_to: {id}，回复会作为一条消息送到发件方。没有这个工具时就直接作答，发件方能取回你这一轮最后的回答。")), "{sent}");
+    assert!(sent.ends_with(&format!("請用 agent-hud 的 MCP 工具 mcp__agent_hud__send_message 回復，reply_to: {id}，回復會作為一條訊息送到發件方。沒有這個工具時就直接作答，發件方能取回你這一輪最後的回答。")), "{sent}");
 }
 
 #[test]
@@ -1755,7 +1755,7 @@ fn the_reply_line_names_the_tool_as_the_recipients_client_does() {
     );
     assert_eq!(
         line(true, "deepseek", Some("m-0")),
-        "这是对 m-0 的回复。还需要再说时，用 agent-hud 的 MCP 工具 mcp__agent-hud__send_message 回复，reply_to: m-1。"
+        "這是對 m-0 的回復。還需要再說時，用 agent-hud 的 MCP 工具 mcp__agent-hud__send_message 回復，reply_to: m-1。"
     );
     assert_eq!(
         words::compose(false, PromptForm::Own, &from, "codex", "m-1", None, "Hi"),

@@ -33,7 +33,7 @@ export function ResetCreditsRow({
     <div
       ref={row}
       className="hud-source-reset-credits"
-      aria-label={say(language, "额度重置", "Usage resets")}
+      aria-label={say(language, "額度重置", "Usage resets")}
       onMouseEnter={() =>
         available && setHovered(row.current?.getBoundingClientRect() ?? null)
       }
@@ -60,7 +60,7 @@ export function ResetCreditsRow({
       />
       {!compact && (
         <span style={{ flex: "0 0 152px", width: 152, fontWeight: 500 }}>
-          {say(language, "额度重置", "Usage resets")}
+          {say(language, "額度重置", "Usage resets")}
         </span>
       )}
       <span
@@ -192,7 +192,7 @@ function ResetCreditsCard({
     >
       <div style={{ display: "flex", alignItems: "center" }}>
         <strong style={{ fontSize: 12, fontWeight: 600 }}>
-          {say(language, "额度重置", "Usage resets")}
+          {say(language, "額度重置", "Usage resets")}
         </strong>
         <span style={{ flex: 1 }} />
         <span
@@ -210,7 +210,7 @@ function ResetCreditsCard({
         </span>
       </div>
       <span style={{ fontSize: 10, color: colors.secondary }}>
-        {say(language, "到期时间 · 本地时区", "Expires at · local time")}
+        {say(language, "到期時間 · 本地時區", "Expires at · local time")}
       </span>
       <div style={{ display: "grid", gap: 8 }}>
         {credits.map((credit, index) => (

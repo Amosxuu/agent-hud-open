@@ -58,11 +58,11 @@ export function SessionAside({
   const name =
     pick.kind === "turn"
       ? zh
-        ? "这一轮"
+        ? "這一輪"
         : "Turn"
       : localWorkers
         ? zh
-          ? "本机执行会话"
+          ? "本機執行工作階段"
           : "Local execution session"
         : zh
           ? "子 agent"
@@ -72,7 +72,7 @@ export function SessionAside({
       <SessionBackBar
         label={
           one
-            ? session?.title || (zh ? "未命名会话" : "Untitled session")
+            ? session?.title || (zh ? "未命名工作階段" : "Untitled session")
             : name
         }
         top={one ? 44 : 0}

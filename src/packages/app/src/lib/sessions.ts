@@ -126,7 +126,7 @@ export function unpricedHelp(
       : `: ${models.join(", ")}`
     : "";
   return zh
-    ? `另有 ${count} 个 Token 来自没有 API 价格的模型，未计入${named}`
+    ? `另有 ${count} 個 Token 來自沒有 API 價格的模型，未計入${named}`
     : `${count} more tokens came from models with no API list price and are not included${named}`;
 }
 

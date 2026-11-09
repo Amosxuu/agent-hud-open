@@ -87,7 +87,7 @@ impl crate::AgentHudCore {
                         self.usage_projection = None;
                     }
                     Err(_) => {
-                        self.storage_issue = Some(l10n::text("无法沿用之前的用量记录，将重新逐步索引会话日志", "Previous usage history could not be reused; source logs will be indexed incrementally"));
+                        self.storage_issue = Some(l10n::text("無法沿用之前的用量記錄，將重新逐步索引工作階段紀錄", "Previous usage history could not be reused; source logs will be indexed incrementally"));
                     }
                 }
             }

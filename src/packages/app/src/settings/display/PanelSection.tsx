@@ -43,11 +43,11 @@ export function PanelSection({
 }: DisplayProps & { snapshot: Snapshot }) {
   const light = useLightTheme();
   const sectionNames: Record<PanelSectionKey, string> = {
-    blocks: t("Quota details", "额度明细"),
+    blocks: t("Quota details", "額度明細"),
     tokens: t("Token usage", "Token 消耗"),
-    sessions: t("Session list", "会话列表"),
-    quotaHistory: t("Quota history", "额度历史"),
-    planValue: t("Plan value", "订阅价值"),
+    sessions: t("Session list", "工作階段列表"),
+    quotaHistory: t("Quota history", "額度歷史"),
+    planValue: t("Plan value", "訂閱價值"),
   };
   // Saved order first; a section the saved order lacks keeps its default place.
   // A section an agent added to the panel has no row here and keeps its place
@@ -84,7 +84,7 @@ export function PanelSection({
             {
               id: `api:${account.vendor}`,
               source: account.vendor,
-              title: `${agentVendorName(account.vendor)} · ${t("Balance", "余额")}`,
+              title: `${agentVendorName(account.vendor)} · ${t("Balance", "餘額")}`,
             },
           ] as const,
       ),
@@ -106,15 +106,15 @@ export function PanelSection({
   };
 
   return (
-    <Section title={t("Panel", "展开面板")}>
-      <Row title={t("Layout density", "布局密度")}>
+    <Section title={t("Panel", "展開面板")}>
+      <Row title={t("Layout density", "佈局密度")}>
         <Segments
-          label={t("Layout density", "布局密度")}
+          label={t("Layout density", "佈局密度")}
           value={config.layoutDensity}
           options={[
-            ["comfortable", t("Comfortable", "宽松")],
+            ["comfortable", t("Comfortable", "寬松")],
             ["normal", t("Normal", "普通")],
-            ["compact", t("Compact", "紧凑")],
+            ["compact", t("Compact", "緊湊")],
           ]}
           change={(value) =>
             update({ layoutDensity: value as HUDConfig["layoutDensity"] })
@@ -168,13 +168,13 @@ export function PanelSection({
             </Row>
             {section === "blocks" && (
               <ToggleRow
-                title={t("Reset countdown", "重置倒计时")}
+                title={t("Reset countdown", "重置倒計時")}
                 checked={config.resetCountdown}
                 change={(value) => update({ resetCountdown: value })}
                 disabled={!config.quotaDetails}
                 reason={t(
                   "Shown with quota details. Turn those on first.",
-                  "跟随额度明细显示，请先打开额度明细。",
+                  "跟隨額度明細顯示，請先打開額度明細。",
                 )}
               />
             )}
@@ -182,7 +182,7 @@ export function PanelSection({
         );
       })}
       {orderedBlocks.length > 1 && (
-        <MoreRows label={t("Agent order", "智能体顺序")}>
+        <MoreRows label={t("Agent order", "Agent順序")}>
           {orderedBlocks.map((block, index) => (
             <Row
               key={block.id}

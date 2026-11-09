@@ -44,12 +44,12 @@ impl Tracker {
             // the other hooks only report how its sessions are doing.
             let message = if events.contains(&"permissionRequest") {
                 l10n::text(
-                    &format!("{name} 在你允许之前会跳过 Agent HUD 的回调，它的审批不会出现在 HUD 上。"),
+                    &format!("{name} 在你允許之前會跳過 Agent HUD 的回呼，它的審批不會出現在 HUD 上。"),
                     &format!("{name} skips Agent HUD's hooks until you allow them, so its approvals won't reach the HUD."),
                 )
             } else {
                 l10n::text(
-                    &format!("{name} 在你允许之前会跳过 Agent HUD 的回调，它的会话进展不会及时出现在 HUD 上。"),
+                    &format!("{name} 在你允許之前會跳過 Agent HUD 的回呼，它的工作階段進展不會及時出現在 HUD 上。"),
                     &format!("{name} skips Agent HUD's hooks until you allow them, so the HUD learns of its sessions late."),
                 )
             };

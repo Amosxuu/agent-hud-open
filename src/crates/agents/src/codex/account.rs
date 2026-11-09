@@ -36,7 +36,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
     let native = match executable.as_deref() {
         Some(executable) => read_native(host, executable),
         None => Err(Unread::Failed(l10n::text(
-            "安装并登录后即可读取额度",
+            "安裝並登入後即可讀取額度",
             "Install and sign in to read quota",
         ))),
     };
@@ -87,7 +87,7 @@ fn read_native(host: &dyn Host, executable: &Path) -> Result<Reading, Unread> {
     let mut failures = Vec::new();
     for home in &homes {
         if host.cancelled() {
-            return Err(l10n::text("账户读取已停止", "Account reading was stopped").into());
+            return Err(l10n::text("賬戶讀取已停止", "Account reading was stopped").into());
         }
         let prefix = if homes.len() > 1 {
             format!("{}: ", home.display())
@@ -197,7 +197,7 @@ fn read_home(host: &dyn Host, executable: &Path, home: &Path) -> Result<Reading,
         // No sign-in at all is Codex's own state: the last windows stay.
         if requires_openai_auth == Some(true) && account.is_null() {
             return Err(Unread::SignedOut(l10n::text(
-                "Codex 尚未登录，运行 codex login 登录 ChatGPT 后即可读取额度",
+                "Codex 尚未登入，運行 codex login 登入 ChatGPT 後即可讀取額度",
                 "Codex is not signed in. Run codex login with ChatGPT to read its quota",
             )));
         }
@@ -214,12 +214,12 @@ fn read_home(host: &dyn Host, executable: &Path, home: &Path) -> Result<Reading,
     let limits = limits.ok_or_else(|| {
         if process.ended() {
             Unread::Failed(l10n::text(
-                "Codex 引擎提前退出，请检查本机登录状态",
+                "Codex 引擎提前結束，請檢查本機登入狀態",
                 "Codex exited before reporting limits; check local sign-in",
             ))
         } else {
             Unread::transient(l10n::text(
-                "Codex 额度查询超时",
+                "Codex 額度查詢超時",
                 "Codex quota query timed out",
             ))
         }
@@ -245,17 +245,17 @@ fn read_home(host: &dyn Host, executable: &Path, home: &Path) -> Result<Reading,
 fn no_plan_notice(account: &Value, requires_openai_auth: Option<bool>) -> Option<String> {
     match account["type"].as_str() {
         Some("apiKey") => Some(l10n::text(
-            "Codex 用的是 API key 登录，没有 ChatGPT 套餐额度",
+            "Codex 用的是 API key 登入，沒有 ChatGPT 套餐額度",
             "Codex is signed in with an API key, which has no ChatGPT plan limits",
         )),
         Some("amazonBedrock") => Some(l10n::text(
-            "Codex 走的是 Amazon Bedrock，没有 ChatGPT 套餐额度",
+            "Codex 走的是 Amazon Bedrock，沒有 ChatGPT 套餐額度",
             "Codex runs on Amazon Bedrock, which has no ChatGPT plan limits",
         )),
         Some(_) => None,
         None => match requires_openai_auth {
             Some(false) => Some(l10n::text(
-                "Codex 用的是自定义模型服务，没有 ChatGPT 套餐额度",
+                "Codex 用的是自定義模型服務，沒有 ChatGPT 套餐額度",
                 "Codex uses a custom model provider, which has no ChatGPT plan limits",
             )),
             _ => None,

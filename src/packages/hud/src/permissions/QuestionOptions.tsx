@@ -1,3 +1,5 @@
+import { text as localizedText } from "@agent-hud/ui/format";
+import { useFormat } from "@agent-hud/ui/format-context";
 import type { RefObject } from "react";
 import { Check } from "lucide-react";
 import type { ApprovalQuestion } from "@agent-hud/protocol";
@@ -33,7 +35,9 @@ export function QuestionOptions({
   setEditingCustomKey: (key: string | null) => void;
   advanceOrSubmit: () => void;
 }) {
-  const t = (en: string, cn: string) => (zh ? cn : en);
+  const { language } = useFormat();
+  const t = (en: string, cn: string) =>
+    localizedText(zh ? (language === "zh-TW" ? language : "zh") : "en", cn, en);
   const key = q.answerKey;
 
   const ink = (alpha: number) =>
@@ -154,10 +158,10 @@ export function QuestionOptions({
           <input
             ref={customInputRef}
             type="text"
-            aria-label={t("Your own answer", "补充回答")}
+            aria-label={t("Your own answer", "補充回答")}
             placeholder={
               q.options.length === 0
-                ? t("Type an answer", "输入回答")
+                ? t("Type an answer", "輸入回答")
                 : t("Other", "其他回答")
             }
             value={value.custom ?? ""}

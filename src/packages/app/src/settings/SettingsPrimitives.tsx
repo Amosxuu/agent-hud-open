@@ -6,7 +6,7 @@ import { useId, useState, type ReactNode } from "react";
 import { ChevronRight } from "lucide-react";
 import type { NativeMethod, Snapshot } from "@agent-hud/protocol";
 import type { HUDConfig } from "@agent-hud/hud/model";
-import { snapshotLanguage } from "@agent-hud/ui/format";
+import { snapshotLanguage, text } from "@agent-hud/ui/format";
 
 export interface SettingsPaneProps {
   snapshot: Snapshot;
@@ -22,8 +22,8 @@ export interface SettingsPaneProps {
 export type Text = (en: string, zh: string) => string;
 
 export function useText(snapshot: Snapshot | null): Text {
-  const chinese = snapshot ? snapshotLanguage(snapshot) === "zh" : false;
-  return (en, zh) => (chinese ? zh : en);
+  const language = snapshot ? snapshotLanguage(snapshot) : "en";
+  return (en, zh) => text(language, zh, en);
 }
 
 /** A page's body: its sections, one under another. */

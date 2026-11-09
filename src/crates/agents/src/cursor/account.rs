@@ -26,13 +26,13 @@ pub const DATABASE: PerOs<Location> = PerOs {
 
 pub(super) fn auth_format() -> String {
     l10n::text(
-        "Cursor 账户登录信息格式无法识别",
+        "Cursor 賬戶登入資訊格式無法識別",
         "Cursor account authentication has an unsupported format.",
     )
 }
 pub(super) fn database_format() -> String {
     l10n::text(
-        "Cursor 账户数据库格式无法识别",
+        "Cursor 賬戶資料庫格式無法識別",
         "Cursor account database has an unsupported format.",
     )
 }
@@ -93,7 +93,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
         .map_err(|failure| match failure {
             HttpFailure::BadHeader => auth_format().into(),
             HttpFailure::Unreachable => failure.unread_as(l10n::text(
-                "无法读取 Cursor 账户用量，请检查网络",
+                "無法讀取 Cursor 賬戶用量，請檢查網路",
                 "Cursor account usage could not be reached; check the connection.",
             )),
             other => other.unread(),
@@ -104,7 +104,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
                 && !body["membershipType"].is_string()
             {
                 Err(l10n::text(
-                    "Cursor 账户返回的数据格式无法识别",
+                    "Cursor 賬戶返回的資料格式無法識別",
                     "Cursor account response has an unsupported format.",
                 )
                 .into())
@@ -131,14 +131,14 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
             dashboard(host, &token, "GetCurrentPeriodUsage").map_err(|failure| match failure {
                 HttpFailure::BadHeader => auth_format().into(),
                 HttpFailure::Unreachable => failure.unread_as(l10n::text(
-                    "无法读取 Cursor 的计划用量，请检查网络",
+                    "無法讀取 Cursor 的計劃用量，請檢查網路",
                     "Cursor's plan usage could not be reached; check the connection.",
                 )),
                 other => other.unread(),
             })?;
         current_period(&reply).ok_or_else(|| {
             Unread::from(l10n::text(
-                "Cursor 的计划用量格式无法识别",
+                "Cursor 的計劃用量格式無法識別",
                 "Cursor's plan usage has an unsupported format.",
             ))
         })?
@@ -221,7 +221,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
         .collect::<Vec<_>>();
     let notice = quotas.is_empty().then(|| {
         l10n::text(
-            "Cursor 已连接，当前计划未提供额度比例",
+            "Cursor 已連接，目前計劃未提供額度比例",
             "Cursor is connected; this plan reports no quota percentage.",
         )
     });

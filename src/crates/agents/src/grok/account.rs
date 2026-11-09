@@ -36,14 +36,14 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
     let mut r = Reading::empty("grok-bot");
     let Ok(directory) = locate(host, &CACHE) else {
         r.notice = Some(l10n::text(
-            "此系统暂不支持读取 Grok Bot 缓存",
+            "此系統暫不支援讀取 Grok Bot 快取",
             "Grok Bot cache acquisition is not implemented on this platform",
         ));
         return Ok(r);
     };
     let Some(slot) = bot::account_through(host, &directory) else {
         r.notice = Some(l10n::text(
-            "登录 Grok Bot 后读取其缓存的个人额度",
+            "登入 Grok Bot 後讀取其快取的個人額度",
             "Sign in to Grok Bot to expose its cached personal quota",
         ));
         return Ok(r);
@@ -116,7 +116,7 @@ fn cached(
 ) -> Result<Reading, String> {
     let value = bot::value_through(host, directory, &bot::quota_key(slot), 2).ok_or_else(|| {
         l10n::text(
-            "Grok Bot 缓存额度不可用，请在 Bot 中刷新",
+            "Grok Bot 快取額度不可用，請在 Bot 中更新",
             "Grok Bot cached quota is unavailable; refresh in Bot",
         )
     })?;
@@ -131,18 +131,18 @@ fn cached(
         *at <= now && now - at < 86_400_000 && expires.is_some_and(|e| e > now && e > *at)
     }) else {
         return Err(l10n::text(
-            "Grok Bot 缓存的额度已超过一天，打开 Grok Bot 即可刷新",
+            "Grok Bot 快取的額度已超過一天，打開 Grok Bot 即可更新",
             "Grok Bot's cached quota is more than a day old; open Grok Bot to refresh it.",
         ));
     };
     let mut r = quota(&value["reading"]["usage"], slot, observed, email)?;
     r.notice = Some(l10n::text(
-        "额度来自 Grok Bot 缓存；在 Bot 中刷新可更新读数",
+        "額度來自 Grok Bot 快取；在 Bot 中更新可更新讀數",
         "Quota from Grok Bot cache; refresh in Bot to update",
     ));
     if bot::account_through(host, directory).as_deref() != Some(slot) {
         return Err(l10n::text(
-            "读取缓存期间 Grok Bot 账户发生了变化",
+            "讀取快取期間 Grok Bot 賬戶發生了變化",
             "Grok Bot account changed while reading its cache",
         ));
     }
@@ -151,7 +151,7 @@ fn cached(
 
 fn no_personal_quota() -> String {
     l10n::text(
-        "Grok Bot 在当前账户或团队下没有个人周额度",
+        "Grok Bot 在目前賬戶或團隊下沒有個人周額度",
         "Grok Bot has no personal weekly limit for this account or team.",
     )
 }
@@ -176,7 +176,7 @@ fn quota(u: &Value, slot: &str, observed: i64, email: Option<&str>) -> Result<Re
     let reset = u["nextResetMs"].as_i64().and_then(iso);
     if !u["nextResetMs"].is_null() && reset.is_none() {
         return Err(l10n::text(
-            "Grok Bot 缓存的重置时间无效",
+            "Grok Bot 快取的重置時間無效",
             "Grok Bot cache reset time is invalid",
         ));
     }

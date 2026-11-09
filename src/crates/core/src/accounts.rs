@@ -69,7 +69,7 @@ impl crate::AgentHudCore {
                     }
                     Err(_) => {
                         self.storage_issue = Some(l10n::text(
-                            "额度读数暂时无法保存",
+                            "額度讀數暫時無法儲存",
                             "Quota sample persistence is unavailable",
                         ))
                     }
@@ -96,7 +96,7 @@ impl crate::AgentHudCore {
                     Ok(count) => changed |= count > 0,
                     Err(_) => {
                         self.storage_issue = Some(l10n::text(
-                            "无法读取之前的额度记录",
+                            "無法讀取之前的額度記錄",
                             "Previous quota history could not be read",
                         ))
                     }

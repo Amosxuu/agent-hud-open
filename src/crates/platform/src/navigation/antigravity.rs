@@ -87,7 +87,7 @@ fn remaining(deadline: Instant) -> Result<Duration, String> {
     let left = deadline.saturating_duration_since(Instant::now());
     if left.is_zero() {
         Err(l10n::text(
-            "打开 Antigravity 会话超时",
+            "打開 Antigravity 工作階段超時",
             "Antigravity navigation timed out",
         ))
     } else {

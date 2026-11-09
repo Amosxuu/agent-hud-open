@@ -42,7 +42,7 @@ function parsed(text: string | null | undefined): Date | null {
 function dayText(at: Date, now: Date, zh: boolean): string {
   const year =
     at.getFullYear() === now.getFullYear() ? {} : { year: "numeric" as const };
-  return dateFormat(zh ? "zh-CN" : "en-US", {
+  return dateFormat(zh ? "zh-TW" : "en-US", {
     month: zh ? "long" : "short",
     day: "numeric",
     ...year,
@@ -56,20 +56,20 @@ export function indexingText(
 ): IndexingText | null {
   const kind = indexing?.kind;
   if (kind !== "first" && kind !== "reindex") return null;
-  const zh = language === "zh";
+  const zh = language.startsWith("zh");
   const oldest = parsed(indexing?.oldestLogAt);
   // With none left the reading has reached the oldest log.
   const reached = parsed(indexing?.readBackTo) ?? oldest;
   const run =
     kind === "first"
       ? zh
-        ? "正在读取历史记录"
+        ? "正在讀取歷史記錄"
         : "Reading your history"
       : zh
-        ? "正在重新读取历史记录"
+        ? "正在重新讀取歷史記錄"
         : "Reading your history again";
   const incomplete = zh
-    ? "完成前 Token 和费用不完整"
+    ? "完成前 Token 和費用不完整"
     : "tokens and costs are incomplete until it finishes";
   // A run is not done until the core says so: 100% waits for that.
   const share = (done: number, all: number) =>
@@ -93,12 +93,12 @@ export function indexingText(
   const first = dayText(oldest, now, zh);
   return {
     fraction: share(done, all),
-    title: zh ? `${run} · 已读到 ${back}` : `${run} · back to ${back}`,
+    title: zh ? `${run} · 已讀到 ${back}` : `${run} · back to ${back}`,
     days: zh
       ? `${done}/${all} 天`
       : `${done} of ${all} ${all === 1 ? "day" : "days"}`,
     detail: zh
-      ? `日志可追溯到 ${first} · ${incomplete}`
+      ? `紀錄可追溯到 ${first} · ${incomplete}`
       : `Your logs go back to ${first} · ${incomplete}`,
   };
 }

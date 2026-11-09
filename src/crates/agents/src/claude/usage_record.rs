@@ -50,7 +50,7 @@ impl Record<'_> {
     pub fn shown(&self, now_ms: i64) -> String {
         let age = age(self.age_ms(now_ms));
         if l10n::chinese() {
-            format!("显示的是 Claude Code {age} 前记下的读数")
+            format!("顯示的是 Claude Code {age} 前記下的讀數")
         } else {
             format!("Showing Claude Code's own reading from {age} ago")
         }

@@ -1,3 +1,4 @@
+import { text as localizedText } from "@agent-hud/ui/format";
 import type { CSSProperties } from "react";
 import type {
   PanelLayout,
@@ -41,7 +42,7 @@ export function SourceSessions({
   bare?: boolean;
   active?: boolean;
 }) {
-  const zh = useFormat().language === "zh";
+  const language = useFormat().language;
   const services = usePanelServices();
   const listed = useListedSessions();
   // The Sessions page: the list, or one session's usage.
@@ -100,12 +101,8 @@ export function SourceSessions({
     own,
   );
   const status = week
-    ? zh
-      ? "近 7 天"
-      : "Last 7 days"
-    : zh
-      ? "近 24 小时"
-      : "Last 24 hours";
+    ? localizedText(language, "近 7 天", "Last 7 days")
+    : localizedText(language, "近 24 小時", "Last 24 hours");
   return (
     <section
       className="hud-source-sessions"
@@ -121,7 +118,7 @@ export function SourceSessions({
       }}
     >
       <button
-        title={zh ? "查看会话列表" : "Show sessions"}
+        title={localizedText(language, "查看工作階段列表", "Show sessions")}
         onClick={() => openSessions()}
         disabled={!onStats && !listed}
         style={{
@@ -135,7 +132,7 @@ export function SourceSessions({
         }}
       >
         <strong style={{ fontWeight: 600, color: colors.text, ...clipped }}>
-          {zh ? "会话" : "Sessions"}
+          {localizedText(language, "工作階段", "Sessions")}
         </strong>
         <span
           style={{
@@ -158,9 +155,11 @@ export function SourceSessions({
         <button
           key={session.id}
           disabled={!onStats && !listed}
-          title={`${session.title}\n${
-            zh ? "查看会话详情" : "Show session details"
-          }`}
+          title={`${session.title}\n${localizedText(
+            language,
+            "查看工作階段詳情",
+            "Show session details",
+          )}`}
           onClick={() =>
             listed
               ? openSessions(session.id)
@@ -191,7 +190,11 @@ export function SourceSessions({
           </span>
           <RowTitle
             parts={sessionTitleParts(session.title, session.cwd)}
-            untitled={zh ? "（未命名会话）" : "(untitled session)"}
+            untitled={localizedText(
+              language,
+              "（未命名工作階段）",
+              "(untitled session)",
+            )}
           />
           <span
             style={{
@@ -208,12 +211,8 @@ export function SourceSessions({
       {!sessions.length && (
         <span style={{ color: colors.secondary, lineHeight: "15px" }}>
           {noneMatch
-            ? zh
-              ? "没有符合条件的会话"
-              : "No sessions match"
-            : zh
-              ? "还没有会话"
-              : "No sessions yet"}
+            ? localizedText(language, "沒有符合條件的工作階段", "No sessions match")
+            : localizedText(language, "還沒有工作階段", "No sessions yet")}
         </span>
       )}
       {total > limit && (
@@ -222,7 +221,11 @@ export function SourceSessions({
           disabled={!onStats && !listed}
           onClick={() => openSessions()}
         >
-          {zh ? `还有 ${total - limit} 个` : `+${total - limit} more`}
+          {localizedText(
+            language,
+            `還有 ${total - limit} 個`,
+            `+${total - limit} more`,
+          )}
         </button>
       )}
     </section>

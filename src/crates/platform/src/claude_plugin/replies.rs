@@ -40,7 +40,7 @@ impl ClaudeReplies {
         if !installed(&self.claude_config) {
             return Unreachable::new(
                 l10n::text(
-                    "Claude Code 还没装 Agent HUD 插件，装好后就能在 Agent HUD 里回答 Claude 的提问（设置 → 智能体插件）。",
+                    "Claude Code 還沒裝 Agent HUD 插件，裝好後就能在 Agent HUD 里回答 Claude 的提問（設定 → Agent插件）。",
                     "Claude Code doesn't have Agent HUD's plugin yet. Install it to answer Claude's questions in Agent HUD (Settings → Agent plugins).",
                 ),
                 Some(AnswerFix::InstallPlugin),
@@ -52,7 +52,7 @@ impl ClaudeReplies {
         if paused {
             return Unreachable::new(
                 l10n::text(
-                    "这个会话有一阵没回应 Agent HUD 插件了，可能被 Claude 暂停了。在 Claude 里打开这个会话就能回答。",
+                    "這個工作階段有一陣沒回應 Agent HUD 插件了，可能被 Claude 暫停了。在 Claude 里打開這個工作階段就能回答。",
                     "This session hasn't answered Agent HUD's plugin for a while; Claude may have paused it. Open it in Claude to answer.",
                 ),
                 None,
@@ -60,7 +60,7 @@ impl ClaudeReplies {
         }
         Unreachable::new(
             l10n::text(
-                "这个会话还没加载 Agent HUD 插件。在会话里执行 /reload-plugins 后，就能在 Agent HUD 里回答。",
+                "這個工作階段還沒載入 Agent HUD 插件。在工作階段裡執行 /reload-plugins 後，就能在 Agent HUD 里回答。",
                 "This session hasn't loaded Agent HUD's plugin. Run /reload-plugins in it to answer in Agent HUD.",
             ),
             Some(AnswerFix::ReloadPlugins),
@@ -71,7 +71,7 @@ impl ClaudeReplies {
 /// Why words for another client's session never reach it: the plugin is Claude Code's.
 fn not_claude() -> String {
     l10n::text(
-        "Agent HUD 的插件只能把回答发进 Claude Code 会话。",
+        "Agent HUD 的插件只能把回答發進 Claude Code 工作階段。",
         "Agent HUD's plugin sends answers only into Claude Code sessions.",
     )
 }
@@ -108,12 +108,12 @@ impl SessionReplies for ClaudeReplies {
         handed.map(drop).map_err(|refusal| match refusal {
             Refusal::NotLoaded => self.unreachable(session).note,
             Refusal::Rejected(_) => l10n::text(
-                "插件不能发送以 / 开头的话。",
+                "插件不能發送以 / 開頭的話。",
                 "The plugin can't send words that start with /.",
             ),
-            Refusal::InvalidInput(_) => l10n::text("没有要发送的话。", "There is nothing to send."),
+            Refusal::InvalidInput(_) => l10n::text("沒有要發送的話。", "There is nothing to send."),
             _ => l10n::text(
-                "回答没能交给 Claude Code 插件。",
+                "回答沒能交給 Claude Code 插件。",
                 "The answer could not be left for the Claude Code plugin.",
             ),
         })

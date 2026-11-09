@@ -190,13 +190,13 @@ fn resolve(shared: &Shared, pending: &Pending, decision: &Value) -> Result<(), R
     }
     let endpoints = antigravity::endpoints(true).map_err(|_| {
         fail(l10n::text(
-            "无法重新核实 Antigravity 正在等待的权限请求",
+            "無法重新核實 Antigravity 正在等待的權限請求",
             "Antigravity's waiting permission could not be revalidated",
         ))
     })?;
     if !endpoints.contains(&pending.endpoint) {
         return Err(fail(l10n::text(
-            "Antigravity 的权限服务已变化",
+            "Antigravity 的權限服務已變化",
             "Antigravity's permission service changed",
         )));
     }
@@ -205,7 +205,7 @@ fn resolve(shared: &Shared, pending: &Pending, decision: &Value) -> Result<(), R
         .call("GetAllCascadeTrajectories", &json!({}))
         .map_err(|_| {
             fail(l10n::text(
-                "无法重新核实 Antigravity 正在等待的权限请求",
+                "無法重新核實 Antigravity 正在等待的權限請求",
                 "Antigravity's waiting permission could not be revalidated",
             ))
         })?;
@@ -216,7 +216,7 @@ fn resolve(shared: &Shared, pending: &Pending, decision: &Value) -> Result<(), R
     )
     .map_err(|_| {
         fail(l10n::text(
-            "Antigravity 的权限请求内容已变化",
+            "Antigravity 的權限請求內容已變化",
             "Antigravity's permission summary changed",
         ))
     })?;
@@ -225,7 +225,7 @@ fn resolve(shared: &Shared, pending: &Pending, decision: &Value) -> Result<(), R
         .any(|item| item.id == pending.item.id && item.permission == pending.item.permission)
     {
         return Err(fail(l10n::text(
-            "Antigravity 的请求已撤回或变更",
+            "Antigravity 的請求已撤回或變更",
             "Antigravity's request was withdrawn or changed",
         )));
     }
@@ -241,7 +241,7 @@ fn resolve(shared: &Shared, pending: &Pending, decision: &Value) -> Result<(), R
         .call("HandleCascadeUserInteraction", &body)
         .map_err(|_| {
             Reply::Uncertain(l10n::text(
-                "Antigravity 没有确认收到这个权限答复",
+                "Antigravity 沒有確認收到這個權限答復",
                 "Antigravity did not confirm receipt of the permission answer",
             ))
         })?;

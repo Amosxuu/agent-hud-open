@@ -152,7 +152,7 @@ fn overage(premium: &Value, id: &str, label: Option<&str>) -> Option<Value> {
     let count = number(&premium["overage_count"]).filter(|count| *count > 0.)?;
     let amount = (count * OVERAGE_PRICE_USD * 100.).round() / 100.;
     let notice = if l10n::chinese() {
-        format!("{count} 次超出套餐的高级请求，按每次 0.04 美元估算，以 GitHub 账单为准")
+        format!("{count} 次超出套餐的高級請求，按每次 0.04 美元估算，以 GitHub 賬單為準")
     } else {
         format!("{count} premium requests beyond the plan at US$0.04 each; GitHub's bill is authoritative")
     };
@@ -161,7 +161,7 @@ fn overage(premium: &Value, id: &str, label: Option<&str>) -> Option<Value> {
         "vendor": "copilot",
         "accountId": id,
         "account": label,
-        "label": l10n::text("超额请求（估算）", "Overage (estimated)"),
+        "label": l10n::text("超額請求（估算）", "Overage (estimated)"),
         "amount": amount,
         "currency": "USD",
         "notice": notice,
@@ -183,7 +183,7 @@ const USER: &str = "https://api.github.com/copilot_internal/user";
 
 fn signed_out() -> Unread {
     Unread::SignedOut(l10n::text(
-        "请先登录 GitHub CLI 或 Copilot，再读取 Copilot 额度",
+        "請先登入 GitHub CLI 或 Copilot，再讀取 Copilot 額度",
         "Sign in to GitHub CLI or Copilot before reading Copilot quota",
     ))
 }
@@ -208,11 +208,11 @@ fn get(host: &dyn Host, url: &str, token: &str) -> Result<Value, HttpFailure> {
 fn unread(failure: HttpFailure) -> Unread {
     match failure {
         HttpFailure::BadHeader => Unread::from(l10n::text(
-            "GitHub 令牌格式无效，无法用于请求",
+            "GitHub 令牌格式無效，無法用於請求",
             "GitHub token cannot be used as a header",
         )),
         HttpFailure::Unreachable => failure.unread_as(l10n::text(
-            "Copilot 账户请求失败",
+            "Copilot 賬戶請求失敗",
             "Copilot account request failed",
         )),
         // The token no longer signs in.
@@ -225,7 +225,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
     if !host.consented(CONSENT) {
         let mut r = Reading::empty("copilot");
         r.notice = Some(l10n::text(
-            "开启 Copilot 额度读取后，才会使用 GitHub CLI 或 Copilot 的现有登录",
+            "開啓 Copilot 額度讀取後，才會使用 GitHub CLI 或 Copilot 的現有登入",
             "Enable Copilot quota reading to permit access to the existing GitHub CLI or Copilot sign-in",
         ));
         return Ok(r);

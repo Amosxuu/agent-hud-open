@@ -12,33 +12,33 @@ export function AllScreensSection({ config, update, t }: DisplayProps) {
   const { slider, toggle, ms } = displayControls({ config, update, t });
   const fade = config.messageFadeSeconds;
   return (
-    <Section title={t("All screens", "所有屏幕")}>
+    <Section title={t("All screens", "所有螢幕")}>
       {toggle(
         "botLogos",
         t("Bot logos", "Bot 形象"),
-        t("Agents show as bots while they work.", "智能体工作时显示为 Bot。"),
+        t("Agents show as bots while they work.", "Agent工作時顯示為 Bot。"),
       )}
       {toggle(
         "requiresOptionToOpen",
-        t("Press Option to open", "按 Option 才展开"),
-        t("Hovering alone leaves the panel closed.", "仅悬停不会展开面板。"),
+        t("Press Option to open", "按 Option 才展開"),
+        t("Hovering alone leaves the panel closed.", "僅懸停不會展開面板。"),
       )}
       {toggle(
         "openImmediatelyAtTop",
-        t("Open immediately at the top edge", "鼠标触顶立即展开"),
-        t("Skips the hover delay.", "跳过展开延迟。"),
+        t("Open immediately at the top edge", "滑鼠觸頂立即展開"),
+        t("Skips the hover delay.", "跳過展開延遲。"),
       )}
-      {slider("hoverDelayMs", t("Hover delay", "展开延迟"), 0, 1500, 50, ms)}
+      {slider("hoverDelayMs", t("Hover delay", "展開延遲"), 0, 1500, 50, ms)}
       {slider(
         "collapseDelayMs",
-        t("Collapse delay", "收起延迟"),
+        t("Collapse delay", "收起延遲"),
         0,
         1500,
         50,
         ms,
       )}
       <Slide
-        title={t("Messages fade every", "消息消失间隔")}
+        title={t("Messages fade every", "訊息消失間隔")}
         value={fade > 0 ? Math.min(fade, NEVER - 1) : NEVER}
         min={3}
         max={NEVER}

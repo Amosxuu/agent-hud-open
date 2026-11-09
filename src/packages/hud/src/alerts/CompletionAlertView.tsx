@@ -34,7 +34,7 @@ export function CompletionAlertView({
   botLogos?: boolean;
 }) {
   const services = usePanelServices(),
-    zh = snapshotLanguage(snapshot) === "zh",
+    zh = snapshotLanguage(snapshot).startsWith("zh"),
     [failed, setFailed] = useState(false),
     [closeHover, setCloseHover] = useState(false);
   const session = snapshot.sessions.find((s) => s.id === event.sessionId);
@@ -130,12 +130,12 @@ export function CompletionAlertView({
         </div>
         <MessageSquareText size={12} strokeWidth={2.2} color={turnText} />
         <span style={{ color: turnText, fontSize: 12, fontWeight: 500 }}>
-          {zh ? "有新回复" : "New reply"}
+          {zh ? "有新回覆" : "New reply"}
         </span>
         <button
           type="button"
-          aria-label={zh ? "关闭回复提醒" : "Dismiss reply"}
-          title={zh ? "关闭回复提醒" : "Dismiss reply"}
+          aria-label={zh ? "關閉回覆提醒" : "Dismiss reply"}
+          title={zh ? "關閉回覆提醒" : "Dismiss reply"}
           onClick={dismiss}
           onPointerEnter={() => setCloseHover(true)}
           onPointerLeave={() => setCloseHover(false)}
@@ -210,13 +210,13 @@ export function CompletionAlertView({
         {failed && hasSession ? (
           <span style={{ fontSize: 11, color: ink(0.65) }}>
             {zh
-              ? "无法回到会话，请重试或查看 Token 用量"
+              ? "無法回到工作階段，請重試或查看 Token 用量"
               : "Couldn't return to session. Retry or view token usage."}
           </span>
         ) : (
           !hasSession && (
             <span style={{ fontSize: 11, color: ink(0.5) }}>
-              {zh ? "暂时无法回到原会话" : "Session return unavailable"}
+              {zh ? "暫時無法回到原工作階段" : "Session return unavailable"}
             </span>
           )
         )}
@@ -245,10 +245,10 @@ export function CompletionAlertView({
               )}
               {failed
                 ? zh
-                  ? "重试会话跳转"
+                  ? "重試工作階段跳轉"
                   : "Retry session"
                 : zh
-                  ? "回到会话"
+                  ? "回到工作階段"
                   : "Return to session"}
             </CardButton>
           )}

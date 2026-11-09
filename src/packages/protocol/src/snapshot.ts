@@ -85,7 +85,7 @@ export interface PlatformCapabilities {
 export interface Snapshot {
   /** The interface language Core resolved from the Language setting and the
    * system's preferred language; Core writes its own text in it. */
-  language?: "zh" | "en";
+  language?: "zh" | "zh-TW" | "en";
   status?: { paused?: boolean };
   sourcePreferences?: Record<string, SourcePreferences>;
   islandEvents?: { revision: number; items: IslandEvent[] };

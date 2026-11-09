@@ -62,14 +62,14 @@ function setupNote(snapshot: Snapshot, t: Text) {
   return platform === "windows"
     ? t(
         "Adding HUD tools needs Agent HUD in its standard Windows location.",
-        "需要从 Windows 标准安装位置运行 Agent HUD，才能添加 HUD 工具。",
+        "需要從 Windows 標準安裝位置運行 Agent HUD，才能添加 HUD 工具。",
       )
     : platform === "macos"
       ? t(
           "Adding HUD tools needs Agent HUD in an approved macOS location.",
-          "需要从 macOS 指定安装位置运行 Agent HUD，才能添加 HUD 工具。",
+          "需要從 macOS 指定安裝位置運行 Agent HUD，才能添加 HUD 工具。",
         )
-      : t("This build can't add HUD tools.", "当前版本无法添加 HUD 工具。");
+      : t("This build can't add HUD tools.", "目前版本無法添加 HUD 工具。");
 }
 
 /** Clients only a product build knows: those its rows name, once each. */
@@ -121,7 +121,7 @@ export function AgentPluginsPane({
       <Page>
         <HooksSection snapshot={snapshot} action={action} t={t} />
         <Section
-          title={t("Clients", "客户端")}
+          title={t("Clients", "用戶端")}
           plain
           footer={mcp.status?.ready === false ? setupNote(snapshot, t) : null}
         >

@@ -32,7 +32,7 @@ test("an account reads as current until a read fails, then says when it was last
       now,
       "zh",
     ),
-    "当前账户",
+    "目前帳戶",
   );
   assert.equal(
     accountReadLabel(
@@ -48,7 +48,7 @@ test("an account reads as current until a read fails, then says when it was last
       now,
       "zh",
     ),
-    "上次读取 30m 前",
+    "上次讀取 30m 前",
   );
 });
 
@@ -115,7 +115,7 @@ test("a vendor status shows only while one of the agent's components is not oper
   ];
   assert.equal(
     serviceNotice(providers, "claude", "zh"),
-    "官方状态：部分故障 · Elevated API errors",
+    "官方狀態：部分故障 · Elevated API errors",
   );
   assert.equal(
     serviceNotice(providers, "claude", "en"),

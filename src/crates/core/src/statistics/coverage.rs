@@ -90,7 +90,7 @@ pub(super) fn coverage(query: &Query, data: &Data, ctx: &Context, from: i64, to:
         ))
     } else if pending > 0 {
         Some(if l10n::chinese() {
-            format!("正在索引 {pending} 个相关会话日志，这些合计不完整")
+            format!("正在索引 {pending} 個相關工作階段紀錄，這些合計不完整")
         } else {
             format!("Indexing {pending} relevant transcript files; these totals are partial.")
         })
@@ -98,19 +98,19 @@ pub(super) fn coverage(query: &Query, data: &Data, ctx: &Context, from: i64, to:
         Some(format!(
             "{}{}",
             l10n::text(
-                "以下来源无法读取本地用量：",
+                "以下來源無法讀取本地用量：",
                 "Local usage ingestion is unavailable for: "
             ),
             unavailable.join(", ")
         ))
     } else if missing {
         Some(l10n::text(
-            "所选来源中至少有一个没有已记录的用量",
+            "所選來源中至少有一個沒有已記錄的用量",
             "No recorded usage facts are available for at least one selected source.",
         ))
     } else if observed.is_some_and(|at| at > floor(from)) {
         Some(l10n::text(
-            "用量账本的记录晚于这个时段开始，更早的用量未知",
+            "用量賬本的記錄晚於這個時段開始，更早的用量未知",
             "The recorded ledger starts after this interval; earlier usage is unknown.",
         ))
     } else {

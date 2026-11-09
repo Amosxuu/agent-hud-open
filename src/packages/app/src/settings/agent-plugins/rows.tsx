@@ -65,7 +65,7 @@ function CopyLink({ text, t }: { text: string; t: Text }) {
           .catch(() => {})
       }
     >
-      {copied ? t("Copied", "已复制") : t("Copy", "复制")}
+      {copied ? t("Copied", "已複製") : t("Copy", "複製")}
     </LinkButton>
   );
 }

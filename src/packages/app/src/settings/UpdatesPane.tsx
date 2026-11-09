@@ -14,10 +14,10 @@ export function UpdatesPane({ snapshot }: SettingsPaneProps) {
     <Page>
       <Section>
         <Row
-          title={t("Automatic updates", "自动更新")}
+          title={t("Automatic updates", "自動更新")}
           subtitle={t(
             "This build does not update itself.",
-            "这个版本不会自动更新。",
+            "這個版本不會自動更新。",
           )}
         >
           <SmallButton disabled>{t("Unavailable", "不可用")}</SmallButton>

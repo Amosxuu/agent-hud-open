@@ -46,7 +46,7 @@ export function TodayCard({
   const ranking = [
     ...day.top.map((session) => ({
       id: session.id,
-      label: session.title || (zh ? "未命名会话" : "Untitled session"),
+      label: session.title || (zh ? "未命名工作階段" : "Untitled session"),
       value: session.tokens,
       note: (value: number) => share(value, total),
       color: theme.tertiary,
@@ -58,7 +58,7 @@ export function TodayCard({
             id: "__rest__",
             label: (
               <span style={{ color: theme.secondary }}>
-                {zh ? `其余 ${day.rest.count} 个` : `${day.rest.count} more`}
+                {zh ? `其餘 ${day.rest.count} 個` : `${day.rest.count} more`}
               </span>
             ),
             value: day.rest.tokens,
@@ -90,7 +90,7 @@ export function TodayCard({
         >
           <strong style={{ fontSize: 13, fontWeight: 600 }}>
             {zh
-              ? `今天 · ${day.sessions} 个会话`
+              ? `今天 · ${day.sessions} 個工作階段`
               : `Today · ${day.sessions} ${day.sessions === 1 ? "session" : "sessions"}`}
           </strong>
           {money.value !== null && (
@@ -98,7 +98,7 @@ export function TodayCard({
               style={{ color: theme.secondary, fontSize: 11 }}
               title={unpricedHelp(money.unpriced, zh)}
             >
-              {zh ? "费用 " : "Cost "}
+              {zh ? "費用 " : "Cost "}
               <span
                 style={{
                   fontSize: 12,
@@ -124,7 +124,7 @@ export function TodayCard({
           <strong
             title={
               zh
-                ? "今天会话的已记录总 Token 数"
+                ? "今天工作階段的已記錄總 Token 數"
                 : "Whole recorded totals of the sessions filed under today"
             }
             style={{
@@ -169,7 +169,7 @@ export function TodayCard({
           <div
             title={
               zh
-                ? "所列会话未包含按类型细分的 Token 数据"
+                ? "所列工作階段未包含按類型細分的 Token 資料"
                 : "Token-kind breakdown is not provided for the listed sessions"
             }
             style={{
@@ -239,7 +239,7 @@ export function TodayCard({
               {zh ? "今天的 Token 花在哪" : "Where today's tokens went"}
             </strong>
             <span style={{ color: theme.secondary, fontSize: 11 }}>
-              {zh ? "占比" : "Share"}
+              {zh ? "佔比" : "Share"}
             </span>
           </div>
           <ShareRows

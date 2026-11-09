@@ -67,7 +67,7 @@ export function DockEnds({
   domExited: (event?: { relatedTarget?: EventTarget | null }) => void;
   forceOpen: () => void;
 }) {
-  const zh = useFormat().language === "zh";
+  const zh = useFormat().language.startsWith("zh");
   const notch = config.mode === "notch";
   // The notch becomes the card: its ends wait in its row till it is back.
   const hidden = dragging || (notch && cardVisible);

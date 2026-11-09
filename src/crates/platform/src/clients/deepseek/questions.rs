@@ -78,7 +78,7 @@ fn unwrap_server_response(reply: &Value) -> Result<&Value, String> {
     }
     if reply["result"]["ok"].as_bool() != Some(true) {
         return Err(l10n::text(
-            "DeepSeek Harness 的提问服务不在这个端口",
+            "DeepSeek Harness 的提問服務不在這個端口",
             "DeepSeek Harness's question service is not on that port.",
         ));
     }

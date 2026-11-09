@@ -41,7 +41,7 @@ pub(super) fn platform_balance(
         || token.is_none()
     {
         return Err(l10n::text(
-            "DeepSeek 平台登录凭据格式或来源无法识别",
+            "DeepSeek 平台登入憑據格式或來源無法識別",
             "DeepSeek Platform sign-in has an unsupported format or issuer.",
         ));
     }
@@ -60,7 +60,7 @@ pub(super) fn platform_balance(
         })
         .map_err(|failure| match failure {
             HttpFailure::Unreachable | HttpFailure::BadHeader => l10n::text(
-                "DeepSeek 余额读取失败，请检查网络后重试",
+                "DeepSeek 餘額讀取失敗，請檢查網路後重試",
                 "DeepSeek balance could not be reached; check the connection.",
             ),
             other => other.message(),
@@ -71,7 +71,7 @@ pub(super) fn platform_balance(
     let summary = &body["data"]["biz_data"];
     if body["code"] != 0 || body["data"]["biz_code"] != 0 {
         return Err(l10n::text(
-            "DeepSeek 平台余额读取失败",
+            "DeepSeek 平台餘額讀取失敗",
             "DeepSeek Platform balance could not be read.",
         ));
     }
@@ -84,7 +84,7 @@ pub(super) fn platform_balance(
     for (kind, field) in [("normal", "normal_wallets"), ("bonus", "bonus_wallets")] {
         let wallets = summary[field].as_array().ok_or_else(|| {
             l10n::text(
-                "DeepSeek 平台余额格式无法识别",
+                "DeepSeek 平台餘額格式無法識別",
                 "DeepSeek Platform balance has an unsupported format.",
             )
         })?;
@@ -95,19 +95,19 @@ pub(super) fn platform_balance(
                 .filter(|c| matches!(*c, "CNY" | "USD"))
                 .ok_or_else(|| {
                     l10n::text(
-                        "DeepSeek 余额的币种无法识别",
+                        "DeepSeek 餘額的幣種無法識別",
                         "DeepSeek balance response has an unsupported currency.",
                     )
                 })?;
             let amount = platform_amount(&wallet["balance"]).ok_or_else(|| {
                 l10n::text(
-                    "DeepSeek 余额金额无效",
+                    "DeepSeek 餘額金額無效",
                     "DeepSeek balance response has an invalid amount.",
                 )
             })?;
             if !currencies.insert(currency) {
                 return Err(l10n::text(
-                    "DeepSeek 平台余额格式无法识别",
+                    "DeepSeek 平台餘額格式無法識別",
                     "DeepSeek Platform balance has an unsupported format.",
                 ));
             }
@@ -116,9 +116,9 @@ pub(super) fn platform_balance(
                 continue;
             }
             let label = if kind == "normal" {
-                l10n::text("充值余额", "Topped-up balance")
+                l10n::text("充值餘額", "Topped-up balance")
             } else {
-                l10n::text("赠送余额", "Granted balance")
+                l10n::text("贈送餘額", "Granted balance")
             };
             // Platform login wallets are not proven to be an API-key billing
             // route, so do not attach a consumer route or estimate its costs.

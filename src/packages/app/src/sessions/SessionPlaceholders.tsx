@@ -66,7 +66,7 @@ export function ListPlaceholder({
   return (
     <div
       role="status"
-      aria-label={theme.zh ? "正在加载会话" : "Loading sessions"}
+      aria-label={theme.zh ? "正在載入工作階段" : "Loading sessions"}
     >
       {today && <TodayPlaceholder theme={theme} />}
       <div style={{ padding: "4px 2px 10px" }}>
@@ -168,7 +168,7 @@ export function UsagePlaceholder({ theme }: { theme: Theme }) {
   return (
     <div
       role="status"
-      aria-label={theme.zh ? "正在读取会话用量" : "Reading session usage"}
+      aria-label={theme.zh ? "正在讀取工作階段用量" : "Reading session usage"}
       style={{ display: "grid", gap: 12 }}
     >
       <Card aria-hidden style={{ ...card(theme, "12px 14px"), gap: 12 }}>
@@ -222,7 +222,7 @@ export function CallsPlaceholder({ theme }: { theme: Theme }) {
     <div
       role="status"
       aria-label={
-        theme.zh ? "正在读取这一轮的调用" : "Reading this turn's calls"
+        theme.zh ? "正在讀取這一輪的呼叫" : "Reading this turn's calls"
       }
       style={{
         display: "grid",
@@ -260,7 +260,7 @@ export function MessagesPlaceholder({ theme }: { theme: Theme }) {
   return (
     <div
       role="status"
-      aria-label={theme.zh ? "正在读取更多消息" : "Reading more messages"}
+      aria-label={theme.zh ? "正在讀取更多訊息" : "Reading more messages"}
       style={{ display: "grid", gap: 8 }}
     >
       {[0, 1].map((index) => (

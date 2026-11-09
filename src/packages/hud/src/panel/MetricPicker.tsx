@@ -1,3 +1,4 @@
+import { text as localizedText } from "@agent-hud/ui/format";
 import { Button } from "@agent-hud/ui/components/button";
 import {
   Tooltip,
@@ -23,14 +24,14 @@ export function MetricPicker({
   light: boolean;
   availability: Record<Measure, ReturnType<typeof quotaMetricAvailability>>;
 }) {
-  const zh = useFormat().language === "zh";
+  const language = useFormat().language;
   const colors = palette(useGround(light));
   return (
     <TooltipProvider delayDuration={300}>
       <div
         className="hud-source-metric-picker"
         role="group"
-        aria-label={zh ? "额度指标" : "Quota metric"}
+        aria-label={localizedText(language, "額度指標", "Quota metric")}
         style={{ display: "flex", gap: 2, paddingRight: 2 }}
       >
         {measures.map(({ key, title, icon: Icon }) => {

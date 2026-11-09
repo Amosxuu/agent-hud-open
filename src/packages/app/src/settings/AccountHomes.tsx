@@ -43,7 +43,7 @@ export default function AccountHomes({
       title={label}
       footer={t(
         `One ${variable} folder per line. Your default account is always read.`,
-        `每行一个 ${variable} 文件夹，默认账户总会读取。`,
+        `每行一個 ${variable} 資料夾，預設帳戶總會讀取。`,
       )}
     >
       <div className="settings-field">
@@ -62,7 +62,7 @@ export default function AccountHomes({
             disabled={pending || text === saved}
             onClick={() => void save()}
           >
-            {pending ? t("Saving…", "正在保存…") : t("Save", "保存")}
+            {pending ? t("Saving…", "正在儲存…") : t("Save", "儲存")}
           </SmallButton>
         </div>
       </div>

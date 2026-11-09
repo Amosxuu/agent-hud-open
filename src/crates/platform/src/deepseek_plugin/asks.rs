@@ -269,7 +269,7 @@ fn deliver(shared: Arc<Shared>, ask: Ask, ticket: Ticket) {
                 .map(|()| true)
                 .map_err(|_| {
                     l10n::text(
-                        "回答没能交给 DeepSeek Harness 插件。",
+                        "回答沒能交給 DeepSeek Harness 插件。",
                         "The answer could not be left for the DeepSeek Harness plugin.",
                     )
                 })

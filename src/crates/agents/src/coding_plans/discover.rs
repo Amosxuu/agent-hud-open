@@ -287,7 +287,7 @@ pub(super) fn discover(host: &dyn Host, wanted: &str) -> Result<Vec<Credential>,
     }
     if unique.len() > 32 {
         return Err(l10n::text(
-            "单独配置的 Coding Plan 凭据过多",
+            "單獨配置的 Coding Plan 憑據過多",
             "Too many independently configured coding-plan credentials",
         ));
     }

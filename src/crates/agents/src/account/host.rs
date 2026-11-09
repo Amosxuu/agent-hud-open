@@ -113,42 +113,42 @@ impl HttpFailure {
     pub fn message(self) -> String {
         match self {
             HttpFailure::BadHeader => l10n::text(
-                "凭据格式无效，无法用于请求",
+                "憑據格式無效，無法用於請求",
                 "The credential cannot be used in a request",
             ),
             HttpFailure::Unreachable => {
-                l10n::text("额度服务无法连接", "The quota service could not be reached")
+                l10n::text("額度服務無法連接", "The quota service could not be reached")
             }
             HttpFailure::Status(401 | 403) => l10n::text(
-                "现有登录已失效或无额度读取权限",
+                "現有登入已失效或無額度讀取權限",
                 "Existing sign-in expired or quota access is unavailable",
             ),
             // Better than Open's bare status: a rate limit passes by itself.
             HttpFailure::Status(429) | HttpFailure::Limited { .. } => l10n::text(
-                "额度服务暂时限制了请求，稍后自动重试",
+                "額度服務暫時限制了請求，稍後自動重試",
                 "The quota service is rate limiting requests; retrying later",
             ),
             HttpFailure::Challenged => l10n::text(
-                "额度服务要求浏览器验证，暂时读不到，稍后自动重试",
+                "額度服務要求瀏覽器驗證，暫時讀不到，稍後自動重試",
                 "The quota service asked for a browser check; retrying later",
             ),
             HttpFailure::Status(code) => {
                 if l10n::chinese() {
-                    format!("额度服务返回 HTTP {code}")
+                    format!("額度服務返回 HTTP {code}")
                 } else {
                     format!("Quota service returned HTTP {code}")
                 }
             }
             HttpFailure::Unreadable => l10n::text(
-                "额度服务的回应无法读取",
+                "額度服務的回應無法讀取",
                 "The quota service's response could not be read",
             ),
             HttpFailure::TooLarge => l10n::text(
-                "额度服务的回应超过大小上限",
+                "額度服務的回應超過大小上限",
                 "The quota service's response exceeded the size limit",
             ),
             HttpFailure::NotJson => l10n::text(
-                "额度服务返回了无法识别的格式",
+                "額度服務返回了無法識別的格式",
                 "The quota service returned an unsupported format",
             ),
         }

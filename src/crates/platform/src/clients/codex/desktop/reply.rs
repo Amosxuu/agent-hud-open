@@ -188,14 +188,14 @@ impl Shared {
             })?;
         if receipt["handledByClientId"] != item.owner || receipt["result"]["method"] != method {
             return Err(ReplyFailure::Uncertain(l10n::text(
-                "Codex Desktop 的回复与请求不匹配",
+                "Codex Desktop 的回復與請求不匹配",
                 "Desktop reply identity did not match",
             )));
         }
         if method == pending::ELICITATION_METHOD {
             if receipt["result"]["result"]["ok"] != true {
                 return Err(ReplyFailure::Uncertain(l10n::text(
-                    "Codex Desktop 没有确认这个审批",
+                    "Codex Desktop 沒有確認這個審批",
                     "Desktop did not confirm this approval",
                 )));
             }
@@ -203,7 +203,7 @@ impl Shared {
             != item.turn_id.as_deref().unwrap_or("")
         {
             return Err(ReplyFailure::Uncertain(l10n::text(
-                "Codex Desktop 没有确认对应的提问轮次",
+                "Codex Desktop 沒有確認對應的提問輪次",
                 "Desktop did not confirm the exact question turn",
             )));
         }

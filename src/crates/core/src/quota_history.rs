@@ -149,7 +149,7 @@ impl AgentHudCore {
             }
             let samples = read(id).map_err(|_| {
                 l10n::text(
-                    "无法从本地数据库读取额度记录",
+                    "無法從本地資料庫讀取額度記錄",
                     "Quota history could not be read from SQLite",
                 )
             })?;
@@ -162,7 +162,7 @@ impl AgentHudCore {
             let (segments, resets) = history(&samples, from, to, bin, cycle_start, length);
             let span = read_since(id, from - length.unwrap_or(7 * 86_400_000)).map_err(|_| {
                 l10n::text(
-                    "无法从本地数据库读取额度记录",
+                    "無法從本地資料庫讀取額度記錄",
                     "Quota history could not be read from SQLite",
                 )
             })?;

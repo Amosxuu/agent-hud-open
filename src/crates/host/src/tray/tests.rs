@@ -53,7 +53,7 @@ fn the_menu_lists_windows_then_balances_as_use_tray_did() {
         "sessions": [{"id": "a", "source": "kimi", "state": "idle", "updatedAt": "2026-10-21T11:00:00Z"}]});
     let agents = crate::vendors::vendors(&paused, "simple", now);
     let state = project(&paused, &agents, true, true, false, None, now);
-    assert_eq!(titles(&state), ["Kimi", "暂无额度读数 —"]);
+    assert_eq!(titles(&state), ["Kimi", "暫無額度讀數 —"]);
     assert!(state.levels.is_empty() && state.glow_hidden && state.used_percent.is_none());
 }
 

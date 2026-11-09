@@ -37,7 +37,7 @@ impl Engine {
     ) -> Result<Self, String> {
         fs::create_dir_all(directory).map_err(|_| {
             l10n::text(
-                "账户读取引擎的目录不可用",
+                "賬戶讀取引擎的目錄不可用",
                 "Account engine directory unavailable",
             )
         })?;
@@ -56,7 +56,7 @@ impl Engine {
         crate::os::configure_command(&mut command);
         let mut child = command
             .spawn()
-            .map_err(|_| l10n::text("账户读取引擎无法启动", "Account engine could not start"))?;
+            .map_err(|_| l10n::text("賬戶讀取引擎無法啓動", "Account engine could not start"))?;
         let input = child.stdin.take().unwrap();
         let output = child.stdout.take().unwrap();
         let mut errors = child.stderr.take().unwrap();
@@ -73,7 +73,7 @@ impl Engine {
             let mut child = child.lock().unwrap_or_else(PoisonError::into_inner);
             let _ = child.kill();
             let _ = child.wait();
-            return Err(l10n::text("账户读取已停止", "Account reading was stopped"));
+            return Err(l10n::text("賬戶讀取已停止", "Account reading was stopped"));
         }
         let (tx, lines) = mpsc::sync_channel(8);
         let reader = std::thread::Builder::new()
@@ -140,7 +140,7 @@ impl Engine {
             let _ = child.kill();
             let _ = child.wait();
             return Err(l10n::text(
-                "账户读取器无法启动",
+                "賬戶讀取器無法啓動",
                 "Account reader could not start",
             ));
         }
@@ -172,7 +172,7 @@ impl agent_hud_agents::account::Engine for Engine {
         bytes.push(b'\n');
         self.input
             .write_all(&bytes)
-            .map_err(|_| l10n::text("账户读取引擎请求失败", "Account engine request failed"))
+            .map_err(|_| l10n::text("賬戶讀取引擎請求失敗", "Account engine request failed"))
     }
     fn next(&mut self, deadline: Instant) -> Option<Value> {
         loop {

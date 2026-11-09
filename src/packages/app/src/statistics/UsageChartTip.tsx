@@ -81,7 +81,7 @@ export function UsageChartTip({
       {inspectedColumn.partial && (
         <div style={{ color: theme.secondary, marginTop: 5 }}>
           {zh
-            ? "仅统计所选范围内的部分时段"
+            ? "僅統計所選範圍內的部分時段"
             : "Partial period within the selected range"}
         </div>
       )}

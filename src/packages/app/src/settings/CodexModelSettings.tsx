@@ -100,22 +100,22 @@ export function CodexModelSettings({
   };
   return (
     <Section
-      title={t("Token chart models", "Token 图表中的模型")}
+      title={t("Token chart models", "Token 圖表中的模型")}
       footer={t(
         "Models used in the last 30 days. Applies to the screen chosen on the Display page.",
-        "最近 30 天用过的模型。作用于“显示”页面选中的屏幕。",
+        "最近 30 天用過的模型。作用於“顯示”頁面選中的螢幕。",
       )}
     >
       {error && <Notice tone="error">{error}</Notice>}
       {!loaded && !error && (
-        <Row muted title={t("Reading models…", "正在读取模型…")} />
+        <Row muted title={t("Reading models…", "正在讀取模型…")} />
       )}
       {loaded && !shown.length && (
         <Row
           muted
           title={t(
             "No Codex models in the last 30 days",
-            "最近 30 天没有 Codex 模型用量",
+            "最近 30 天沒有 Codex 模型用量",
           )}
         />
       )}
@@ -125,7 +125,7 @@ export function CodexModelSettings({
           title={row.name}
           subtitle={
             tokenLayout.models?.length && !tokenLayout.models.includes(row.id)
-              ? t("Left out by the model filter", "模型筛选未包含此项")
+              ? t("Left out by the model filter", "模型篩選未包含此項")
               : undefined
           }
         >
@@ -140,7 +140,7 @@ export function CodexModelSettings({
           <Switch
             checked={!hidden.includes(row.id)}
             disabled={pending}
-            aria-label={`${t("Show model", "显示模型")} ${row.name}`}
+            aria-label={`${t("Show model", "顯示模型")} ${row.name}`}
             onCheckedChange={(show) =>
               void change({
                 hiddenModels: show

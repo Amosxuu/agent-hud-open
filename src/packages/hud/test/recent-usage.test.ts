@@ -63,7 +63,7 @@ test("an agent with no window or balance shows its last 24 hours, as vendors.rs 
   );
   assert.equal(label("pi"), null, "nothing used: nothing to show");
   assert.equal(label("opencode"), "Free", "a local model costs nothing");
-  assert.equal(recentLabel(recentUsage(snapshot, "opencode"), "zh"), "免费");
+  assert.equal(recentLabel(recentUsage(snapshot, "opencode"), "zh"), "免費");
 });
 
 test("recent usage sums the providers behind one mark", () => {

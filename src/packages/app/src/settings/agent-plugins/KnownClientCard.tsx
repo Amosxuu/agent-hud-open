@@ -52,14 +52,14 @@ function hudToolsState(
     state: {
       ...state,
       tone: "off",
-      status: ["Off", "已关闭"],
+      status: ["Off", "已關閉"],
       action: null,
     } satisfies RowState,
     reason: tools.state.unavailable
       ? t(...tools.state.unavailable)
       : t(
           "Turn on “Let agents arrange the HUD” under Agent tools.",
-          "在下方「智能体工具」里打开「允许智能体调整 HUD」。",
+          "在下方「Agent工具」里打開「允許Agent調整 HUD」。",
         ),
   };
 }
@@ -178,7 +178,7 @@ export function KnownClientCard({
       summary={
         missing ? (
           <Pill tone="gray" dot>
-            {t("Not found", "未发现")}
+            {t("Not found", "未發現")}
           </Pill>
         ) : (
           <>
@@ -187,7 +187,7 @@ export function KnownClientCard({
             )}
             {answersOff && (
               <Pill tone="orange" dot>
-                {t("Answers off", "回答已关闭")}
+                {t("Answers off", "回答已關閉")}
               </Pill>
             )}
             <StatePill
@@ -206,11 +206,11 @@ export function KnownClientCard({
             client.id === "claudeCode"
               ? t(
                   "Answer Claude's questions in the HUD.",
-                  "在 HUD 上回答 Claude 的提问。",
+                  "在 HUD 上回答 Claude 的提問。",
                 )
               : t(
                   "Answer its questions and approvals in the HUD.",
-                  "在 HUD 上回答它的提问和批准请求。",
+                  "在 HUD 上回答它的提問和批准請求。",
                 )
           }
           state={pluginState}
@@ -224,16 +224,16 @@ export function KnownClientCard({
       {installed === true && client.id === "claudeCode" && (
         <>
           <SettingControl
-            title={t("Answer questions", "回答提问")}
+            title={t("Answer questions", "回答提問")}
             setting="claudeAnswers"
             snapshot={snapshot}
             action={action}
           />
           <SettingControl
-            title={t("Send messages", "发消息")}
+            title={t("Send messages", "發訊息")}
             description={t(
               "From Agent HUD into open sessions.",
-              "从 Agent HUD 发到打开的会话。",
+              "從 Agent HUD 發到打開的工作階段。",
             )}
             setting="claudeMessages"
             snapshot={snapshot}
@@ -243,10 +243,10 @@ export function KnownClientCard({
       )}
       {installed === true && client.id === "deepseek" && (
         <SettingControl
-          title={t("Send messages", "发消息")}
+          title={t("Send messages", "發訊息")}
           description={t(
             "Queued for open sessions; never interrupts a turn.",
-            "排进打开的会话的队列，不打断当前一轮。",
+            "排進打開的工作階段的隊列，不打斷目前一輪。",
           )}
           setting="deepseekMessages"
           snapshot={snapshot}

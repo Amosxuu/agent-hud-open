@@ -21,14 +21,14 @@ fn engine_env(folder: &Folder) -> Vec<(&'static str, String)> {
 /// Engine failures in Open's words (agent-hud-native-open ClaudeDataError).
 fn engine_failed(reason: &str) -> String {
     if l10n::chinese() {
-        format!("Claude Code 引擎查询失败：{reason}")
+        format!("Claude Code 引擎查詢失敗：{reason}")
     } else {
         format!("Claude Code engine query failed: {reason}")
     }
 }
 fn malformed() -> String {
     l10n::text(
-        "Claude Code 引擎返回了无法识别的额度数据",
+        "Claude Code 引擎返回了無法識別的額度資料",
         "The Claude Code engine returned unrecognised usage data",
     )
 }
@@ -106,7 +106,7 @@ pub(super) fn from_engine(
         let after = profile(host, folder);
         if identity(before) != identity(&after) {
             return Err(Unread::transient(l10n::text(
-                "读取额度时 Claude 登录账户发生了变化，稍后自动重试",
+                "讀取額度時 Claude 登入賬戶發生了變化，稍後自動重試",
                 "The Claude account changed during the quota query; retrying shortly",
             ))
             .into());
@@ -117,7 +117,7 @@ pub(super) fn from_engine(
         // so the last reading stays, not a login without plan limits.
         if payload["rate_limits_available"] == true && !payload["rate_limits"].is_object() {
             return Err(Unread::transient(l10n::text(
-                "这次没有读到 Claude 额度，稍后自动重试",
+                "這次沒有讀到 Claude 額度，稍後自動重試",
                 "Couldn't read the Claude quota this time; retrying shortly",
             ))
             .into());
@@ -138,7 +138,7 @@ pub(super) fn from_engine(
                 .and_then(|val| val["loggedIn"].as_bool())
                 .ok_or_else(|| {
                     EngineUnread::Failed(Unread::transient(l10n::text(
-                        "这次没有读到 Claude 额度，稍后自动重试",
+                        "這次沒有讀到 Claude 額度，稍後自動重試",
                         "Couldn't read the Claude quota this time; retrying shortly",
                     )))
                 })?;
@@ -147,7 +147,7 @@ pub(super) fn from_engine(
             if !signed_in {
                 return Err(EngineUnread::NoLogin {
                     reason: l10n::text(
-                        "Claude Code 已退出登录，运行 claude 重新登录后更新额度",
+                        "Claude Code 已結束登入，運行 claude 重新登入後更新額度",
                         "Claude Code is signed out. Run claude to sign in again to update the quota",
                     ),
                     installed: true,
@@ -155,7 +155,7 @@ pub(super) fn from_engine(
             }
             let mut reading = Reading::empty("claude");
             reading.notice = Some(l10n::text(
-                "当前登录方式没有订阅额度（API key 或第三方平台）",
+                "目前登入方式沒有訂閱額度（API key 或第三方平台）",
                 "No plan limits for this login (API key or third-party platform)",
             ));
             return Ok(reading);
@@ -166,7 +166,7 @@ pub(super) fn from_engine(
     }
     let reason = process.stderr_preview(200).unwrap_or_else(|| {
         l10n::text(
-            "引擎没有在 40 秒内返回用量",
+            "引擎沒有在 40 秒內返回用量",
             "The engine returned no usage within 40 s",
         )
     });

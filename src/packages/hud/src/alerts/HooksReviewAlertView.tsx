@@ -43,7 +43,7 @@ export function HooksReviewAlertView({
         event={event}
         name={name}
         under={null}
-        news={zh ? "回调待允许" : "allow its hooks"}
+        news={zh ? "回呼待允許" : "allow its hooks"}
         accentFill={alertFill("warning", ground)}
         accentText={alertText("warning", ground)}
         light={light}
@@ -71,7 +71,7 @@ export function HooksReviewAlertView({
               color: ink(0.72),
             }}
           >
-            {zh ? "稍后" : "Later"}
+            {zh ? "稍後" : "Later"}
           </button>
         )}
         <button
@@ -88,7 +88,7 @@ export function HooksReviewAlertView({
             opacity: 0.9,
           }}
         >
-          {open ? (zh ? `打开 ${name}` : `Open ${name}`) : zh ? "知道了" : "OK"}
+          {open ? (zh ? `打開 ${name}` : `Open ${name}`) : zh ? "知道了" : "OK"}
         </button>
       </div>
     </article>

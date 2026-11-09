@@ -111,7 +111,7 @@ export function StatisticsWindow({
                 {chinese ? "用量" : "Usage"}
               </TabsTrigger>
               <TabsTrigger value="sessions">
-                {chinese ? "会话" : "Sessions"}
+                {chinese ? "工作階段" : "Sessions"}
               </TabsTrigger>
             </TabsList>
           </Tabs>
@@ -164,15 +164,15 @@ export function StatisticsWindow({
             label={
               error
                 ? chinese
-                  ? "无法读取本机活动"
+                  ? "無法讀取本機活動"
                   : "Couldn’t read local activity"
                 : chinese
-                  ? "正在读取本机活动…"
+                  ? "正在讀取本機活動…"
                   : "Reading local activity…"
             }
             failed={!!error}
             detail={error}
-            retryLabel={chinese ? "重试" : "Retry"}
+            retryLabel={chinese ? "重試" : "Retry"}
             onRetry={() => void refresh()}
           />
         )}

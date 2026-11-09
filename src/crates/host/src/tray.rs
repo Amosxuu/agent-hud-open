@@ -79,8 +79,8 @@ pub(crate) fn apply(app: &tauri::AppHandle, state: Presentation) -> Result<(), S
     tray.set_tooltip(Some(format!(
         "Agent HUD · {}: {value}",
         match (chinese, state.remaining) {
-            (true, true) => "最低剩余额度",
-            (true, false) => "最高已用额度",
+            (true, true) => "最低剩餘額度",
+            (true, false) => "最高已用額度",
             (false, true) => "lowest remaining quota",
             (false, false) => "highest usage",
         }
@@ -101,7 +101,7 @@ fn make_menu(app: &tauri::AppHandle, state: &Presentation) -> tauri::Result<Menu
         menu.append(&MenuItem::with_id(
             app,
             "tray-empty",
-            text("没有启用的模型", "No agents enabled"),
+            text("沒有啟用的模型", "No agents enabled"),
             false,
             None::<&str>,
         )?)?;
@@ -128,8 +128,8 @@ fn make_menu(app: &tauri::AppHandle, state: &Presentation) -> tauri::Result<Menu
     }
     menu.append(&PredefinedMenuItem::separator(app)?)?;
     let glow = match (zh, state.glow_hidden) {
-        (true, true) => "显示灵动岛光晕",
-        (true, false) => "隐藏灵动岛光晕",
+        (true, true) => "顯示靈動島光暈",
+        (true, false) => "隱藏靈動島光暈",
         (false, true) => "Show notch glow",
         (false, false) => "Hide notch glow",
     };
@@ -144,21 +144,21 @@ fn make_menu(app: &tauri::AppHandle, state: &Presentation) -> tauri::Result<Menu
     menu.append(&MenuItem::with_id(
         app,
         "tray-statistics",
-        text("统计…", "Statistics…"),
+        text("統計…", "Statistics…"),
         true,
         None::<&str>,
     )?)?;
     menu.append(&MenuItem::with_id(
         app,
         "tray-refresh",
-        text("刷新数据", "Refresh data"),
+        text("更新資料", "Refresh data"),
         true,
         None::<&str>,
     )?)?;
     menu.append(&MenuItem::with_id(
         app,
         "tray-settings",
-        text("设置…", "Settings…"),
+        text("設定…", "Settings…"),
         true,
         Some("CmdOrCtrl+,"),
     )?)?;
@@ -169,7 +169,7 @@ fn make_menu(app: &tauri::AppHandle, state: &Presentation) -> tauri::Result<Menu
         menu.append(&MenuItem::with_id(
             app,
             "tray-update",
-            text("发现新版本…", "New Version…"),
+            text("發現新版本…", "New Version…"),
             true,
             None::<&str>,
         )?)?;
@@ -177,7 +177,7 @@ fn make_menu(app: &tauri::AppHandle, state: &Presentation) -> tauri::Result<Menu
     menu.append(&MenuItem::with_id(
         app,
         "tray-quit",
-        text("退出", "Quit"),
+        text("結束", "Quit"),
         true,
         Some("CmdOrCtrl+Q"),
     )?)?;

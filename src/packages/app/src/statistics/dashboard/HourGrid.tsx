@@ -41,7 +41,7 @@ function HeatmapRow({
         const label = `${period} · ${
           known
             ? zh
-              ? `已记录 ${integer(value)} Token`
+              ? `已記錄 ${integer(value)} Token`
               : `${integer(value)} recorded tokens`
             : zh
               ? "不可用"
@@ -121,7 +121,7 @@ export const HourGrid = memo(function HourGrid({
 }) {
   const zh = Boolean(theme.zh);
   const days = zh
-    ? ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+    ? ["週一", "週二", "週三", "週四", "週五", "週六", "周日"]
     : ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   // The daily heatmap's five greens: an hour's share of the busiest hour,
   // in quarters.

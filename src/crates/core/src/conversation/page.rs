@@ -21,11 +21,11 @@ pub(crate) fn page(
     contexts: &mut Contexts,
 ) -> Result<Value, String> {
     if source_db::accepts(path, source) {
-        return Err(l10n::text("此来源的压缩日志不支持分页查看消息；用量和调用仍可查看", "Message paging is not available for this compact source; usage and calls remain available"));
+        return Err(l10n::text("此來源的壓縮紀錄不支援分頁查看訊息；用量和呼叫仍可查看", "Message paging is not available for this compact source; usage and calls remain available"));
     }
     let metadata = fs::metadata(path).map_err(|_| {
         l10n::text(
-            "所选会话的日志不可用",
+            "所選工作階段的紀錄不可用",
             "The selected session transcript is unavailable",
         )
     })?;
@@ -61,7 +61,7 @@ pub(crate) fn page(
             .prepare(path, stamp, cursor, &mut budget)
             .map_err(|_| {
                 l10n::text(
-                    "无法解码所选会话的日志",
+                    "無法解碼所選工作階段的紀錄",
                     "Could not decode the selected session transcript",
                 )
             })?
@@ -76,7 +76,7 @@ pub(crate) fn page(
     } else {
         let mut opened = File::open(path).map_err(|_| {
             l10n::text(
-                "无法读取所选会话的日志",
+                "無法讀取所選工作階段的紀錄",
                 "Could not read the selected session transcript",
             )
         })?;
@@ -105,7 +105,7 @@ pub(crate) fn page(
     while budget > 0 && (tail || messages.len() < limit) {
         let (bytes, count, ended) = line(reader).map_err(|_| {
             l10n::text(
-                "无法读取所选会话的日志",
+                "無法讀取所選工作階段的紀錄",
                 "Could not read the selected session transcript",
             )
         })?;
@@ -163,13 +163,13 @@ pub(super) fn archive_tail(
 ) -> Result<Value, String> {
     let undecodable = || {
         l10n::text(
-            "无法解码所选会话的日志",
+            "無法解碼所選工作階段的紀錄",
             "Could not decode the selected session transcript",
         )
     };
     let file = File::open(path).map_err(|_| {
         l10n::text(
-            "无法读取所选会话的日志",
+            "無法讀取所選工作階段的紀錄",
             "Could not read the selected session transcript",
         )
     })?;
@@ -206,7 +206,7 @@ pub(super) fn archive_tail(
         }
         if length > reach + TAIL {
             return Err(l10n::text(
-                "所选会话的压缩日志太长，无法从末尾查看消息",
+                "所選工作階段的壓縮紀錄太長，無法從末尾查看訊息",
                 "The selected session's compressed transcript is too long to page from its end",
             ));
         }

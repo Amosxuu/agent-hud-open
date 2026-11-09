@@ -52,14 +52,14 @@ pub(super) fn read(
         match cursor {
             Ok(Some(SignIn { token, .. })) => token,
             Ok(None) => return Err(l10n::text(
-                "Grok Bot 的 Token 用 Cursor 的登录读取；登录 Cursor 后可见",
+                "Grok Bot 的 Token 用 Cursor 的登入讀取；登入 Cursor 後可見",
                 "Grok Bot's tokens are read with Cursor's sign-in; sign in to Cursor to see them.",
             )),
             Err(why) => return Err(why.clone()),
         };
     let unreachable = |failure: HttpFailure| match failure {
         HttpFailure::Unreachable => l10n::text(
-            "无法读取 Grok Bot 的 Token 用量，请检查网络",
+            "無法讀取 Grok Bot 的 Token 用量，請檢查網路",
             "Grok Bot's token usage could not be reached; check the connection.",
         ),
         other => other.message(),
@@ -113,7 +113,7 @@ pub(super) fn read(
     // account's bots: rows must name at least one of this Bot's.
     if !totals.is_empty() && !totals.keys().any(|(id, _)| roster.contains(id)) {
         return Err(l10n::text(
-            "Cursor 登录的账户与 Grok Bot 不同，无法读取 Grok Bot 的 Token",
+            "Cursor 登入的賬戶與 Grok Bot 不同，無法讀取 Grok Bot 的 Token",
             "Cursor is signed in to another account than Grok Bot; its tokens are not read.",
         ));
     }
@@ -148,7 +148,7 @@ static EMPTY: Vec<Value> = Vec::new();
 
 fn format_error() -> String {
     l10n::text(
-        "Grok Bot 的 Token 用量格式无法识别",
+        "Grok Bot 的 Token 用量格式無法識別",
         "Grok Bot's token usage has an unsupported format.",
     )
 }

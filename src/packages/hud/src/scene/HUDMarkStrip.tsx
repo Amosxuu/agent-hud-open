@@ -63,14 +63,14 @@ export function HUDMarkStrip({
   pin: (key?: string) => void;
 }) {
   const format = useFormat();
-  const zh = format.language === "zh";
+  const zh = format.language.startsWith("zh");
 
   return (
     <>
       {config.mode === "notch" ? (
         <div
           className="hud-classic-silhouette"
-          aria-label={zh ? "悬停展开 Agent HUD" : "Hover to expand Agent HUD"}
+          aria-label={zh ? "懸停展開 Agent HUD" : "Hover to expand Agent HUD"}
           tabIndex={0}
           role="button"
           aria-describedby={`hud-instructions-${id}`}

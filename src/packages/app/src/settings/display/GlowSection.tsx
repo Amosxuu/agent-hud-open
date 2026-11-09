@@ -15,18 +15,18 @@ export function GlowSection({ config, update, t }: DisplayProps) {
   // Every style but Soft draws a grid of marks, with its own sliders.
   const grid = config.glowStyle !== "blur";
   return (
-    <Section title={t("Notch glow", "刘海光晕")}>
-      <Row title={t("Style", "样式")}>
+    <Section title={t("Notch glow", "劉海光暈")}>
+      <Row title={t("Style", "樣式")}>
         <Menu
-          label={t("Glow style", "光晕样式")}
+          label={t("Glow style", "光暈樣式")}
           value={config.glowStyle}
           options={[
             ["blur", t("Soft", "柔光")],
-            ["dots", t("Dots", "点阵")],
+            ["dots", t("Dots", "點陣")],
             ["ascii", t("ASCII  .:-=+*#%@", "字符  .:-=+*#%@")],
-            ["blocks", t("Blocks  ░▒▓█", "色块  ░▒▓█")],
+            ["blocks", t("Blocks  ░▒▓█", "色塊  ░▒▓█")],
             ["braille", t("Braille  ⠁⠃⠇⡇⣿", "盲文  ⠁⠃⠇⡇⣿")],
-            ["binary", t("Binary  0 1", "二进制  0 1")],
+            ["binary", t("Binary  0 1", "二進制  0 1")],
           ]}
           change={(value) =>
             update({ glowStyle: value as HUDConfig["glowStyle"] })
@@ -34,17 +34,17 @@ export function GlowSection({ config, update, t }: DisplayProps) {
           width={160}
         />
       </Row>
-      <Row title={t("Effect", "动效")}>
+      <Row title={t("Effect", "動效")}>
         <Menu
-          label={t("Glow effect", "光晕动效")}
+          label={t("Glow effect", "光暈動效")}
           value={config.glowEffect}
           options={[
             ["breathe", t("Breathe", "呼吸")],
             ["flow", t("Flow", "流光")],
-            ["scan", t("Scan", "扫描")],
-            ["ripple", t("Ripple", "涟漪")],
-            ["shimmer", t("Shimmer", "闪烁")],
-            ["boot", t("Boot", "启动")],
+            ["scan", t("Scan", "掃描")],
+            ["ripple", t("Ripple", "漣漪")],
+            ["shimmer", t("Shimmer", "閃爍")],
+            ["boot", t("Boot", "啓動")],
           ]}
           change={(value) =>
             update({ glowEffect: value as HUDConfig["glowEffect"] })
@@ -52,10 +52,10 @@ export function GlowSection({ config, update, t }: DisplayProps) {
           width={160}
         />
       </Row>
-      <MoreRows label={t("Fine-tune", "微调")}>
+      <MoreRows label={t("Fine-tune", "微調")}>
         {grid && (
           <>
-            {slider("glowGridPitch", t("Grid pitch", "点距"), 4, 12, 1, pt)}
+            {slider("glowGridPitch", t("Grid pitch", "點距"), 4, 12, 1, pt)}
             {slider(
               "glowGridDensity",
               t("Density", "密度"),
@@ -64,8 +64,8 @@ export function GlowSection({ config, update, t }: DisplayProps) {
               0.05,
               percent,
             )}
-            {slider("glowGridCore", t("Solid", "实心"), 0, 8, 1, rows)}
-            {slider("glowGridFade", t("Fade", "渐隐"), 0, 8, 1, rows)}
+            {slider("glowGridCore", t("Solid", "實心"), 0, 8, 1, rows)}
+            {slider("glowGridFade", t("Fade", "漸隱"), 0, 8, 1, rows)}
           </>
         )}
         {slider(
@@ -78,14 +78,14 @@ export function GlowSection({ config, update, t }: DisplayProps) {
         )}
         {!grid && (
           <>
-            {slider("glowRange", t("Range", "范围"), 0, 36, 1, px)}
+            {slider("glowRange", t("Range", "範圍"), 0, 36, 1, px)}
             {slider("glowBlur", t("Feather", "羽化"), 0, 36, 1, px)}
-            {toggle("glowOutwardOnly", t("Outward only", "仅向外扩散"))}
+            {toggle("glowOutwardOnly", t("Outward only", "僅向外擴散"))}
           </>
         )}
         {slider(
           "breathSeconds",
-          t("Working period", "工作时周期"),
+          t("Working period", "工作時週期"),
           1,
           12,
           0.5,
@@ -93,7 +93,7 @@ export function GlowSection({ config, update, t }: DisplayProps) {
         )}
         {slider(
           "idleBreathSeconds",
-          t("Idle period", "空闲时周期"),
+          t("Idle period", "空閒時週期"),
           1,
           24,
           0.5,

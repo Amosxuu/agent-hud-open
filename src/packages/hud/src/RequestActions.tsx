@@ -1,3 +1,4 @@
+import { interfaceLanguage, text } from "@agent-hud/ui/format";
 import { useState } from "react";
 import type { Approval, RequestDecision } from "@agent-hud/protocol";
 import { PermissionPlanCard } from "./permissions/PermissionPlanCard";
@@ -28,7 +29,8 @@ export function RequestActions({
   language,
 }: RequestActionsProps) {
   const zh = language?.startsWith("zh") ?? false;
-  const t = (en: string, cn: string) => (zh ? cn : en);
+  const t = (en: string, cn: string) =>
+    text(interfaceLanguage(language ?? "en"), cn, en);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const ground = useGround(light);
@@ -89,7 +91,7 @@ export function RequestActions({
       )}
       {!onDecision && (
         <p style={{ margin: 0, fontSize: 11, opacity: 0.6 }}>
-          {t("Approval delivery is not connected.", "尚未连接审批处理。")}
+          {t("Approval delivery is not connected.", "尚未連接審批處理。")}
         </p>
       )}
       {error && (

@@ -70,7 +70,7 @@ export function ResetCreditAlertView({
         />
         <Metric
           value={`${available}`}
-          label={zh ? "可用次数" : "available"}
+          label={zh ? "可用次數" : "available"}
           light={light}
         />
         <Metric
@@ -117,7 +117,7 @@ export function SignInAlertView({
         event={event}
         name={name}
         under={null}
-        news={zh ? "需要重新登录" : "sign in again"}
+        news={zh ? "需要重新登入" : "sign in again"}
         accentFill={alertFill("warning", ground)}
         accentText={alertText("warning", ground)}
         light={light}
@@ -130,7 +130,7 @@ export function SignInAlertView({
       )}
       <div style={{ fontSize: 10, color: ink(0.42) }}>
         {zh
-          ? "重新登录前，额度显示上次读到的数字。"
+          ? "重新登入前，額度顯示上次讀到的數字。"
           : "Until then, its quota shows the last reading."}
       </div>
       <button
@@ -193,7 +193,7 @@ export function QuotaAlertView({
         name={agentVendorName(event.source)}
         under={windowName || null}
         news={
-          isReset ? (zh ? "已重置" : "reset") : zh ? "额度预警" : "running low"
+          isReset ? (zh ? "已重置" : "reset") : zh ? "額度預警" : "running low"
         }
         accentFill={accentFill}
         accentText={accentText}
@@ -221,13 +221,13 @@ export function QuotaAlertView({
             isReset
               ? settings.quotaDisplay === "remaining"
                 ? zh
-                  ? "已用额度"
+                  ? "已用額度"
                   : "used"
                 : zh
-                  ? "剩余额度"
+                  ? "剩餘額度"
                   : "remaining"
               : zh
-                ? "预计耗尽"
+                ? "預計耗盡"
                 : "until empty"
           }
           light={light}

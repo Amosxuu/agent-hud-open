@@ -33,7 +33,7 @@ export function DisplayPane({
   const config = { ...defaultHUDConfig, ...supplied },
     t = useText(snapshot);
   const screenName = (monitor: NativeHUDMonitor) =>
-    monitor.name || `${t("Screen", "屏幕")} ${monitor.index + 1}`;
+    monitor.name || `${t("Screen", "螢幕")} ${monitor.index + 1}`;
   const selected =
     monitors.length > 1
       ? monitors.find((monitor) => monitor.screenId === selectedScreenId)
@@ -44,14 +44,14 @@ export function DisplayPane({
       {monitors.length > 1 && (
         <Section>
           <Row
-            title={t("Screen", "屏幕")}
+            title={t("Screen", "螢幕")}
             subtitle={t(
               "The screen whose HUD you're setting up.",
-              "正在设置哪块屏幕上的 HUD。",
+              "正在設定哪塊螢幕上的 HUD。",
             )}
           >
             <Menu
-              label={t("Screen", "屏幕")}
+              label={t("Screen", "螢幕")}
               value={selectedScreenId}
               options={monitors.map((monitor) => [
                 monitor.screenId,

@@ -41,7 +41,7 @@ export function SubagentsCard({
   const parts = [
     {
       key: "own",
-      label: zh ? "会话本身" : "This session",
+      label: zh ? "工作階段本身" : "This session",
       value: own,
       color: theme.secondary,
       fade: 1,
@@ -62,7 +62,7 @@ export function SubagentsCard({
             ? `子 agent（${children.length}）`
             : `Sub-agents (${children.length})`
         }
-        right={zh ? "占会话 Token" : "Of the session's tokens"}
+        right={zh ? "佔工作階段 Token" : "Of the session's tokens"}
         theme={theme}
       />
       {theirs > 0 && (
@@ -150,7 +150,7 @@ export function SubagentsCard({
                       label: (
                         <span style={{ color: theme.secondary }}>
                           {zh
-                            ? `其余 ${rest.length} 个`
+                            ? `其餘 ${rest.length} 個`
                             : `${rest.length} more`}
                         </span>
                       ),
@@ -198,7 +198,7 @@ export function ProjectExecutionsCard({
       <CardTitle
         title={
           zh
-            ? `本机执行会话（${count}）`
+            ? `本機執行工作階段（${count}）`
             : `Local execution sessions (${count})`
         }
         right={zh ? "不含 Project 本身" : "Project itself not included"}
@@ -223,7 +223,7 @@ export function ProjectExecutionsCard({
           }}
         >
           <span style={{ ...clipped, flex: 1, minWidth: 0 }}>
-            {child.title || (zh ? "本机执行会话" : "Local execution session")}
+            {child.title || (zh ? "本機執行工作階段" : "Local execution session")}
           </span>
           <span style={{ ...numeric, color: theme.secondary, flexShrink: 0 }}>
             <Tween value={child.tokens} format={tokensAt} />{" "}

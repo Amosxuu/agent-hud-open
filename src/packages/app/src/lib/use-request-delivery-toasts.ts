@@ -21,19 +21,19 @@ export function useRequestDeliveryToasts(
         Date.now() - Date.parse(delivery.at) > 300_000
       )
         continue;
-      const zh = snapshot?.language === "zh";
+      const zh = snapshot?.language?.startsWith("zh") ?? false;
       const title =
         delivery.state === "uncertain"
           ? zh
-            ? "未能确认客户端已收到回应"
+            ? "未能確認用戶端已收到回應"
             : "Client response unconfirmed"
           : zh
-            ? "客户端回应失败"
+            ? "用戶端回應失敗"
             : "Client response failed";
       const description =
         delivery.reason ??
         (zh
-          ? "请先在原客户端中查看，再做下一步操作。"
+          ? "請先在原用戶端中查看，再做下一步操作。"
           : "Check the original client before taking another action.");
       if (delivery.state === "uncertain") toast.warning(title, { description });
       else toast.error(title, { description });

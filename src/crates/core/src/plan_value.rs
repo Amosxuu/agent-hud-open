@@ -157,19 +157,19 @@ impl AgentHudCore {
             let mut partial = false;
             let unavailable = if shared {
                 Some(l10n::text(
-                    "这台 Mac 上同一服务的几个账户用量分不开",
+                    "這台 Mac 上同一服務的幾個賬戶用量分不開",
                     "This Mac's usage cannot be told apart between this provider's accounts",
                 ))
             } else if let Some(view) = &self.meters.view {
                 let (spent, oldest) = view.spent(sources, since, now, keep);
                 if spent.tokens == 0 && !models.is_empty() {
                     Some(l10n::text(
-                        "它用过的模型都被筛选隐藏了",
+                        "它用過的模型都被篩選隱藏了",
                         "Every model it used is hidden by the filter",
                     ))
                 } else if spent.tokens == 0 {
                     Some(l10n::text(
-                        "这台 Mac 近 30 天没有记录到用量",
+                        "這台 Mac 近 30 天沒有記錄到用量",
                         "No usage was recorded on this Mac in the last 30 days",
                     ))
                 } else {
@@ -196,7 +196,7 @@ impl AgentHudCore {
                     None
                 }
             } else {
-                Some(l10n::text("用量仍在载入", "Usage is still loading"))
+                Some(l10n::text("用量仍在載入", "Usage is still loading"))
             };
             let advice = match plan {
                 Some(plan) if plan.multiple.is_some() => {
@@ -210,7 +210,7 @@ impl AgentHudCore {
                         let samples =
                             read(row["id"].as_str().unwrap_or_default()).map_err(|_| {
                                 l10n::text(
-                                    "无法从本地数据库读取额度记录",
+                                    "無法從本地資料庫讀取額度記錄",
                                     "Quota history could not be read from SQLite",
                                 )
                             })?;

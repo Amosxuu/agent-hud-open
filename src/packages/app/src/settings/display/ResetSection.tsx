@@ -129,22 +129,22 @@ export function ResetSection({
       JSON.stringify(value),
   );
 
-  const undo = t("Undo", "撤销"),
+  const undo = t("Undo", "撤銷"),
     reset = t("Reset", "重置");
   return (
     <Section
-      title={t("Reset", "恢复默认")}
+      title={t("Reset", "恢復預設")}
       footer={
         screenName
-          ? t(`These change ${screenName} only.`, `只影响「${screenName}」。`)
+          ? t(`These change ${screenName} only.`, `只影響「${screenName}」。`)
           : undefined
       }
     >
       <Row
-        title={t("HUD style", "HUD 样式")}
+        title={t("HUD style", "HUD 樣式")}
         subtitle={t(
           "Mode, position, sizes, look and glow.",
-          "形态、位置、大小、外观和光晕。",
+          "形態、位置、大小、外觀和光暈。",
         )}
       >
         <SmallButton disabled={!previousStyle.current} onClick={revertStyle}>
@@ -153,9 +153,9 @@ export function ResetSection({
         <SmallButton onClick={resetStyle}>{reset}</SmallButton>
       </Row>
       <Row
-        title={t("Panel layout", "面板布局")}
-        tag={layoutIsDefault ? undefined : t("Custom", "自定义")}
-        subtitle={t("Sections, order and density.", "内容、顺序和密度。")}
+        title={t("Panel layout", "面板佈局")}
+        tag={layoutIsDefault ? undefined : t("Custom", "自定義")}
+        subtitle={t("Sections, order and density.", "內容、順序和密度。")}
       >
         <SmallButton disabled={!previousLayout.current} onClick={revertLayout}>
           {undo}
@@ -166,7 +166,7 @@ export function ResetSection({
       </Row>
       <Row
         title={t("Position", "位置")}
-        subtitle={t("Back to the top of the screen.", "回到屏幕顶部。")}
+        subtitle={t("Back to the top of the screen.", "回到螢幕頂部。")}
       >
         <SmallButton onClick={resetPosition}>{reset}</SmallButton>
       </Row>

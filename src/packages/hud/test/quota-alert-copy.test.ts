@@ -47,7 +47,7 @@ test("quota cards say what Open says, measured from the reading", () => {
   );
   assert.deepEqual(
     [forecast.compactTitle, forecast.exhaustion, forecast.reset],
-    ["50m 后耗尽", "50m", "3h00m"],
+    ["50m 後耗盡", "50m", "3h00m"],
   );
   assert.equal(quotaAlertCopy(event({}), en).used, "N/A");
   const reset = quotaAlertCopy(

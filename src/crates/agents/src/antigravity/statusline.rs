@@ -110,7 +110,7 @@ fn parse_at(report: &Value, now: DateTime<Utc>) -> Option<Reading> {
     }
     if reading.quotas.is_empty() {
         reading.notice = Some(l10n::text(
-            "Antigravity CLI 已识别账户，但未提供额度比例",
+            "Antigravity CLI 已識別賬戶，但未提供額度比例",
             "Antigravity CLI identified the account but reports no quota percentage.",
         ));
     }

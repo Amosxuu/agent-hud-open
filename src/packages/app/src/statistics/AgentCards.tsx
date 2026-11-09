@@ -91,7 +91,7 @@ export function AgentCards({
                 >
                   {t(
                     `${visibleProviders.length} shown`,
-                    `显示 ${visibleProviders.length} 个`,
+                    `顯示 ${visibleProviders.length} 個`,
                   )}
                   <ChevronDown size={10} />
                 </button>
@@ -105,7 +105,7 @@ export function AgentCards({
                     localStorage.removeItem(storageKeys.hiddenAgentCards);
                   }}
                 >
-                  {t("Show all", "全部显示")}
+                  {t("Show all", "全部顯示")}
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuSeparator />
                 {data.providers.map((provider) => (
@@ -126,7 +126,7 @@ export function AgentCards({
           ) : undefined
         }
       >
-        {t("By agent", "按智能体")}
+        {t("By agent", "按Agent")}
       </Heading>
       {!data && (
         <div className="stats-agent-grid">
@@ -195,10 +195,10 @@ export function AgentCards({
           {selectedProviders?.length === 0 ||
           selectedModels?.length === 0 ||
           (data.providers.length > 0 && visibleProviders.length === 0)
-            ? t("No agents or models selected.", "未选择智能体或模型。")
+            ? t("No agents or models selected.", "未選擇Agent或模型。")
             : t(
                 "No recorded agent usage in this range.",
-                "该范围内无已记录的智能体用量。",
+                "該範圍內無已記錄的Agent用量。",
               )}
         </p>
       )}

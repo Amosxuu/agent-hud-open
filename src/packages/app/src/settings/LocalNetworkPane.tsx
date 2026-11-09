@@ -44,7 +44,7 @@ interface Invitation {
 
 /** A clock time in the app's language, not the system's. */
 const clock = (ms: number, t: Text) =>
-  new Date(ms).toLocaleTimeString(t("en-US", "zh-CN"));
+  new Date(ms).toLocaleTimeString(t("en-US", "zh-TW"));
 
 /**
  * The Local Network page: paired phones read this computer's quota readings
@@ -89,7 +89,7 @@ export function LocalNetworkPane({
     return (
       <Page>
         <Footnote>
-          {t("Reading local sharing…", "正在读取局域网设置…")}
+          {t("Reading local sharing…", "正在讀取局域網設定…")}
         </Footnote>
         {error && <Notice tone="error">{error}</Notice>}
       </Page>
@@ -102,8 +102,8 @@ export function LocalNetworkPane({
         ),
       ].join(" · ")
     : status.on
-      ? t("No usable network address", "没有可用的网络地址")
-      : t("Sharing is off", "共享已关闭");
+      ? t("No usable network address", "沒有可用的網路地址")
+      : t("Sharing is off", "共享已關閉");
   const create = (
     <SmallButton
       disabled={pending || !status.enabled}
@@ -115,23 +115,23 @@ export function LocalNetworkPane({
       }
     >
       {invitation
-        ? t("New invitation", "重新创建")
-        : t("Create invitation", "创建邀请")}
+        ? t("New invitation", "重新建立")
+        : t("Create invitation", "建立邀請")}
     </SmallButton>
   );
   const problem = error ?? status.error;
   const unsupported = t(
     "Sharing with phones is not available on this system yet.",
-    "这个系统暂不支持与手机共享。",
+    "這個系統暫不支援與手機共享。",
   );
   return (
     <Page>
       <Section>
         <ToggleRow
-          title={t("Share with paired phones", "与已配对手机共享")}
+          title={t("Share with paired phones", "與已配對手機共享")}
           subtitle={t(
             "Paired iPhones read quota and token usage only.",
-            "已配对的 iPhone 只能查看额度和 token 用量。",
+            "已配對的 iPhone 只能查看額度和 token 用量。",
           )}
           checked={status.on}
           disabled={!status.supported || pending}
@@ -141,22 +141,22 @@ export function LocalNetworkPane({
             void perform(() => share("set_enabled", { enabled }));
           }}
         />
-        <Row title={t("Connection", "连接")} detail={addresses} />
+        <Row title={t("Connection", "連接")} detail={addresses} />
       </Section>
       <Section
-        title={t("Pair a device", "配对设备")}
+        title={t("Pair a device", "配對設備")}
         footer={t(
           "An invitation works once and expires after five minutes. Paired devices can only read.",
-          "邀请仅可使用一次，五分钟后失效。配对设备只能查看。",
+          "邀請僅可使用一次，五分鐘後失效。配對設備只能查看。",
         )}
       >
         <Row
-          title={t("QR invitation", "二维码邀请")}
+          title={t("QR invitation", "二維碼邀請")}
           subtitle={
             invitation
               ? t(
                   "Scan it with Agent HUD on iPhone.",
-                  "用 iPhone 上的 Agent HUD 扫描。",
+                  "用 iPhone 上的 Agent HUD 掃描。",
                 )
               : undefined
           }
@@ -170,7 +170,7 @@ export function LocalNetworkPane({
                   height={200}
                   alt={t(
                     "Single-use Agent HUD pairing invitation",
-                    "一次性 Agent HUD 配对邀请",
+                    "一次性 Agent HUD 配對邀請",
                   )}
                   style={{ background: "white", padding: 10, borderRadius: 8 }}
                 />
@@ -184,8 +184,8 @@ export function LocalNetworkPane({
                 !status.supported
                   ? unsupported
                   : status.on
-                    ? t("Sharing isn’t running.", "共享未在运行。")
-                    : t("Turn on sharing first.", "请先打开共享。")
+                    ? t("Sharing isn’t running.", "共享未在運行。")
+                    : t("Turn on sharing first.", "請先打開共享。")
               }
             >
               {create}
@@ -196,7 +196,7 @@ export function LocalNetworkPane({
         </Row>
         {invitation && (
           <Row
-            title={t("Pairing link", "配对链接")}
+            title={t("Pairing link", "配對鏈接")}
             subtitle={t(
               `Expires at ${clock(invitation.invitation.expiresAtMs, t)}`,
               `${clock(invitation.invitation.expiresAtMs, t)} 失效`,
@@ -211,13 +211,13 @@ export function LocalNetworkPane({
                   .catch(() => setCopied(false))
               }
             >
-              {copied ? t("Copied", "已复制") : t("Copy link", "复制链接")}
+              {copied ? t("Copied", "已複製") : t("Copy link", "複製鏈接")}
             </LinkButton>
           </Row>
         )}
       </Section>
       <Section
-        title={t("Devices", "设备")}
+        title={t("Devices", "設備")}
         subtitle={pairedSummary(status.pairedClients, t)}
         action={
           status.pairedClients > 0 && (
@@ -229,7 +229,7 @@ export function LocalNetworkPane({
                 void perform(() => share("revoke_clients"));
               }}
             >
-              {t("Revoke paired devices", "撤销已配对设备")}
+              {t("Revoke paired devices", "撤銷已配對設備")}
             </LinkButton>
           )
         }
@@ -239,20 +239,20 @@ export function LocalNetworkPane({
             <Row
               key={peer.id}
               title={
-                (peer.name ?? t("Paired device", "已配对设备")) +
+                (peer.name ?? t("Paired device", "已配對設備")) +
                 (peer.version ? ` · ${peer.version}` : "")
               }
               detail={peer.address}
             >
               {peer.online ? (
                 <Pill tone="green" dot>
-                  {t("Online", "在线")}
+                  {t("Online", "在線")}
                 </Pill>
               ) : (
                 <Pill>
                   {t(
                     `Last seen ${clock(peer.lastSeenMs, t)}`,
-                    `最后连接 ${clock(peer.lastSeenMs, t)}`,
+                    `最後連接 ${clock(peer.lastSeenMs, t)}`,
                   )}
                 </Pill>
               )}
@@ -263,7 +263,7 @@ export function LocalNetworkPane({
             muted
             title={t(
               "No device has connected since Agent HUD started.",
-              "这次启动后还没有设备连接。",
+              "這次啓動後還沒有設備連接。",
             )}
           />
         )}
@@ -278,6 +278,6 @@ export function LocalNetworkPane({
 function pairedSummary(grants: number, t: Text) {
   return t(
     `${grants} paired ${grants === 1 ? "device" : "devices"}`,
-    `已配对 ${grants} 台设备`,
+    `已配對 ${grants} 台設備`,
   );
 }

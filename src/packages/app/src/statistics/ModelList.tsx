@@ -27,7 +27,7 @@ export function ModelLine({
       style={{ ...row, fontSize: 11 }}
       title={
         zh
-          ? `${model.provider} · ${model.name}\n${integer(model.selectedTokens)} 已选 Token\n按 API 价格估算 ${costText(model.cost, zh)}`
+          ? `${model.provider} · ${model.name}\n${integer(model.selectedTokens)} 已選 Token\n按 API 價格估算 ${costText(model.cost, zh)}`
           : `${model.provider} · ${model.name}\n${integer(model.selectedTokens)} selected tokens\n${costText(model.cost, zh)} at API prices`
       }
     >
@@ -115,7 +115,7 @@ export function ModelList({
         >
           <Swatch color="transparent" />
           <span style={truncate}>
-            {zh ? `其余 ${rest.length} 个模型` : `${rest.length} more models`}
+            {zh ? `其餘 ${rest.length} 個模型` : `${rest.length} more models`}
           </span>
           <span style={{ marginLeft: "auto", ...number }}>
             {compact(restTokens)}

@@ -29,19 +29,19 @@ fn post_answer(http: &Client, port: u16, body: &Value) -> Result<Receipt, String
         .send()
         .map_err(|_| {
             l10n::text(
-                "DeepSeek Harness 没有确认收到回答",
+                "DeepSeek Harness 沒有確認收到回答",
                 "DeepSeek Harness did not confirm receipt of the answer.",
             )
         })?;
     if !resp.status().is_success() {
         return Err(l10n::text(
-            "DeepSeek Harness 拒绝了这个回答",
+            "DeepSeek Harness 拒絕了這個回答",
             "DeepSeek Harness rejected the answer.",
         ));
     }
     let reply = resp.json::<Value>().map_err(|_| {
         l10n::text(
-            "DeepSeek Harness 返回的回执无效",
+            "DeepSeek Harness 返回的回執無效",
             "DeepSeek Harness returned an invalid receipt.",
         )
     })?;

@@ -1,3 +1,5 @@
+import { text as localizedText } from "@agent-hud/ui/format";
+import { useFormat } from "@agent-hud/ui/format-context";
 import { Fragment, useState } from "react";
 import { ArrowUp, Check, CheckCheck, MessageSquare, X } from "lucide-react";
 import type { Approval, RequestDecision } from "@agent-hud/protocol";
@@ -26,7 +28,9 @@ export function PermissionPlanCard({
   zh?: boolean;
   answer: (decision: RequestDecision) => void | Promise<void>;
 }) {
-  const t = (en: string, cn: string) => (zh ? cn : en);
+  const { language } = useFormat();
+  const t = (en: string, cn: string) =>
+    localizedText(zh ? (language === "zh-TW" ? language : "zh") : "en", cn, en);
   const saved = planDrafts.get(request.id);
   const [noting, setNotingState] = useState(saved?.noting ?? false);
   const [feedback, setFeedbackState] = useState(saved?.feedback ?? "");
@@ -65,7 +69,7 @@ export function PermissionPlanCard({
     <div style={cardColumn(8)}>
       {(request.plan || request.detail || request.input) && (
         <div
-          aria-label={t("Plan", "计划")}
+          aria-label={t("Plan", "計劃")}
           style={{
             maxHeight: 150,
             overflowY: "auto",
@@ -123,10 +127,10 @@ export function PermissionPlanCard({
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <input
               type="text"
-              aria-label={t("Plan feedback", "计划反馈")}
+              aria-label={t("Plan feedback", "計劃回饋")}
               placeholder={t(
                 "What should change? (optional)",
-                "要改什么（可不填）",
+                "要改甚麼（可不填）",
               )}
               value={feedback}
               disabled={disabled}
@@ -172,7 +176,7 @@ export function PermissionPlanCard({
               color={onSignal}
             >
               <ArrowUp size={9} strokeWidth={2.6} />
-              {t("Send", "发送")}
+              {t("Send", "發送")}
             </CardButton>
           </div>
         ) : (
@@ -184,7 +188,7 @@ export function PermissionPlanCard({
               color={secondary}
             >
               <MessageSquare size={9} strokeWidth={2.6} />
-              {t("Keep planning", "继续规划")}
+              {t("Keep planning", "繼續規劃")}
             </CardButton>
             <span style={{ flex: 1, minWidth: 8 }} />
             <CardButton
@@ -196,7 +200,7 @@ export function PermissionPlanCard({
               color={allowText}
             >
               <CheckCheck size={9} strokeWidth={2.6} />
-              {t("Approve, accept edits", "批准并自动接受编辑")}
+              {t("Approve, accept edits", "批准並自動接受編輯")}
             </CardButton>
             <CardButton
               disabled={disabled}
@@ -216,7 +220,7 @@ export function PermissionPlanCard({
           <span style={{ fontSize: 11, color: secondary }}>
             {t(
               `Review this plan in ${vendor}`,
-              `请到 ${vendor} 里审批这份计划`,
+              `請到 ${vendor} 里審批這份計劃`,
             )}
           </span>
           <span style={{ flex: 1, minWidth: 8 }} />

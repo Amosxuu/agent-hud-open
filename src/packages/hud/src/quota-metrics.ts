@@ -71,7 +71,7 @@ export function quotaMetric(
   };
   const stale = say(
     language,
-    "额度读数已过期，请刷新这个账户。",
+    "額度讀數已過期，請更新這個帳戶。",
     "Last quota reading is stale; refresh this account.",
   );
   const budget = metrics?.budget ?? null;
@@ -143,7 +143,7 @@ export function quotaMetric(
       outlook?.basis === "window"
         ? say(
             language,
-            `${outlookBasisText("window", language)}，读数够了改按目前节奏`,
+            `${outlookBasisText("window", language)}，讀數夠了改按目前節奏`,
             `${outlookBasisText("window", language)} until readings give the recent pace`,
           )
         : outlook?.basis === "recent"
@@ -160,7 +160,7 @@ export function quotaMetric(
         ]
       : result.available
         ? [
-            `${result.value} · ${words ?? say(language, "这个周期的读数", "from this quota cycle's readings")}`,
+            `${result.value} · ${words ?? say(language, "這個週期的讀數", "from this quota cycle's readings")}`,
             basis,
           ]
         : [];
@@ -175,21 +175,21 @@ export function quotaMetric(
     result.value = `${rate.lowerBound ? "≥" : ""}${rate.tokensPerSecond < 10 ? rate.tokensPerSecond.toFixed(1) : Math.trunc(rate.tokensPerSecond)}/s`;
     result.detail = say(
       language,
-      `${rate.calls} 次回复`,
+      `${rate.calls} 次回覆`,
       `${rate.calls} replies`,
     );
     result.available = result.selectable = true;
-    const zhTokens = numberFormat("zh-CN").format(rate.tokensOut);
+    const zhTokens = numberFormat("zh-TW").format(rate.tokensOut);
     const enTokens = numberFormat("en-US").format(rate.tokensOut);
     result.hint = rate.lowerBound
       ? say(
           language,
-          `这个窗口的模型在 ${rate.calls} 次回复中输出 ${zhTokens} 个 token。客户端日志没有记下每次调用的用时，只能从上一次调用算起（120 秒以内），其中含工具运行和你的时间，实际速度不低于这个数。有最近一小时的记录时取最近一小时，否则取最近七天。`,
+          `這個視窗的模型在 ${rate.calls} 次回覆中輸出 ${zhTokens} 個 token。用戶端紀錄沒有記下每次呼叫的用時，只能從上一次呼叫算起（120 秒以內），其中含工具運行和你的時間，實際速度不低於這個數。有最近一小時的記錄時取最近一小時，否則取最近七天。`,
           `${enTokens} output tokens over ${rate.calls} replies from this window's models. The client's log does not time its calls, so each is timed from the call before it (within 120 seconds), tool runs and your time included; the real rate is at least this. Latest hour when available, otherwise the last seven days.`,
         )
       : say(
           language,
-          `这个窗口的模型在 ${rate.calls} 次回复中输出 ${zhTokens} 个 token，每次按客户端日志记下的调用用时计算，不含工具运行和你的时间。有最近一小时的记录时取最近一小时，否则取最近七天。`,
+          `這個視窗的模型在 ${rate.calls} 次回覆中輸出 ${zhTokens} 個 token，每次按用戶端紀錄記下的呼叫用時計算，不含工具運行和你的時間。有最近一小時的記錄時取最近一小時，否則取最近七天。`,
           `${enTokens} output tokens over ${rate.calls} replies from this window's models, each timed by its own call as the client's log records it, without tool runs or your time. Latest hour when available, otherwise the last seven days.`,
         );
   } else if (
@@ -211,12 +211,12 @@ export function quotaMetric(
     result.hint = Number.isFinite(since)
       ? say(
           language,
-          `这个额度窗口已消耗${used.unit ? `（${used.unit}）` : ""}，自 ${monthDayTime(since, calendar, language)} 起记录。`,
+          `這個額度視窗已消耗${used.unit ? `（${used.unit}）` : ""}，自 ${monthDayTime(since, calendar, language)} 起記錄。`,
           `Consumed in this quota window${used.unit ? ` (${used.unit})` : ""}, observed since ${monthDayTime(since, calendar, language)}.`,
         )
       : say(
           language,
-          "只计入已知周期内观察到的用量。",
+          "只計入已知週期內觀察到的用量。",
           "Only observed usage in its known cycle is counted.",
         );
   } else if (measure === "cost" && metrics?.cost) {
@@ -238,7 +238,7 @@ export function quotaMetric(
       result.available = result.selectable = true;
       result.hint = say(
         language,
-        "按标价估算这个窗口本周期已观察到的模型用量。订阅费不按 token 计费；不同币种分开计算。",
+        "按標價估算這個視窗本週期已觀察到的模型用量。訂閱費不按 token 計費；不同幣種分開計算。",
         "List-price estimate for this window's observed current-cycle model usage. Subscription fees are not billed by token. Currencies remain separate.",
       );
     }

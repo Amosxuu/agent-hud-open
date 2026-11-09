@@ -14,7 +14,7 @@ const WEB_API: &str = "https://claude.ai/api";
 
 fn desktop_unreadable() -> String {
     l10n::text(
-        "暂时无法读取 Claude 桌面版的登录，稍后自动重试",
+        "暫時無法讀取 Claude 桌面版的登入，稍後自動重試",
         "Couldn't read the Claude desktop app's sign-in; retrying shortly",
     )
 }
@@ -25,12 +25,12 @@ fn desktop_unreadable() -> String {
 fn desktop_challenged(signed_out: bool) -> String {
     if signed_out {
         l10n::text(
-            "Claude Code 已退出登录，claude.ai 也要求浏览器验证；运行 claude 重新登录后更新额度",
+            "Claude Code 已結束登入，claude.ai 也要求瀏覽器驗證；運行 claude 重新登入後更新額度",
             "Claude Code is signed out and claude.ai asked for a browser check. Run claude to sign in again to update the quota",
         )
     } else {
         l10n::text(
-            "claude.ai 要求浏览器验证，暂时无法通过 Claude 桌面版读取额度，稍后自动重试",
+            "claude.ai 要求瀏覽器驗證，暫時無法通過 Claude 桌面版讀取額度，稍後自動重試",
             "claude.ai asked for a browser check, so the Claude desktop app's sign-in can't read the quota; retrying shortly",
         )
     }
@@ -141,7 +141,7 @@ pub(super) fn from_desktop(
     };
     let Some(windows) = windows(&limits) else {
         return Some(Err(l10n::text(
-            "Claude 桌面版的登录返回了无法识别的额度数据",
+            "Claude 桌面版的登入返回了無法識別的額度資料",
             "The Claude desktop app's sign-in returned unrecognised usage data",
         )
         .into()));

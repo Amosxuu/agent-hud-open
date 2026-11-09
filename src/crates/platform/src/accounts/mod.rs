@@ -147,7 +147,7 @@ impl AccountService {
             .build()
             .map_err(|_| {
                 l10n::text(
-                    "账户网络请求无法启动",
+                    "賬戶網路請求無法啓動",
                     "Account HTTP client could not start",
                 )
             })?;
@@ -207,7 +207,7 @@ impl AccountService {
         std::thread::Builder::new()
             .name("agenthud-accounts".into())
             .spawn(move || run(worker_context, worker, worker_gate, readers))
-            .map_err(|_| l10n::text("账户读取线程无法启动", "Account worker could not start"))?;
+            .map_err(|_| l10n::text("賬戶讀取線程無法啓動", "Account worker could not start"))?;
         Ok(Self {
             shared,
             context,

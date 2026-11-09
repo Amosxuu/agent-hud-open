@@ -43,7 +43,7 @@ fn read_provider(host: &dyn Host, provider: &'static str) -> Result<Reading, Unr
     let mut result = Reading::empty(provider);
     if entries.is_empty() {
         result.notice = Some(l10n::text(
-            "此客户端的现有配置中没有可用的 Coding Plan 凭据",
+            "此用戶端的現有配置中沒有可用的 Coding Plan 憑據",
             "No usable coding-plan credential was found in this client's existing configuration",
         ));
         return Ok(result);
@@ -52,7 +52,7 @@ fn read_provider(host: &dyn Host, provider: &'static str) -> Result<Reading, Unr
     let mut transient = 0;
     for entry in entries {
         if host.cancelled() {
-            return Err(l10n::text("账户读取已停止", "Account reading was stopped").into());
+            return Err(l10n::text("賬戶讀取已停止", "Account reading was stopped").into());
         }
         let mut id = account_id(
             provider,
@@ -118,7 +118,7 @@ fn read_provider(host: &dyn Host, provider: &'static str) -> Result<Reading, Unr
                 }
                 match failure {
                     HttpFailure::Unreachable | HttpFailure::BadHeader => l10n::text(
-                        "无法连接 Coding Plan 额度服务",
+                        "無法連接 Coding Plan 額度服務",
                         "Coding plan quota could not be reached",
                     ),
                     other => other.message(),
@@ -165,11 +165,11 @@ fn read_provider(host: &dyn Host, provider: &'static str) -> Result<Reading, Unr
             // Only no answer this time, for every plan: it passes by itself.
             if transient == failures {
                 return Err(Unread::transient(l10n::text(
-                    "无法连接 Coding Plan 额度服务",
+                    "無法連接 Coding Plan 額度服務",
                     "Coding plan quota could not be reached",
                 )));
             }
-            return Err(l10n::text("现有 Coding Plan 凭据未能读到可核实的额度，请检查来源客户端的登录或 API Key", "Existing coding-plan credentials could not read a verifiable quota; check the source client's login or API key").into());
+            return Err(l10n::text("現有 Coding Plan 憑據未能讀到可核實的額度，請檢查來源用戶端的登入或 API Key", "Existing coding-plan credentials could not read a verifiable quota; check the source client's login or API key").into());
         }
         result.notice = Some(format!(
             "{failures} configured coding-plan account(s) could not be read"

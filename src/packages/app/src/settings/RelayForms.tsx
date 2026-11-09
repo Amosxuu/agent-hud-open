@@ -36,7 +36,7 @@ export function RelayForm({
         secret
       />
       <FieldRow
-        label={t("Name", "名称")}
+        label={t("Name", "名稱")}
         value={name}
         change={setName}
         placeholder={t("Optional", "可不填")}
@@ -78,11 +78,11 @@ export function RelayKindForm({
   );
   const [header, setHeader] = useState(saved?.header ?? "");
   const kinds: [RelayKind, string][] = [
-    ["auto", t("Automatic", "自动识别")],
+    ["auto", t("Automatic", "自動識別")],
     ["newapi", "New API"],
     ["sub2api", "Sub2API"],
     ["openrouter", "OpenRouter"],
-    ["custom", t("Custom endpoint", "自定义接口")],
+    ["custom", t("Custom endpoint", "自定義接口")],
   ];
   return (
     <InlineForm
@@ -103,9 +103,9 @@ export function RelayKindForm({
         )
       }
     >
-      <Row title={t("Type", "类型")}>
+      <Row title={t("Type", "類型")}>
         <Menu
-          label={t("Type", "类型")}
+          label={t("Type", "類型")}
           value={kind}
           options={kinds}
           change={(value) => setKind(value as RelayKind)}
@@ -115,29 +115,29 @@ export function RelayKindForm({
       {kind === "custom" && (
         <>
           <FieldRow
-            label={t("Balance endpoint", "余额接口")}
-            hint={t("On the relay's own address.", "须在中转站自己的地址上。")}
+            label={t("Balance endpoint", "餘額接口")}
+            hint={t("On the relay's own address.", "須在中轉站自己的地址上。")}
             value={url}
             change={setUrl}
             placeholder="/api/balance"
           />
           <FieldRow
-            label={t("Balance field", "余额字段")}
+            label={t("Balance field", "餘額字段")}
             value={remaining}
             change={setRemaining}
             placeholder="data.balance"
           />
           <FieldRow
-            label={t("Divide by", "除数")}
+            label={t("Divide by", "除數")}
             value={divisor}
             change={setDivisor}
             placeholder="1"
             decimal
             width={80}
           />
-          <Row title={t("Currency", "币种")}>
+          <Row title={t("Currency", "幣種")}>
             <Segments
-              label={t("Currency", "币种")}
+              label={t("Currency", "幣種")}
               value={currency}
               options={[
                 ["USD", "USD"],
@@ -147,7 +147,7 @@ export function RelayKindForm({
             />
           </Row>
           <FieldRow
-            label={t("Key header", "Key 请求头")}
+            label={t("Key header", "Key 請求頭")}
             hint={t("Optional", "可不填")}
             value={header}
             change={setHeader}
@@ -159,7 +159,7 @@ export function RelayKindForm({
         t={t}
         pending={pending}
         ready={kind !== "custom" || Boolean(url.trim() && remaining.trim())}
-        submit={t("Save", "保存")}
+        submit={t("Save", "儲存")}
         onCancel={onCancel}
       />
     </InlineForm>

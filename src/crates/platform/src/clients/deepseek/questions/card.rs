@@ -81,7 +81,7 @@ pub fn answer_entries(
     }
     if kind != "answer" {
         return Err(l10n::text(
-            "DeepSeek Harness 的提问只能回答，不能批准",
+            "DeepSeek Harness 的提問只能回答，不能批准",
             "DeepSeek Harness's questions can only be answered, not approved.",
         ));
     }

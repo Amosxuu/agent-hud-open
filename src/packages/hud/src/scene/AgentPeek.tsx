@@ -44,12 +44,12 @@ export function peekItems(
   if (vendor.balance)
     items.push({
       id: "balance",
-      label: zh ? "余额" : "Balance",
+      label: zh ? "餘額" : "Balance",
       value: vendor.balance,
       color: color(vendor.level),
     });
   if (!items.length)
-    items.push({ id: "quota", label: zh ? "额度" : "Quota", value: "--" });
+    items.push({ id: "quota", label: zh ? "額度" : "Quota", value: "--" });
   return items;
 }
 
@@ -194,7 +194,7 @@ export function AgentPeek({
             height: 18 * scale,
           }}
         >
-          <span style={{ opacity: 0.55 }}>{zh ? "额度" : "Quota"}</span>
+          <span style={{ opacity: 0.55 }}>{zh ? "額度" : "Quota"}</span>
           <strong>--</strong>
         </div>
       )}
@@ -207,7 +207,7 @@ export function AgentPeek({
             height: 18 * scale,
           }}
         >
-          <span style={{ opacity: 0.55 }}>{zh ? "余额" : "Balance"}</span>
+          <span style={{ opacity: 0.55 }}>{zh ? "餘額" : "Balance"}</span>
           <strong
             style={{
               color: color(vendor.level),

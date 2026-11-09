@@ -22,7 +22,7 @@ export function rangeText(range: Range, from: number, zh: boolean) {
           : null,
     words:
       range.id === "day"
-        ? t(`on ${date("en-US")}`, `在 ${date("zh-CN")}`)
+        ? t(`on ${date("en-US")}`, `在 ${date("zh-TW")}`)
         : range.id === "today"
           ? t("today", "今天")
           : range.id === "1y"

@@ -104,7 +104,7 @@ export function SurfaceContent({
             simple={config.mode === "simple"}
             scale={scale}
             light={light}
-            zh={snapshotLanguage(snapshot) === "zh"}
+            zh={snapshotLanguage(snapshot).startsWith("zh")}
             tuck={peekTuck}
             edge={edge}
           />
@@ -120,7 +120,7 @@ export function SurfaceContent({
           scale={scale}
           light={rowLight}
           botLogos={config.botLogos}
-          zh={snapshotLanguage(snapshot) === "zh"}
+          zh={snapshotLanguage(snapshot).startsWith("zh")}
           onOpen={() => forceOpen()}
           onDismissAndStats={() => {
             dismissNews();

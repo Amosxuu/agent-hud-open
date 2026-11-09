@@ -23,7 +23,7 @@ export class ViewErrorBoundary extends Component<
       >
         <span>
           {this.props.chinese
-            ? "无法显示这个页面："
+            ? "無法顯示這個頁面："
             : "Failed to render view: "}
           {this.state.error.message}
         </span>

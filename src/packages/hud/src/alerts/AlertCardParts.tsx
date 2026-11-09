@@ -129,7 +129,7 @@ export function StatsButton({
         cursor: "pointer",
       }}
     >
-      <span>{zh ? "查看用量统计" : "View usage statistics"}</span>
+      <span>{zh ? "查看用量統計" : "View usage statistics"}</span>
       <ArrowUpRight size={9} strokeWidth={2.6} />
     </button>
   );

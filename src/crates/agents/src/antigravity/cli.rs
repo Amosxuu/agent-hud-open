@@ -13,7 +13,7 @@ use std::{
 
 fn failure() -> String {
     l10n::text(
-        "agy 正在运行，但读取不到它的额度",
+        "agy 正在運行，但讀取不到它的額度",
         "agy is running, but its quota could not be read",
     )
 }
@@ -119,7 +119,7 @@ fn parse(scope: &str, body: &Value) -> Result<Reading, String> {
     }
     if reading.quotas.is_empty() {
         reading.notice = Some(l10n::text(
-            "agy 未提供额度比例",
+            "agy 未提供額度比例",
             "agy reports no quota percentage.",
         ));
     }

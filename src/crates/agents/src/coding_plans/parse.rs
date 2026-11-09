@@ -97,12 +97,12 @@ pub(super) fn parse(
                             .filter(|n| *n > 0.0)
                             .ok_or_else(|| {
                                 l10n::text(
-                                    "Kimi 额度窗口缺少时长",
+                                    "Kimi 額度視窗缺少時長",
                                     "Kimi quota window has no duration",
                                 )
                             })?;
                     let unit = spec["timeUnit"].as_str().ok_or_else(|| {
-                        l10n::text("Kimi 额度窗口缺少单位", "Kimi quota window has no unit")
+                        l10n::text("Kimi 額度視窗缺少單位", "Kimi quota window has no unit")
                     })?;
                     let multiplier = match unit {
                         "TIME_UNIT_MINUTE" => 60.0,
@@ -111,7 +111,7 @@ pub(super) fn parse(
                         "TIME_UNIT_WEEK" => 604800.0,
                         _ => {
                             return Err(l10n::text(
-                                "Kimi 额度窗口的单位无法识别",
+                                "Kimi 額度視窗的單位無法識別",
                                 "Kimi quota window unit is unsupported",
                             ))
                         }
@@ -126,12 +126,12 @@ pub(super) fn parse(
                     let limit = numeric(&value["limit"])
                         .filter(|n| *n > 0.0)
                         .ok_or_else(|| {
-                            l10n::text("Kimi 未提供额度总量", "Kimi quota capacity is unavailable")
+                            l10n::text("Kimi 未提供額度總量", "Kimi quota capacity is unavailable")
                         })?;
                     let used = numeric(&value["used"])
                         .or_else(|| numeric(&value["remaining"]).map(|n| (limit - n).max(0.0)))
                         .ok_or_else(|| {
-                            l10n::text("Kimi 未提供已用额度", "Kimi quota usage is unavailable")
+                            l10n::text("Kimi 未提供已用額度", "Kimi quota usage is unavailable")
                         })?;
                     add(
                         key,
@@ -148,7 +148,7 @@ pub(super) fn parse(
         "opencode" => {
             if !root["usage"].is_object() {
                 return Err(l10n::text(
-                    "OpenCode Go 返回的额度格式无法识别",
+                    "OpenCode Go 返回的額度格式無法識別",
                     "OpenCode Go returned an unsupported quota format",
                 ));
             }
@@ -174,7 +174,7 @@ pub(super) fn parse(
                     name,
                     numeric(&value["percent"]).ok_or_else(|| {
                         l10n::text(
-                            "OpenCode Go 未提供额度比例",
+                            "OpenCode Go 未提供額度比例",
                             "OpenCode Go quota percentage is unavailable",
                         )
                     })?,
@@ -188,13 +188,13 @@ pub(super) fn parse(
         "glm" => {
             if root["success"] != true || numeric(&root["code"]) != Some(200.0) {
                 return Err(l10n::text(
-                    "GLM 返回的额度格式无法识别",
+                    "GLM 返回的額度格式無法識別",
                     "GLM returned an unsupported quota format",
                 ));
             }
             let mut found = Vec::new();
             for value in root["data"]["limits"].as_array().ok_or_else(|| {
-                l10n::text("GLM 未提供额度窗口", "GLM quota windows are unavailable")
+                l10n::text("GLM 未提供額度視窗", "GLM quota windows are unavailable")
             })? {
                 let Some(kind) = value["type"]
                     .as_str()
@@ -204,18 +204,18 @@ pub(super) fn parse(
                 };
                 let unit = value["unit"].as_i64().ok_or_else(|| {
                     l10n::text(
-                        "GLM 额度窗口缺少单位",
+                        "GLM 額度視窗缺少單位",
                         "GLM quota window unit is unavailable",
                     )
                 })?;
                 let count = numeric(&value["number"]).ok_or_else(|| {
                     l10n::text(
-                        "GLM 额度窗口缺少时长",
+                        "GLM 額度視窗缺少時長",
                         "GLM quota window duration is unavailable",
                     )
                 })?;
                 let mut used = numeric(&value["percentage"]).ok_or_else(|| {
-                    l10n::text("GLM 未提供额度比例", "GLM quota percentage is unavailable")
+                    l10n::text("GLM 未提供額度比例", "GLM quota percentage is unavailable")
                 })?;
                 let capacity = numeric(&value["usage"]);
                 let current = numeric(&value["currentValue"]);
@@ -299,7 +299,7 @@ pub(super) fn parse(
     }
     if windows.is_empty() {
         return Err(l10n::text(
-            "Coding Plan 没有返回可核实的额度窗口",
+            "Coding Plan 沒有返回可核實的額度視窗",
             "Coding plan did not return a verifiable quota window",
         ));
     }

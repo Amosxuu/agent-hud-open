@@ -52,7 +52,7 @@ impl Runtime {
         if method == "open_session" {
             let id = params["id"]
                 .as_str()
-                .ok_or_else(|| l10n::text("缺少会话 ID", "Session ID is required"))?;
+                .ok_or_else(|| l10n::text("缺少工作階段 ID", "Session ID is required"))?;
             let detail = self.core.request("session_detail", params.clone())?;
             if self.is_demo() {
                 // A demo session has nowhere to go; the HUD hands over as it would.
@@ -66,7 +66,7 @@ impl Runtime {
             }
             if detail["session"]["desktopProject"].is_object() {
                 return Err(l10n::text(
-                    "无法打开原来的 Project 对话",
+                    "無法打開原來的 Project 對話",
                     "The original Project session could not be opened",
                 ));
             }
@@ -79,7 +79,7 @@ impl Runtime {
             // allowing Agent HUD's hooks in Codex.
             let source = params["source"]
                 .as_str()
-                .ok_or_else(|| l10n::text("缺少客户端", "Client is required"))?;
+                .ok_or_else(|| l10n::text("缺少用戶端", "Client is required"))?;
             if self.is_demo() {
                 return Ok(json!({"opened":true,"action":"demo"}));
             }
@@ -99,7 +99,7 @@ impl Runtime {
             if params["key"] == "antigravityCliSettings" {
                 if self.is_demo() {
                     return Err(l10n::text(
-                        "演示模式不会更改 CLI 配置。",
+                        "演示模式不會更改 CLI 配置。",
                         "The demo leaves CLI settings unchanged.",
                     ));
                 }

@@ -40,7 +40,7 @@ export function AlertStack({
   snapshot: Snapshot;
   botLogos: boolean;
 }) {
-  const zh = snapshotLanguage(snapshot) === "zh";
+  const zh = snapshotLanguage(snapshot).startsWith("zh");
   const ends = news.ends;
   const services = usePanelServices();
   // Back to the session a request comes from, where Agent HUD can reach it.

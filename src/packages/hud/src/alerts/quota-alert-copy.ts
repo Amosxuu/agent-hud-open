@@ -13,7 +13,7 @@ import {
 } from "@agent-hud/ui/format";
 
 const say = (language: Language, zh: string, en: string) =>
-  language === "zh" ? zh : en;
+  language.startsWith("zh") ? zh : en;
 
 /** The window's share left, from the share used the event carries; none without a reading. */
 function remainingOf(event: IslandEvent) {
@@ -59,49 +59,49 @@ export function quotaAlertCopy(event: IslandEvent, settings: FormatSettings) {
     /** Beside the agent in the small reminder. */
     compactTitle:
       remaining == null
-        ? say(language, "额度不可用", "Quota unavailable")
+        ? say(language, "額度不可用", "Quota unavailable")
         : isReset
           ? say(language, "已重置", "Reset")
           : empty
-            ? say(language, "已耗尽", "Empty")
+            ? say(language, "已耗盡", "Empty")
             : exhaustion
-              ? say(language, `${exhaustion} 后耗尽`, `${exhaustion} left`)
-              : say(language, "即将耗尽", "Running low"),
+              ? say(language, `${exhaustion} 後耗盡`, `${exhaustion} left`)
+              : say(language, "即將耗盡", "Running low"),
     /** The card's sentence. */
     title:
       remaining == null
-        ? say(language, "额度暂不可用。", "Quota is unavailable.")
+        ? say(language, "額度暫不可用。", "Quota is unavailable.")
         : isReset
           ? others.length
             ? say(
                 language,
-                "此窗口已重置，其他窗口仍有限制。",
+                "此視窗已重置，其他視窗仍有限制。",
                 "This window has reset; other limits still apply.",
               )
             : say(
                 language,
-                "此窗口额度已重置。",
+                "此視窗額度已重置。",
                 "This quota window has reset.",
               )
           : empty
             ? say(
                 language,
-                "当前窗口额度已耗尽，等待重置。",
+                "目前視窗額度已耗盡，等待重置。",
                 "This window is empty. Waiting for reset.",
               )
             : exhaustion
               ? say(
                   language,
-                  "按最近的消耗速率，预计将在重置前耗尽。",
+                  "按最近的消耗速率，預計將在重置前耗盡。",
                   "At the recent burn rate, this window may run out before it resets.",
                 )
               : say(
                   language,
-                  "已用额度达到危险阈值，请留意后续任务。",
+                  "已用額度達到危險閾值，請留意後續任務。",
                   "Usage has reached the critical threshold.",
                 ),
     otherLimits: others.length
-      ? say(language, `${names}额度仍已耗尽`, `Still exhausted: ${names}`)
+      ? say(language, `${names}額度仍已耗盡`, `Still exhausted: ${names}`)
       : null,
   };
 }
@@ -125,7 +125,7 @@ export function resetCreditCopy(
     ),
     title: say(
       language,
-      `此账户新增了 ${added} 次额度重置。`,
+      `此帳戶新增了 ${added} 次額度重置。`,
       added === 1
         ? "A usage reset was added to this account."
         : `${added} usage resets were added to this account.`,
@@ -134,7 +134,7 @@ export function resetCreditCopy(
     expiry:
       first === undefined
         ? "—"
-        : dateFormat(language === "zh" ? "zh-CN" : "en-US", {
+        : dateFormat(language.startsWith("zh") ? "zh-TW" : "en-US", {
             month: "short",
             day: "numeric",
           }).format(first),

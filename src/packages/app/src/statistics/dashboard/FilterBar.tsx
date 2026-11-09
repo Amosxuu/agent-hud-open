@@ -112,7 +112,7 @@ export function FilterBar({
             aria-checked={Boolean(selected?.includes(entry.id))}
             title={t(
               "Click to see this agent alone; ⌘-click to add it",
-              "点击只看这个 Agent；按住 ⌘ 点击可多选",
+              "點選只看這個 Agent；按住 ⌘ 點選可多選",
             )}
             onClick={(event) => {
               const on = Boolean(selected?.includes(entry.id));
@@ -137,7 +137,7 @@ export function FilterBar({
           <DropdownMenuTrigger asChild>
             <button
               type="button"
-              aria-label={t("Token kinds counted", "计入的 Token 类型")}
+              aria-label={t("Token kinds counted", "計入的 Token 類型")}
               style={{
                 ...plain,
                 ...row,
@@ -161,7 +161,7 @@ export function FilterBar({
               onSelect={(event) => event.preventDefault()}
               onCheckedChange={() => setKinds([...freshKinds])}
             >
-              {t("Excl. cache reads", "不含缓存读取")}
+              {t("Excl. cache reads", "不含快取讀取")}
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
               checked={selectedKinds.length === kinds.length}
@@ -201,14 +201,14 @@ export function FilterBar({
             style={{ ...chip(theme, true), height: 28, gap: 5 }}
           >
             {new Date(dayStart(range.day)).toLocaleDateString(
-              zh ? "zh-CN" : "en-US",
+              zh ? "zh-TW" : "en-US",
               { month: "short", day: "numeric", weekday: "short" },
             )}
             <X size={12} style={{ opacity: 0.7 }} />
           </button>
         )}
         <Segments
-          label={t("Range", "范围")}
+          label={t("Range", "範圍")}
           value={range.id}
           onChange={(value) => setRange({ id: value as RangeId })}
           choices={ranges}

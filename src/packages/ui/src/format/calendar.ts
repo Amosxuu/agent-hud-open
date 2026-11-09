@@ -18,7 +18,9 @@ export interface FormatSettings {
 }
 
 const weekdays: Record<Language, string[]> = {
-  zh: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+  zh: ["周日", "週一", "週二", "週三", "週四", "週五", "週六"],
+  "zh-TW": ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
+
   en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
 };
 const months = [
@@ -79,12 +81,12 @@ function weekdayTime(
   return `${weekdays[language][clock.weekday - 1]} ${two(clock.hour)}:${two(clock.minute)}`;
 }
 
-/** "11月20日 周五 09:00" / "Fri 20 Nov at 09:00". */
+/** "11月20日 週五 09:00" / "Fri 20 Nov at 09:00". */
 function dateTime(instant: number, calendar: WeekCalendar, language: Language) {
   const clock = wallClock(instant, calendar.timeZone);
   const time = `${two(clock.hour)}:${two(clock.minute)}`;
   const weekday = weekdays[language][clock.weekday - 1];
-  return language === "zh"
+  return language.startsWith("zh")
     ? `${clock.month}月${clock.day}日 ${weekday} ${time}`
     : `${weekday} ${clock.day} ${months[clock.month - 1]} at ${time}`;
 }
@@ -97,7 +99,7 @@ export function monthDayTime(
 ) {
   const clock = wallClock(instant, calendar.timeZone);
   const time = `${two(clock.hour)}:${two(clock.minute)}`;
-  return language === "zh"
+  return language.startsWith("zh")
     ? `${clock.month}月${clock.day}日 ${time}`
     : `${months[clock.month - 1]} ${clock.day}, ${time}`;
 }
@@ -117,7 +119,7 @@ function weeksBetween(
 }
 
 /**
- * A future date's weekday with which week it falls in: "下周二 16:10" / "Next Tue 16:10". The current week needs no
+ * A future date's weekday with which week it falls in: "下週二 16:10" / "Next Tue 16:10". The current week needs no
  * marker; Chinese counts Monday-started weeks up to three "下", English names the next week only; anything further
  * names its date.
  */
@@ -127,11 +129,11 @@ export function relativeWeekdayTime(
   calendar: WeekCalendar,
   language: Language,
 ) {
-  const firstWeekday = language === "zh" ? 2 : calendar.firstWeekday;
+  const firstWeekday = language.startsWith("zh") ? 2 : calendar.firstWeekday;
   const delta = weeksBetween(now, instant, calendar.timeZone, firstWeekday);
   if (delta <= 0) return weekdayTime(instant, calendar, language);
   if (delta <= 3) {
-    if (language === "zh")
+    if (language.startsWith("zh"))
       return "下".repeat(delta) + weekdayTime(instant, calendar, language);
     if (delta === 1) return `Next ${weekdayTime(instant, calendar, language)}`;
   }

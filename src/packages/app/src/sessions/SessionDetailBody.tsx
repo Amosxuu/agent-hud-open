@@ -73,7 +73,7 @@ export function SessionDetailBody({
       )}
       {state.error && (
         <Button variant="ghost" size="sm" onClick={state.retry}>
-          {zh ? "重试" : "Retry"}
+          {zh ? "重試" : "Retry"}
         </Button>
       )}
     </>

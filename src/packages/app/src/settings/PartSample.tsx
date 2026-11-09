@@ -52,9 +52,9 @@ export function PartSample({
       {kind === "sessions" ? (
         <>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <strong style={{ fontWeight: 600 }}>{t("Sessions", "会话")}</strong>
+            <strong style={{ fontWeight: 600 }}>{t("Sessions", "工作階段")}</strong>
             <span style={{ opacity: 0.55 }}>
-              {t("1 running", "1 个运行中")}
+              {t("1 running", "1 個運行中")}
             </span>
           </div>
           <div
@@ -80,7 +80,7 @@ export function PartSample({
                 }}
               />
             </span>
-            <span>{t("Fix sign-in issue", "修复登录问题")}</span>
+            <span>{t("Fix sign-in issue", "修復登入問題")}</span>
             <span style={{ flex: 1 }} />
             <span
               style={{
@@ -150,7 +150,7 @@ export function PartSample({
                 background: "#34c759",
               }}
             />
-            <strong style={{ fontWeight: 600 }}>{t("Session", "会话")}</strong>
+            <strong style={{ fontWeight: 600 }}>{t("Session", "工作階段")}</strong>
             <span
               style={{
                 flex: 1,
@@ -181,7 +181,7 @@ export function PartSample({
                   fontSize: 11,
                 }}
               >
-                {t("2h 14m", "2 小时 14 分")}
+                {t("2h 14m", "2 小時 14 分")}
               </span>
             )}
           </div>
@@ -193,7 +193,7 @@ export function PartSample({
               {t("Tokens", "Token 消耗")}
             </strong>
             <span style={{ opacity: 0.55 }}>
-              {t("1hr · 46M tok", "1 小时 · 46M tok")}
+              {t("1hr · 46M tok", "1 小時 · 46M tok")}
             </span>
           </div>
           <div

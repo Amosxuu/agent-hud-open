@@ -50,21 +50,21 @@ export function TurnCallsTable({
             }}
           >
             <th style={{ ...head, textAlign: "left", paddingLeft: 0 }}>
-              {zh ? "时间" : "Time"}
+              {zh ? "時間" : "Time"}
             </th>
             <th style={{ ...head, textAlign: "left" }}>
               {zh ? "模型" : "Model"}
             </th>
             <th style={head}>{zh ? "新增" : "New"}</th>
-            <th style={head}>{zh ? "缓存写" : "Cache W"}</th>
-            <th style={head}>{zh ? "输入" : "Input"}</th>
+            <th style={head}>{zh ? "快取寫" : "Cache W"}</th>
+            <th style={head}>{zh ? "輸入" : "Input"}</th>
             {reasoning && <th style={head}>{zh ? "思考" : "Reasoning"}</th>}
-            <th style={head}>{zh ? "输出" : "Output"}</th>
-            <th style={head}>{zh ? "缓存读" : "Cache R"}</th>
+            <th style={head}>{zh ? "輸出" : "Output"}</th>
+            <th style={head}>{zh ? "快取讀" : "Cache R"}</th>
             {contexts && <th style={head}>{zh ? "上下文" : "Context"}</th>}
             {tools && (
               <th style={{ ...head, textAlign: "left", paddingRight: 0 }}>
-                {zh ? "发起工具" : "Asked for"}
+                {zh ? "發起工具" : "Asked for"}
               </th>
             )}
           </tr>
@@ -85,7 +85,7 @@ export function TurnCallsTable({
                   color: theme.secondary,
                 }}
               >
-                {dateFormat(zh ? "zh-CN" : "en-GB", {
+                {dateFormat(zh ? "zh-TW" : "en-GB", {
                   hour: "numeric",
                   minute: "numeric",
                   second: "numeric",
@@ -117,7 +117,7 @@ export function TurnCallsTable({
                       size={10}
                       color={theme.warning}
                       strokeWidth={2.6}
-                      aria-label={zh ? "缓存过期" : "Cache expired"}
+                      aria-label={zh ? "快取過期" : "Cache expired"}
                     />
                   )}
                 </span>

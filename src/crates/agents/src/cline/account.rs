@@ -107,14 +107,14 @@ fn sign_in(host: &dyn Host) -> Option<SignIn> {
 
 fn signed_out() -> Unread {
     Unread::SignedOut(l10n::text(
-        "登录 Cline 后才能读取 ClinePass 的额度",
+        "登入 Cline 後才能讀取 ClinePass 的額度",
         "Sign in to Cline to read ClinePass",
     ))
 }
 
 fn unsupported() -> Unread {
     Unread::Failed(l10n::text(
-        "ClinePass 的额度格式无法识别",
+        "ClinePass 的額度格式無法識別",
         "ClinePass's limits have an unsupported format",
     ))
 }
@@ -124,7 +124,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
     let now = chrono::Utc::now().timestamp_millis();
     if sign_in.expires.is_some_and(|at| at <= now + 60_000) {
         return Err(Unread::Failed(l10n::text(
-            "Cline 下次运行时会续期登录，之后更新 ClinePass 额度",
+            "Cline 下次運行時會續期登入，之後更新 ClinePass 額度",
             "Cline renews its sign-in the next time it runs; ClinePass updates then",
         )));
     }
@@ -141,19 +141,19 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
             // The service no longer takes the sign-in. A 403 may only mean
             // the account has no plan to read, so it is not taken for one.
             HttpFailure::Status(401) => Unread::SignedOut(l10n::text(
-                "Cline 的登录已失效，请在 Cline 中重新登录",
+                "Cline 的登入已失效，請在 Cline 中重新登入",
                 "Cline's sign-in is no longer accepted; sign in to Cline again",
             )),
             HttpFailure::Status(403 | 404) => Unread::Failed(l10n::text(
-                "这个 Cline 账户读不到 ClinePass 额度",
+                "這個 Cline 賬戶讀不到 ClinePass 額度",
                 "This Cline account has no ClinePass limits to read",
             )),
             HttpFailure::BadHeader => Unread::Failed(l10n::text(
-                "Cline 的登录凭据无法用于请求",
+                "Cline 的登入憑據無法用於請求",
                 "Cline's sign-in cannot be used in a request",
             )),
             HttpFailure::Unreachable => failure.unread_as(l10n::text(
-                "无法连接 ClinePass 的额度服务",
+                "無法連接 ClinePass 的額度服務",
                 "ClinePass's limits could not be reached",
             )),
             other => other.unread(),

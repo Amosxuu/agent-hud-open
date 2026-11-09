@@ -28,19 +28,19 @@ fn opened_token(host: &dyn Host, stored: &str) -> Result<String, String> {
     match host.unseal_safe_storage("Cursor", &encrypted) {
         Answer::Found(token) => Ok(token),
         Answer::Denied => Err(l10n::text(
-            "Cursor 加密了登录信息，钥匙串访问被拒绝。重新打开 Agent HUD 后会再次询问",
+            "Cursor 加密了登入資訊，鑰匙串訪問被拒絕。重新打開 Agent HUD 後會再次詢問",
             "Cursor encrypted its sign-in, and keychain access was refused. Agent HUD asks again after it restarts.",
         )),
         Answer::Missing => Err(l10n::text(
-            "Cursor 加密了登录信息，但找不到它的钥匙串项",
+            "Cursor 加密了登入資訊，但找不到它的鑰匙串項",
             "Cursor encrypted its sign-in, but its keychain item is missing.",
         )),
         Answer::Unsupported => Err(l10n::text(
-            "Cursor 加密了登录信息，此系统还不能解密",
+            "Cursor 加密了登入資訊，此系統還不能解密",
             "Cursor encrypted its sign-in; this system cannot unlock it yet.",
         )),
         Answer::Failed => Err(l10n::text(
-            "Cursor 加密的登录信息无法解密",
+            "Cursor 加密的登入資訊無法解密",
             "Cursor's encrypted sign-in could not be unlocked.",
         )),
     }
@@ -61,14 +61,14 @@ pub(crate) fn sign_in(host: &dyn Host) -> Result<Option<SignIn>, Unread> {
         Err(DatabaseFailure::Missing) => return Ok(None),
         Err(DatabaseFailure::Unopenable) => {
             return Err(l10n::text(
-                "无法打开 Cursor 账户数据库",
+                "無法打開 Cursor 賬戶資料庫",
                 "Cursor account database could not be opened.",
             )
             .into())
         }
         Err(DatabaseFailure::Unreadable) => {
             return Err(l10n::text(
-                "无法读取 Cursor 账户数据库",
+                "無法讀取 Cursor 賬戶資料庫",
                 "Cursor account database could not be read.",
             )
             .into())
@@ -89,7 +89,7 @@ pub(crate) fn sign_in(host: &dyn Host) -> Result<Option<SignIn>, Unread> {
     };
     let Some(stored) = lookup("cursorAuth/accessToken")?.filter(|token| !token.is_empty()) else {
         return Err(Unread::SignedOut(l10n::text(
-            "登录 Cursor 后读取账户用量",
+            "登入 Cursor 後讀取賬戶用量",
             "Sign in to Cursor to read its account usage.",
         )));
     };
@@ -104,7 +104,7 @@ pub(crate) fn sign_in(host: &dyn Host) -> Result<Option<SignIn>, Unread> {
         .is_some_and(|expiry| expiry > Utc::now().timestamp() as f64 + 60.0)
     {
         return Err(Unread::SignedOut(l10n::text(
-            "Cursor 保存的登录已过期，请在 Cursor 中重新登录",
+            "Cursor 儲存的登入已過期，請在 Cursor 中重新登入",
             "Cursor's saved access token expired; sign in in Cursor to renew it.",
         )));
     }

@@ -75,7 +75,7 @@ fn api_key(host: &dyn Host) -> Option<String> {
 
 fn unsupported() -> Unread {
     Unread::Failed(l10n::text(
-        "Factory 的用量上限格式无法识别",
+        "Factory 的用量上限格式無法識別",
         "Factory's usage limits have an unsupported format",
     ))
 }
@@ -86,7 +86,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
         // Droid signs in on its own; only an API key lets Agent HUD read
         // its limits, and having none is no sign-out.
         reading.notice = Some(l10n::text(
-            "设置 FACTORY_API_KEY 后才能读取 Factory Droid 的用量上限",
+            "設定 FACTORY_API_KEY 後才能讀取 Factory Droid 的用量上限",
             "Set FACTORY_API_KEY to read Factory Droid's usage limits",
         ));
         return Ok(reading);
@@ -104,15 +104,15 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
             // Factory no longer takes the key: only a new one brings the
             // reading back.
             HttpFailure::Status(401 | 403) => Unread::SignedOut(l10n::text(
-                "Factory 不再接受这个 API Key，请在 app.factory.ai 重新生成",
+                "Factory 不再接受這個 API Key，請在 app.factory.ai 重新生成",
                 "Factory no longer accepts this API key; create a new one at app.factory.ai",
             )),
             HttpFailure::BadHeader => Unread::Failed(l10n::text(
-                "FACTORY_API_KEY 无法用于请求",
+                "FACTORY_API_KEY 無法用於請求",
                 "FACTORY_API_KEY cannot be used in a request",
             )),
             HttpFailure::Unreachable => failure.unread_as(l10n::text(
-                "无法连接 Factory 的用量服务",
+                "無法連接 Factory 的用量服務",
                 "Factory's usage limits could not be reached",
             )),
             other => other.unread(),
@@ -131,7 +131,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
     {
         reading.billing.push(json!({
             "id": format!("{id}/droid:extra-usage"), "vendor": "droid", "accountId": id,
-            "label": l10n::text("额外用量余额", "Extra usage balance"),
+            "label": l10n::text("額外用量餘額", "Extra usage balance"),
             "amount": cents / 100.0, "currency": "USD",
         }));
     }
@@ -141,7 +141,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
         }
         // A plan billed another way reports no windows here.
         reading.notice = Some(l10n::text(
-            "这个 Factory 套餐不按用量窗口计费",
+            "這個 Factory 套餐不按用量視窗計費",
             "This Factory plan reports no usage windows",
         ));
     }
@@ -183,16 +183,16 @@ fn windows(body: &Value, id: &str, now: i64) -> Vec<Value> {
                 "5h",
                 Some(5 * 3600),
                 "5-hour limit",
-                "5 小时额度",
+                "5 小時額度",
             ),
             (
                 "weekly",
                 "Weekly",
                 Some(7 * 86_400),
                 "Weekly limit",
-                "每周额度",
+                "每周額度",
             ),
-            ("monthly", "Monthly", None, "Monthly limit", "每月额度"),
+            ("monthly", "Monthly", None, "Monthly limit", "每月額度"),
         ] {
             let window = &limits[key];
             let Some(used) = window["usedPercent"].as_f64().filter(|n| n.is_finite()) else {

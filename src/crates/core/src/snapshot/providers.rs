@@ -19,7 +19,7 @@ impl crate::AgentHudCore {
             .map(str::to_owned)
             .unwrap_or_else(|| {
                 let tail = id.rsplit(':').next().unwrap_or(id);
-                l10n::text("账户 ", "Account ") + &tail.chars().take(6).collect::<String>()
+                l10n::text("賬戶 ", "Account ") + &tail.chars().take(6).collect::<String>()
             });
         account["name"] = json!(name);
         account["planLabel"] = json!(account["plan"]

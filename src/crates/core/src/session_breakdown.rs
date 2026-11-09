@@ -148,7 +148,7 @@ impl AgentHudCore {
                 .iter()
                 .map(|log| log.path.to_string_lossy().into_owned()),
         );
-        let failed = |_| l10n::text("无法读取会话用量", "Could not read session usage");
+        let failed = |_| l10n::text("無法讀取工作階段用量", "Could not read session usage");
         let (prompts, compactions) = metering::marks(db, &own_paths).map_err(failed)?;
         let rows = metering::calls_of(db, &paths, None, None).map_err(failed)?;
         let mut builder = Builder::new(prompts, compactions);
@@ -216,7 +216,7 @@ impl AgentHudCore {
             return Ok(None);
         };
         let own_paths = vec![own.path.to_string_lossy().into_owned()];
-        let failed = |_| l10n::text("无法读取会话用量", "Could not read session usage");
+        let failed = |_| l10n::text("無法讀取工作階段用量", "Could not read session usage");
         let mut value = usage.json();
         // The session at its account's own prices (agent-hud-native-open
         // `UsageLedger` costs): a currency only when every priced log of the

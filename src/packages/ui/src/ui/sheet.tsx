@@ -1,3 +1,4 @@
+import { text } from "../format/language";
 import * as React from "react";
 import { cn } from "cn";
 import { XIcon } from "lucide-react";
@@ -52,7 +53,7 @@ function SheetContent({
   side?: "top" | "right" | "bottom" | "left";
   showCloseButton?: boolean;
 }) {
-  const closeLabel = useFormat().language === "zh" ? "关闭" : "Close";
+  const closeLabel = text(useFormat().language, "關閉", "Close");
   return (
     <SheetPortal>
       <SheetOverlay />

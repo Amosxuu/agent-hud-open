@@ -58,7 +58,7 @@ export default function SettingsPane({
         onSelectScreen={selectScreen}
       />
     ) : (
-      <LoadingState label={chinese ? "正在读取显示器…" : "Reading displays…"} />
+      <LoadingState label={chinese ? "正在讀取顯示器…" : "Reading displays…"} />
     );
   if (page === "agents")
     return (

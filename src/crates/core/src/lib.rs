@@ -190,7 +190,7 @@ impl AgentHudCore {
                 0,
                 Some(format!(
                     "{}{error}",
-                    l10n::text("会话解析进度无法保存：", "Checkpoint storage unavailable: ")
+                    l10n::text("工作階段解析進度無法儲存：", "Checkpoint storage unavailable: ")
                 )),
             ),
         };

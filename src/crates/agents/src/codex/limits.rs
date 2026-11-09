@@ -227,7 +227,7 @@ pub(super) fn parse(
     }
     if reading.quotas.is_empty() {
         reading.notice = Some(l10n::text(
-            "Codex 当前登录没有返回额度窗口",
+            "Codex 目前登入沒有返回額度視窗",
             "Codex returned no quota windows for its current login",
         ));
     }

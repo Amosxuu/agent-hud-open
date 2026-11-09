@@ -40,7 +40,7 @@ fn entitlements_at(
     ];
     let signed_out = |site: &str| {
         Unread::SignedOut(l10n::text(
-            &format!("{site} 在 Agent HUD 中的登录已失效，请在它的额度处重新登录"),
+            &format!("{site} 在 Agent HUD 中的登入已失效，請在它的額度處重新登入"),
             &format!("{site}'s sign-in in Agent HUD has ended; sign in again from its quota."),
         ))
     };
@@ -84,7 +84,7 @@ fn entitlements_at(
 
 fn format_changed() -> String {
     l10n::text(
-        "TRAE 的额度格式无法识别",
+        "TRAE 的額度格式無法識別",
         "TRAE's usage has an unsupported format.",
     )
 }

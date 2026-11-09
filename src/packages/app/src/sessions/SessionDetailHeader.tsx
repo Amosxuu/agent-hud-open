@@ -17,16 +17,16 @@ function OriginTags({ session, theme }: { session: Session; theme: Theme }) {
   const zh = Boolean(theme.zh);
   const tags = [
     {
-      label: zh ? "首条消息" : "First prompt",
+      label: zh ? "首條訊息" : "First prompt",
       help: zh
-        ? "第一条消息在哪里打的：类别:来源"
+        ? "第一條訊息在哪裡打的：類別:來源"
         : "Where the first prompt was typed: category:source",
       tag: session.origins?.init,
     },
     {
-      label: zh ? "最新消息" : "Latest prompt",
+      label: zh ? "最新訊息" : "Latest prompt",
       help: zh
-        ? "最新一条消息在哪里打的：类别:来源"
+        ? "最新一條訊息在哪裡打的：類別:來源"
         : "Where the latest prompt was typed: category:source",
       tag: session.origins?.latest,
     },
@@ -114,7 +114,7 @@ export function DetailHeader({
             minWidth: 0,
           }}
         >
-          {session.title || (zh ? "未命名会话" : "Untitled session")}
+          {session.title || (zh ? "未命名工作階段" : "Untitled session")}
         </h2>
         {(reveal || revealDisabled) && (
           <button
@@ -161,8 +161,8 @@ export function DetailHeader({
         <span style={{ ...clipped, flex: 1 }} title={session.cwd ?? client}>
           {[
             ...sessionWhere(session, client),
-            zh ? `开始于 ${started}` : `Started ${started}`,
-            zh ? `时长 ${duration}` : `Duration ${duration}`,
+            zh ? `開始於 ${started}` : `Started ${started}`,
+            zh ? `時長 ${duration}` : `Duration ${duration}`,
           ].join(" · ")}
         </span>
       </div>

@@ -165,7 +165,7 @@ export const SubagentTimeline = memo(function SubagentTimeline({
             role="img"
             aria-label={
               zh
-                ? `主会话与 ${rows.length - 1} 个子 agent 的时间轴`
+                ? `主工作階段與 ${rows.length - 1} 個子 agent 的時間軸`
                 : `Timeline of the session and ${rows.length - 1} sub-agents`
             }
             onMouseMove={(event) => {
@@ -418,7 +418,7 @@ export const SubagentTimeline = memo(function SubagentTimeline({
               textAlign: "right",
             }}
           >
-            {zh ? "新增 · 费用" : "New · cost"}
+            {zh ? "新增 · 費用" : "New · cost"}
           </div>
           {rows.map((lane, i) => (
             <div
@@ -454,7 +454,7 @@ export const SubagentTimeline = memo(function SubagentTimeline({
 });
 
 function clock(at: number, zh: boolean) {
-  return new Intl.DateTimeFormat(zh ? "zh-CN" : "en-GB", {
+  return new Intl.DateTimeFormat(zh ? "zh-TW" : "en-GB", {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",

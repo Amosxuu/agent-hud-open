@@ -14,7 +14,7 @@ impl Requests {
         let state = self.0.state.lock().unwrap_or_else(PoisonError::into_inner);
         let item =
             state.pending.iter().find(|p| p.id == id).ok_or_else(|| {
-                l10n::text("这个请求已不再等待", "This request is no longer waiting")
+                l10n::text("這個請求已不再等待", "This request is no longer waiting")
             })?;
         let view = match &item.content {
             Content::Hook(request) => request.view(id, item.created_ms),
@@ -32,7 +32,7 @@ impl Requests {
                 .iter()
                 .position(|p| p.id == id)
                 .ok_or_else(|| {
-                    l10n::text("这个请求已不再等待", "This request is no longer waiting")
+                    l10n::text("這個請求已不再等待", "This request is no longer waiting")
                 })?;
             let response = match &state.pending[index].content {
                 Content::Hook(request) => {
@@ -61,7 +61,7 @@ impl Requests {
             Ok(())
         } else {
             Err(l10n::text(
-                "客户端在回答送达前已停止等待",
+                "用戶端在回答送達前已停止等待",
                 "The client stopped waiting before this answer was delivered",
             ))
         }

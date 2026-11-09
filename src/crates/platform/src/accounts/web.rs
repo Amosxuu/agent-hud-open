@@ -57,7 +57,7 @@ pub(super) fn save(
 ) -> Result<(), String> {
     let target = path(ctx, provider, &session.host).ok_or_else(|| {
         l10n::text(
-            "此服务不支持在 Agent HUD 中登录",
+            "此服務不支援在 Agent HUD 中登入",
             "This provider takes no sign-in in Agent HUD",
         )
     })?;
@@ -68,7 +68,7 @@ pub(super) fn save(
             .bytes()
             .any(|b| matches!(b, 0 | b'\r' | b'\n'))
     {
-        return Err(l10n::text("登录信息无效", "The sign-in is not usable"));
+        return Err(l10n::text("登入資訊無效", "The sign-in is not usable"));
     }
     let directory = folder(ctx);
     crate::os::private_directory(&ctx.data_dir.join("account-credentials"))
@@ -76,7 +76,7 @@ pub(super) fn save(
         .map_err(|error| {
             format!(
                 "{}{error}",
-                l10n::text("凭据目录：", "Credential directory: ")
+                l10n::text("憑據目錄：", "Credential directory: ")
             )
         })?;
     let temporary = directory.join(format!(
@@ -94,15 +94,15 @@ pub(super) fn save(
         "userAgent": session.user_agent,
         "savedAt": chrono::Utc::now().to_rfc3339(),
     }))
-    .map_err(|_| l10n::text("无法保存登录", "Could not keep the sign-in"))?;
+    .map_err(|_| l10n::text("無法儲存登入", "Could not keep the sign-in"))?;
     let result = (|| -> Result<(), String> {
         let mut file = crate::os::private_file(&temporary, true)
-            .map_err(|_| l10n::text("无法保存登录", "Could not keep the sign-in"))?;
+            .map_err(|_| l10n::text("無法儲存登入", "Could not keep the sign-in"))?;
         file.write_all(&bytes)
             .and_then(|_| file.sync_all())
-            .map_err(|_| l10n::text("无法保存登录", "Could not keep the sign-in"))?;
+            .map_err(|_| l10n::text("無法儲存登入", "Could not keep the sign-in"))?;
         fs::rename(&temporary, &target)
-            .map_err(|_| l10n::text("无法保存登录", "Could not keep the sign-in"))
+            .map_err(|_| l10n::text("無法儲存登入", "Could not keep the sign-in"))
     })();
     if result.is_err() {
         let _ = fs::remove_file(&temporary);
@@ -114,14 +114,14 @@ pub(super) fn save(
 pub(super) fn remove(ctx: &AccountContext, provider: &str, host: &str) -> Result<(), String> {
     let path = path(ctx, provider, host).ok_or_else(|| {
         l10n::text(
-            "此服务不支持在 Agent HUD 中登录",
+            "此服務不支援在 Agent HUD 中登入",
             "This provider takes no sign-in in Agent HUD",
         )
     })?;
     match fs::remove_file(path) {
         Ok(()) => Ok(()),
         Err(error) if error.kind() == std::io::ErrorKind::NotFound => Ok(()),
-        Err(_) => Err(l10n::text("无法退出登录", "Could not sign out")),
+        Err(_) => Err(l10n::text("無法結束登入", "Could not sign out")),
     }
 }
 

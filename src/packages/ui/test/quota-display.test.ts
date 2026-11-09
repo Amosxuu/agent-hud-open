@@ -30,6 +30,6 @@ test("quota display defaults to consumed and reverses only known percentages", (
 test("quota display labels describe the selected direction in each language", () => {
   assert.equal(quotaDisplayLabel(), "Quota used");
   assert.equal(quotaDisplayLabel("remaining"), "Quota remaining");
-  assert.equal(quotaDisplayLabel("consumed", "zh"), "已用额度");
-  assert.equal(quotaDisplayLabel("remaining", "zh"), "剩余额度");
+  assert.equal(quotaDisplayLabel("consumed", "zh"), "已用額度");
+  assert.equal(quotaDisplayLabel("remaining", "zh"), "剩餘額度");
 });

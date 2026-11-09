@@ -114,7 +114,7 @@ fn install_error(error: String) -> String {
 fn install_error_in(error: String, chinese: bool) -> String {
     if error.contains("unknown option") && error.contains("--marketplace") {
         let message = if chinese {
-            "Claude Code 版本太旧，无法识别 --marketplace。请先在终端运行 claude update 升级，再点安装。"
+            "Claude Code 版本太舊，無法識別 --marketplace。請先在終端運行 claude update 升級，再點安裝。"
         } else {
             concat!(
                 "This Claude Code is too old to recognize --marketplace. ",
@@ -257,7 +257,7 @@ mod error_tests {
         assert_eq!(
             install_error_in(error.into(), true),
             format!(
-                "Claude Code 版本太旧，无法识别 --marketplace。请先在终端运行 claude update 升级，再点安装。（{error}）"
+                "Claude Code 版本太舊，無法識別 --marketplace。請先在終端運行 claude update 升級，再點安裝。（{error}）"
             )
         );
     }

@@ -130,7 +130,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
     }));
     if reading.quotas.is_empty() {
         reading.notice = Some(l10n::text(
-            "WorkBuddy 当前没有可用的积分额度",
+            "WorkBuddy 目前沒有可用的積分額度",
             "WorkBuddy reports no credit allowance for this account.",
         ));
     }
@@ -139,7 +139,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
 
 fn format() -> Unread {
     Unread::from(l10n::text(
-        "WorkBuddy 的积分格式无法识别",
+        "WorkBuddy 的積分格式無法識別",
         "WorkBuddy's credit usage has an unsupported format.",
     ))
 }
@@ -177,14 +177,14 @@ fn post(host: &dyn Host, session: &WebSession, path: &str, body: &Value) -> Resu
         })
         .map_err(|failure| match failure {
             HttpFailure::Status(401) => Unread::SignedOut(l10n::text(
-                "WorkBuddy 在 Agent HUD 中的登录已失效，请在它的额度处重新登录",
+                "WorkBuddy 在 Agent HUD 中的登入已失效，請在它的額度處重新登入",
                 "WorkBuddy's sign-in in Agent HUD has ended; sign in again from its quota.",
             )),
             other => other.unread(),
         })?;
     if root["code"] != 0 {
         return Err(Unread::from(l10n::text(
-            &format!("WorkBuddy 的账单服务返回了错误 {}", root["code"]),
+            &format!("WorkBuddy 的賬單服務返回了錯誤 {}", root["code"]),
             &format!(
                 "WorkBuddy's billing service answered code {}.",
                 root["code"]

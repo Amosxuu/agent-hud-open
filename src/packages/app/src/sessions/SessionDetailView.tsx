@@ -97,14 +97,14 @@ export function InlineDetail({
             session.desktopProject?.openLabel ??
             (session.navigationTarget
               ? zh
-                ? "回到会话"
+                ? "回到工作階段"
                 : "Return to session"
               : snapshot.connection.platform === "macos"
                 ? zh
-                  ? "在访达中显示日志"
+                  ? "在訪達中顯示紀錄"
                   : "Reveal log in Finder"
                 : zh
-                  ? "显示日志"
+                  ? "顯示紀錄"
                   : "Reveal log")
           }
         />
@@ -174,7 +174,7 @@ export function InlineDetail({
           </div>
           {lastMessage && (
             <Card style={card(theme)}>
-              <CardTitle title={zh ? "最近回复" : "Last reply"} theme={theme} />
+              <CardTitle title={zh ? "最近回覆" : "Last reply"} theme={theme} />
               <div
                 style={{
                   fontSize: 12,

@@ -80,9 +80,9 @@ export function SectionFilter({
               <button
                 type="button"
                 style={{ ...plain, ...row, gap: 4 }}
-                aria-label={t("Filter by agent", "按智能体筛选")}
+                aria-label={t("Filter by agent", "按Agent篩選")}
               >
-                {t("Agents", "智能体")} · {count(shownAgents, agentIds.length)}
+                {t("Agents", "Agent")} · {count(shownAgents, agentIds.length)}
                 <ChevronDown size={10} />
               </button>
             </DropdownMenuTrigger>
@@ -92,7 +92,7 @@ export function SectionFilter({
                 onSelect={(event) => event.preventDefault()}
                 onCheckedChange={() => state.setAgents(agentIds, true)}
               >
-                {t("All agents", "全部智能体")}
+                {t("All agents", "全部Agent")}
               </DropdownMenuCheckboxItem>
               <DropdownMenuSeparator />
               {agents.map((agent) => (
@@ -112,7 +112,7 @@ export function SectionFilter({
                 <span
                   style={{ padding: 8, color: theme.secondary, fontSize: 11 }}
                 >
-                  {t("No recorded agents", "暂无已记录的智能体")}
+                  {t("No recorded agents", "暫無已記錄的Agent")}
                 </span>
               )}
             </DropdownMenuContent>
@@ -124,7 +124,7 @@ export function SectionFilter({
             onClick={state.clear}
             style={{ ...plain, color: theme.secondary, fontSize: 11 }}
           >
-            {t("Clear filter", "清除筛选")}
+            {t("Clear filter", "清除篩選")}
           </button>
         )}
       </div>

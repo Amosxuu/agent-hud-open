@@ -207,10 +207,10 @@ export function TurnBarsChart({
           aria-label={
             measure === "cost"
               ? zh
-                ? "每轮费用"
+                ? "每輪費用"
                 : "Cost per turn"
               : zh
-                ? "每轮新增 Token"
+                ? "每輪新增 Token"
                 : "New tokens per turn"
           }
           style={{

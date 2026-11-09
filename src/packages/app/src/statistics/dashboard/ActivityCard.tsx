@@ -47,26 +47,26 @@ export function ActivityCard({
       area="heatmap"
       pending={[view === "days" ? pending.year : pending.range]}
       theme={theme}
-      title={t("When you use it", "使用节奏")}
+      title={t("When you use it", "使用節奏")}
       meta={
         view === "days"
           ? t(
               "Tokens per day · hover a day for its agents and models, click it to look at it alone",
-              "每天的 Token · 悬停看 Agent 和模型，点击单独查看这一天",
+              "每天的 Token · 懸停看 Agent 和模型，點選單獨查看這一天",
             )
           : t(
               "Tokens by weekday and hour over the range",
-              "所选时间里每个星期几、每个小时的 Token",
+              "所選時間里每個星期幾、每個小時的 Token",
             )
       }
       actions={
         <Segments
-          label={t("Heatmap", "热力图")}
+          label={t("Heatmap", "熱力圖")}
           value={view}
           onChange={(value) => setView(value as "days" | "hours")}
           choices={[
             { value: "days", label: t("By day", "按天") },
-            { value: "hours", label: t("By hour", "按小时") },
+            { value: "hours", label: t("By hour", "按小時") },
           ]}
           theme={theme}
           small

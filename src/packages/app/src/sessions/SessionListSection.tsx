@@ -77,14 +77,14 @@ export function DayHeader({
           ...clipped,
         }}
       >
-        {zh ? "每轮新增 Token" : "New tokens per turn"}
+        {zh ? "每輪新增 Token" : "New tokens per turn"}
       </span>
       <span
         style={{ fontSize: 11, textAlign: "right", ...numeric, ...clipped }}
       >
         {open
           ? zh
-            ? "Token · 费用 · 上下文"
+            ? "Token · 費用 · 上下文"
             : "Tokens · cost · context"
           : folded}
       </span>

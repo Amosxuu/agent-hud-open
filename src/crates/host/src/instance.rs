@@ -50,12 +50,12 @@ fn launch(result: Result<CollectorLocks, CollectorError>, executable: Option<&Pa
 pub(crate) fn unavailable(error: &str) {
     let chinese = crate::shell::system_prefers_chinese();
     let title = if chinese {
-        "Agent HUD 无法启动"
+        "Agent HUD 無法啓動"
     } else {
         "Agent HUD could not start"
     };
     let body = if chinese {
-        format!("无法准备数据目录或客户端回调，采集未启动。\n{error}")
+        format!("無法準備資料目錄或用戶端回呼，採集未啓動。\n{error}")
     } else {
         format!("The data directory or client hooks could not be prepared. Collection has not started.\n{error}")
     };
@@ -82,17 +82,17 @@ pub(crate) fn refuse(holder: Option<&Path>) {
         Some(holder) => {
             let place = abbreviated(&instance::application(holder));
             text(
-                &format!("正在运行的是 {place}。请先退出它，再打开这一个。"),
+                &format!("正在運行的是 {place}。請先結束它，再打開這一個。"),
                 &format!("{place} is running. Quit it first, then open this one."),
             )
         }
         None => text(
-            "请先退出正在运行的 Agent HUD，再打开这一个。",
+            "請先結束正在運行的 Agent HUD，再打開這一個。",
             "Quit the Agent HUD that is running first, then open this one.",
         ),
     };
     crate::shell::alert(
-        &text("Agent HUD 已在运行", "Agent HUD is already running"),
+        &text("Agent HUD 已在運行", "Agent HUD is already running"),
         &body,
         &text("好", "OK"),
     );

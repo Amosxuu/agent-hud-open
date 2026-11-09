@@ -1,3 +1,5 @@
+import { text as localizedText } from "@agent-hud/ui/format";
+import { useFormat } from "@agent-hud/ui/format-context";
 import type { ReactNode } from "react";
 import { Plug, X } from "lucide-react";
 import type { Approval } from "@agent-hud/protocol";
@@ -43,7 +45,9 @@ export function QuestionAnswerElsewhere({
   openSettings?: (page: string) => void;
   dismiss: () => void;
 }) {
-  const t = (en: string, cn: string) => (zh ? cn : en);
+  const { language } = useFormat();
+  const t = (en: string, cn: string) =>
+    localizedText(zh ? (language === "zh-TW" ? language : "zh") : "en", cn, en);
   const questions = request.questions ?? [];
   const vendor = request.vendor ?? clientDisplayName(request.source);
   const detailText = request.detail?.trim() || null;
@@ -128,7 +132,7 @@ export function QuestionAnswerElsewhere({
         }}
       >
         <span style={{ fontSize: 11, fontWeight: 600, color: primary }}>
-          {t(`Answer in ${vendor}`, `请到 ${vendor} 里回答`)}
+          {t(`Answer in ${vendor}`, `請到 ${vendor} 里回答`)}
         </span>
         {request.answerNote && (
           <span
@@ -153,7 +157,7 @@ export function QuestionAnswerElsewhere({
             color={onAllow}
           >
             <Plug size={9} strokeWidth={2.6} />
-            {t("Open Agent plugins", "打开智能体插件")}
+            {t("Open Agent plugins", "打開Agent插件")}
           </CardButton>
         )}
         <span style={{ flex: 1, minWidth: 8 }} />

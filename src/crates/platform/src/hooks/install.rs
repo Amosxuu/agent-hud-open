@@ -40,18 +40,18 @@ impl InstallPlan {
     }
 }
 pub(super) fn canonical(context: &InstallContext) -> Result<(), String> {
-    let fixed=context.canonical_executable.as_ref().ok_or_else(|| l10n::text("这个版本还没有指定固定的回调程序，在迁移指定正式安装路径之前请保持客户端回调关闭。", "This build has no approved fixed hook-owner executable yet. Keep hooks disabled until an explicit migration supplies its canonical installation path."))?;
+    let fixed=context.canonical_executable.as_ref().ok_or_else(|| l10n::text("這個版本還沒有指定固定的回呼程序，在遷移指定正式安裝路徑之前請保持用戶端回呼關閉。", "This build has no approved fixed hook-owner executable yet. Keep hooks disabled until an explicit migration supplies its canonical installation path."))?;
     let text = fixed.to_string_lossy();
     if !fixed.is_absolute()
         || text.starts_with("/Volumes/")
         || text.contains("/AppTranslocation/")
         || fixed.components().any(|p| p.as_os_str() == "target")
     {
-        return Err(l10n::text("客户端回调不能指向编译目录、磁盘映像或被系统转移的副本，请使用指定的固定安装程序。", "Hooks cannot point at target builds, disk images or translocated copies. Use the approved fixed installed executable."));
+        return Err(l10n::text("用戶端回呼不能指向編譯目錄、磁盤映像或被系統轉移的副本，請使用指定的固定安裝程序。", "Hooks cannot point at target builds, disk images or translocated copies. Use the approved fixed installed executable."));
     }
     let resolved = fixed.canonicalize().map_err(|_| {
         l10n::text(
-            "指定的固定回调程序不可用",
+            "指定的固定回呼程序不可用",
             "The approved fixed hook executable is unavailable",
         )
     })?;
@@ -60,10 +60,10 @@ pub(super) fn canonical(context: &InstallContext) -> Result<(), String> {
         || physical.contains("/AppTranslocation/")
         || resolved.components().any(|p| p.as_os_str() == "target")
     {
-        return Err(l10n::text("固定回调路径指向一个临时编译版本，客户端设置未作改动。", "The fixed hook path resolves to a transient target build; client settings were not changed."));
+        return Err(l10n::text("固定回呼路徑指向一個臨時編譯版本，用戶端設定未作改動。", "The fixed hook path resolves to a transient target build; client settings were not changed."));
     }
     if context.executable != *fixed || !fixed.is_file() {
-        return Err(l10n::text("当前程序不是指定的固定回调程序，客户端设置未作改动。", "This executable is not the approved fixed hook owner; client settings were not changed."));
+        return Err(l10n::text("目前程序不是指定的固定回呼程序，用戶端設定未作改動。", "This executable is not the approved fixed hook owner; client settings were not changed."));
     }
     Ok(())
 }
@@ -155,7 +155,7 @@ fn plan(
             None => String::new(),
             Some(bytes) => String::from_utf8(bytes.to_vec()).map_err(|_| {
                 l10n::text(
-                    "客户端的回调设置不是有效的 UTF-8 文本",
+                    "用戶端的回呼設定不是有效的 UTF-8 文本",
                     "Hook settings are not UTF-8 text",
                 )
             })?,
@@ -182,14 +182,14 @@ fn plan(
         None | Some([]) => json!({}),
         Some(bytes) => serde_json::from_slice::<Value>(bytes).map_err(|_| {
             l10n::text(
-                "客户端的回调设置不是有效的 JSON",
+                "用戶端的回呼設定不是有效的 JSON",
                 "Hook settings are not valid JSON",
             )
         })?,
     };
     if !current.is_object() {
         return Err(l10n::text(
-            "客户端的回调设置必须是 JSON 对象",
+            "用戶端的回呼設定必須是 JSON 對象",
             "Hook settings must be a JSON object",
         ));
     }
@@ -224,7 +224,7 @@ pub fn apply_plan(plan: &InstallPlan) -> Result<bool, String> {
     }
     if target(&plan.configuration)? != plan.target || contents(&plan.target)? != plan.original {
         return Err(l10n::text(
-            "准备回调改动后客户端设置又发生了变化，请重新操作。",
+            "準備回呼改動後用戶端設定又發生了變化，請重新操作。",
             "Client settings changed after this hook plan was prepared; prepare a new plan.",
         ));
     }

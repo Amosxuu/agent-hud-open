@@ -41,6 +41,10 @@ pub fn text(zh: &str, en: &str) -> String {
     if chinese() { zh } else { en }.to_owned()
 }
 
+pub fn language() -> &'static str {
+    if chinese() { "zh-TW" } else { "en" }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -50,11 +54,19 @@ mod tests {
     fn text_follows_the_setting_and_the_system_language() {
         set_system_chinese(true);
         follow(&json!("system"));
-        assert_eq!(text("额度", "Quota"), "额度");
+        assert_eq!(text("額度", "Quota"), "額度");
         follow(&json!("en"));
-        assert_eq!(text("额度", "Quota"), "Quota");
+        assert_eq!(text("額度", "Quota"), "Quota");
         follow(&json!("zh-CN"));
         assert!(chinese());
+        follow(&json!("zh-TW"));
+        assert_eq!(language(), "zh-TW");
+        assert_eq!(
+            text("預設設定和工作階段紀錄", "Settings"),
+            "預設設定和工作階段紀錄"
+        );
+        follow(&json!("system"));
+        assert_eq!(language(), "zh-TW");
         set_system_chinese(false);
         follow(&json!("system"));
         assert!(!chinese());

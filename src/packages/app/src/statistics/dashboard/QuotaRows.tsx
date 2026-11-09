@@ -65,7 +65,7 @@ export function QuotaRows({
 }) {
   const zh = Boolean(theme.zh);
   const t = (en: string, cn: string) => (zh ? cn : en);
-  const language = zh ? "zh-CN" : "en-US";
+  const language = zh ? "zh-TW" : "en-US";
   const display = useFormat().quotaDisplay ?? "consumed";
   const { ref, width } = useWidth();
   const [hovered, setHovered] = useState<{ row: number; day: number } | null>(
@@ -90,7 +90,7 @@ export function QuotaRows({
     });
   const tip = (entry: QuotaRow, value: QuotaDay) => {
     const name = entry.window.shortLabel ?? entry.window.name;
-    if (value.value === null) return t("Nothing read that day", "这天没有读数");
+    if (value.value === null) return t("Nothing read that day", "這天沒有讀數");
     const share = Math.round(value.value);
     const lines = isLong(entry.window)
       ? [
@@ -98,13 +98,13 @@ export function QuotaRows({
           value.level !== null &&
             t(
               `${Math.round(value.level)}% used by the day's end`,
-              `当天结束时已用 ${Math.round(value.level)}%`,
+              `當天結束時已用 ${Math.round(value.level)}%`,
             ),
         ]
       : [
-          t(`Highest ${name}: ${share}%`, `${name} 当天最高 ${share}%`),
+          t(`Highest ${name}: ${share}%`, `${name} 當天最高 ${share}%`),
           value.ranOut > 0 &&
-            t(`${value.ranOut} ran out`, `${value.ranOut} 次用满`),
+            t(`${value.ranOut} ran out`, `${value.ranOut} 次用滿`),
         ];
     if (value.resets.length)
       lines.push(
@@ -231,7 +231,7 @@ export function QuotaRows({
               </text>
             ))}
           </svg>
-          <span style={{ textAlign: "right" }}>{t("now", "当前")}</span>
+          <span style={{ textAlign: "right" }}>{t("now", "目前")}</span>
         </div>
       )}
       {hovered && rows[hovered.row] && (

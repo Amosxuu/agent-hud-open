@@ -52,10 +52,10 @@ export function PriceEditor({
     values[0] !== null &&
     values[1] !== null;
   const names: Record<(typeof fields)[number], string> = {
-    input: t("Input", "输入"),
-    output: t("Output", "输出"),
-    cacheRead: t("Cache read", "缓存读"),
-    cacheWrite: t("Cache write", "缓存写"),
+    input: t("Input", "輸入"),
+    output: t("Output", "輸出"),
+    cacheRead: t("Cache read", "快取讀"),
+    cacheWrite: t("Cache write", "快取寫"),
   };
   // The four rates side by side, each named above its box.
   const grid = (
@@ -73,7 +73,7 @@ export function PriceEditor({
             label={names[key]}
             value={rates[key]}
             change={(text) => setRates({ ...rates, [key]: text })}
-            placeholder={key.startsWith("cache") ? t("= input", "同输入") : ""}
+            placeholder={key.startsWith("cache") ? t("= input", "同輸入") : ""}
             decimal
             width="100%"
           />
@@ -95,15 +95,15 @@ export function PriceEditor({
       }}
     >
       <Row
-        title={t("Price per million tokens", "每百万 Token 价格")}
+        title={t("Price per million tokens", "每百萬 Token 價格")}
         subtitle={t(
           "0 is free; an empty cache rate uses the input's.",
-          "0 表示免费；缓存价留空按输入价。",
+          "0 表示免費；快取價留空按輸入價。",
         )}
         below={grid}
       >
         <Segments
-          label={t("Currency", "币种")}
+          label={t("Currency", "幣種")}
           value={currency}
           options={[
             ["USD", "USD"],
@@ -116,12 +116,12 @@ export function PriceEditor({
         t={t}
         pending={pending}
         ready={valid}
-        submit={t("Save", "保存")}
+        submit={t("Save", "儲存")}
         onCancel={onCancel}
         start={
           custom && (
             <LinkButton disabled={pending} onClick={() => onSave(null)}>
-              {t("Use the automatic price", "改回自动价格")}
+              {t("Use the automatic price", "改回自動價格")}
             </LinkButton>
           )
         }

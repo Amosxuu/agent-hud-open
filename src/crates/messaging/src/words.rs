@@ -76,18 +76,18 @@ pub fn compose(
         .map(|title| format!(" · {}", title.trim()))
         .unwrap_or_default();
     let reply = reply_to
-        .map(|parent| format!(" · {} {parent}", if zh { "回复" } else { "re" }))
+        .map(|parent| format!(" · {} {parent}", if zh { "回復" } else { "re" }))
         .unwrap_or_default();
     let label = format!(
         "[Agent HUD · {} {}{title} · {id}{reply}]",
-        if zh { "来自" } else { "from" },
+        if zh { "來自" } else { "from" },
         client(&from.client)
     );
     let tool = reply_tool(zh, to_client);
     let footer = match (zh, reply_to) {
-        (true, None) => format!("请用 {tool} 回复，reply_to: {id}，回复会作为一条消息送到发件方。没有这个工具时就直接作答，发件方能取回你这一轮最后的回答。"),
+        (true, None) => format!("請用 {tool} 回復，reply_to: {id}，回復會作為一條訊息送到發件方。沒有這個工具時就直接作答，發件方能取回你這一輪最後的回答。"),
         (false, None) => format!("Reply with {tool}, reply_to: {id}: your reply reaches the sender as a message. Without that tool, answer here: the sender can read this turn's last reply."),
-        (true, Some(parent)) => format!("这是对 {parent} 的回复。还需要再说时，用 {tool} 回复，reply_to: {id}。"),
+        (true, Some(parent)) => format!("這是對 {parent} 的回復。還需要再說時，用 {tool} 回復，reply_to: {id}。"),
         (false, Some(parent)) => format!("This answers {parent}. Only if more is needed, reply with {tool}, reply_to: {id}."),
     };
     format!("{label}\n\n{text}\n\n{footer}")
@@ -96,57 +96,57 @@ pub fn compose(
 pub fn off(zh: bool) -> String {
     say(
         zh,
-        "Agent 互发消息已关闭，可在 设置 → 智能体插件 里打开。",
+        "Agent 互發訊息已關閉，可在 設定 → Agent插件 里打開。",
         "Agent messages are off; the user can turn them on in Settings → Agent plugins.",
     )
 }
 pub fn no_caller(zh: bool) -> String {
     say(
         zh,
-        "Agent HUD 认不出是哪个会话在调用，不发匿名消息。",
+        "Agent HUD 認不出是哪個工作階段在呼叫，不發匿名訊息。",
         "Agent HUD could not tell which session is calling, and it sends no anonymous messages.",
     )
 }
 pub fn empty(zh: bool) -> String {
-    say(zh, "没有要发的内容。", "There is no text to send.")
+    say(zh, "沒有要發的內容。", "There is no text to send.")
 }
 pub fn phone_tag(zh: bool) -> String {
-    say(zh, "以 [Agent HUD · iPhone] 开头的话代表用户本人在手机上说的，agent 不能这样开头。", "Text starting with [Agent HUD · iPhone] stands for the user speaking from their phone; an agent's message cannot start with it.")
+    say(zh, "以 [Agent HUD · iPhone] 開頭的話代表使用者本人在手機上說的，agent 不能這樣開頭。", "Text starting with [Agent HUD · iPhone] stands for the user speaking from their phone; an agent's message cannot start with it.")
 }
 pub fn to_self(zh: bool) -> String {
-    say(zh, "这是你自己的会话。", "That is your own session.")
+    say(zh, "這是你自己的工作階段。", "That is your own session.")
 }
 pub fn unknown(zh: bool) -> String {
     say(
         zh,
-        "没有这个 id 的 Claude Code、Codex、Antigravity 或 DeepSeek Harness 会话，list_sessions 里有各会话的 id。",
+        "沒有這個 id 的 Claude Code、Codex、Antigravity 或 DeepSeek Harness 工作階段，list_sessions 里有各工作階段的 id。",
         "No Claude Code, Codex, Antigravity or DeepSeek Harness session has this id; list_sessions shows the ids.",
     )
 }
 pub fn other_client(zh: bool) -> String {
     say(
         zh,
-        "只能发给 Claude Code、Codex、Antigravity 和 DeepSeek Harness 会话。",
+        "只能發給 Claude Code、Codex、Antigravity 和 DeepSeek Harness 工作階段。",
         "Messages go to Claude Code, Codex, Antigravity and DeepSeek Harness sessions only.",
     )
 }
 pub fn child(zh: bool) -> String {
     say(
         zh,
-        "这是一个子 agent，只能发给主会话。",
+        "這是一個子 agent，只能發給主工作階段。",
         "That is a sub-agent; messages go to main sessions only.",
     )
 }
 pub fn unknown_reply(zh: bool, id: &str) -> String {
     if zh {
-        format!("reply_to {id} 不是这个会话收到的消息。")
+        format!("reply_to {id} 不是這個工作階段收到的訊息。")
     } else {
         format!("reply_to {id} names no message this session received.")
     }
 }
 pub fn limit(zh: bool, limit: u32) -> String {
     if zh {
-        format!("两个 agent 已经连续来回 {limit} 次，等你看一眼。用户在这条链上的任何一个会话里亲手打一句话，计数就清零。")
+        format!("兩個 agent 已經連續來回 {limit} 次，等你看一眼。使用者在這條鏈上的任何一個工作階段裡親手打一句話，計數就清零。")
     } else {
         format!("These agents have passed messages {limit} times in a row; waiting for the user to take a look. A word the user types in any session of the chain starts the count again.")
     }
@@ -154,7 +154,7 @@ pub fn limit(zh: bool, limit: u32) -> String {
 pub fn cannot_start(zh: bool, which: &str) -> String {
     if zh {
         format!(
-            "这台电脑上开不了新的 {} 会话：没找到它的命令行，或者没有可用的文件夹。",
+            "這台電腦上開不了新的 {} 工作階段：沒找到它的命令行，或者沒有可用的資料夾。",
             client(which)
         )
     } else {
@@ -168,8 +168,8 @@ pub fn folder(zh: bool, folder: &str, folders: &[String]) -> String {
         folders.join(", ")
     };
     match (zh, folder.is_empty()) {
-        (true, true) => format!("这里不能开不进目录的会话。可选的文件夹：{list}"),
-        (true, false) => format!("{folder} 不是这个客户端在这台电脑上用过的文件夹。可选：{list}；或传空字符串，开在它自己的任务文件夹里。"),
+        (true, true) => format!("這裡不能開不進目錄的工作階段。可選的資料夾：{list}"),
+        (true, false) => format!("{folder} 不是這個用戶端在這台電腦上用過的資料夾。可選：{list}；或傳空字符串，開在它自己的任務資料夾里。"),
         (false, true) => format!("A session without a folder is not offered here. Folders: {list}"),
         (false, false) => format!("{folder} is not a folder this client works in on this computer. Choose one of: {list}; or pass an empty folder for its own task folder."),
     }
@@ -177,79 +177,79 @@ pub fn folder(zh: bool, folder: &str, folders: &[String]) -> String {
 pub fn unknown_message(zh: bool) -> String {
     say(
         zh,
-        "没有这个 id 的消息（消息记录保留一周）。",
+        "沒有這個 id 的訊息（訊息記錄保留一周）。",
         "No message has this id (messages are kept for a week).",
     )
 }
 pub fn claude_ready(zh: bool) -> String {
     say(
         zh,
-        "Agent HUD 插件已报到，会话空闲时就会收到。",
+        "Agent HUD 插件已報到，工作階段空閒時就會收到。",
         "Agent HUD's plugin checked in; the session takes it once idle.",
     )
 }
 pub fn claude_not_loaded(zh: bool) -> String {
-    say(zh, "这个会话没有加载 Agent HUD 的 Claude Code 插件（在会话里执行一次 /reload-plugins），或者会话已关闭或被桌面版暂停。", "Agent HUD's Claude Code plugin is not loaded in this session (run /reload-plugins in it), or the session is closed or paused by the desktop app.")
+    say(zh, "這個工作階段沒有載入 Agent HUD 的 Claude Code 插件（在工作階段裡執行一次 /reload-plugins），或者工作階段已關閉或被桌面版暫停。", "Agent HUD's Claude Code plugin is not loaded in this session (run /reload-plugins in it), or the session is closed or paused by the desktop app.")
 }
 pub fn deepseek_ready(zh: bool) -> String {
     say(
         zh,
-        "Agent HUD 插件已报到，消息会排进这个会话的队列，空闲时送达。",
+        "Agent HUD 插件已報到，訊息會排進這個工作階段的隊列，空閒時送達。",
         "Agent HUD's plugin checked in; the message joins the session's queue and goes in once it is idle.",
     )
 }
 pub fn deepseek_not_loaded(zh: bool) -> String {
     say(
         zh,
-        "这个会话没有运行 Agent HUD 的 DeepSeek Harness 插件（在 设置 → 智能体插件 里安装），或者会话已关闭。",
+        "這個工作階段沒有運行 Agent HUD 的 DeepSeek Harness 插件（在 設定 → Agent插件 里安裝），或者工作階段已關閉。",
         "Agent HUD's DeepSeek Harness plugin is not running in this session (install it in Settings → Agent plugins), or the session is closed.",
     )
 }
 pub fn deepseek_no_start(zh: bool) -> String {
     say(
         zh,
-        "Agent HUD 还不能开新的 DeepSeek Harness 会话；可以用 send_message 发给已经打开的会话。",
+        "Agent HUD 還不能開新的 DeepSeek Harness 工作階段；可以用 send_message 發給已經打開的工作階段。",
         "Agent HUD cannot start DeepSeek Harness sessions yet; send_message reaches one that is open.",
     )
 }
 pub fn codex_open(zh: bool) -> String {
     say(
         zh,
-        "Codex 正开着这个对话，空闲时就会把消息当作新的一轮。",
+        "Codex 正開著這個對話，空閒時就會把訊息當作新的一輪。",
         "Codex has this thread open; it takes the message as a new turn once idle.",
     )
 }
 pub fn codex_wakes(zh: bool) -> String {
     say(
         zh,
-        "Agent HUD 会在 Codex 桌面版里打开这个对话来送达。",
+        "Agent HUD 會在 Codex 桌面版里打開這個對話來送達。",
         "Agent HUD opens the thread in the Codex app to deliver it.",
     )
 }
 pub fn codex_waits(zh: bool) -> String {
     say(
         zh,
-        "消息会留在 Codex 的队列里，等 Codex 打开这个对话时送达。",
+        "訊息會留在 Codex 的隊列里，等 Codex 打開這個對話時送達。",
         "Codex keeps it queued until a Codex app or command line opens this thread.",
     )
 }
 pub fn codex_no_command(zh: bool) -> String {
     say(
         zh,
-        "没找到 Codex 的命令行，无法把消息放进它的队列。",
+        "沒找到 Codex 的命令行，無法把訊息放進它的隊列。",
         "No Codex command line was found to queue the message through.",
     )
 }
 pub fn antigravity_waits(zh: bool) -> String {
     say(
         zh,
-        "发送时会通过正在运行的 Antigravity 本地服务送达。",
+        "發送時會通過正在運行的 Antigravity 本地服務送達。",
         "Antigravity delivers the message through its running local service when sent.",
     )
 }
 pub fn replied(zh: bool, reply: &str) -> String {
     if zh {
-        format!("对方用消息 {reply} 回复了；这条回复会在你空闲时作为新的一轮送到你的会话。")
+        format!("對方用訊息 {reply} 回復了；這條回復會在你空閒時作為新的一輪送到你的工作階段。")
     } else {
         format!("They answered with message {reply}; it comes to your session as a new turn once you are idle.")
     }

@@ -64,7 +64,7 @@ impl crate::AgentHudCore {
         (self.settings[REPLIES.setting] == false).then(|| {
             Unreachable::new(
                 crate::l10n::text(
-                    "在 Agent HUD 里回答 Claude 的提问已关闭（设置 → 智能体插件）。",
+                    "在 Agent HUD 里回答 Claude 的提問已關閉（設定 → Agent插件）。",
                     "Answering Claude's questions in Agent HUD is off (Settings → Agent plugins).",
                 ),
                 Some(AnswerFix::TurnOnAnswers),
@@ -84,7 +84,7 @@ impl crate::AgentHudCore {
         if ask.kind == "offer" {
             return Err(Unreachable::new(
                 crate::l10n::text(
-                    "它的按钮只能在 Claude 窗口里用。",
+                    "它的按鈕只能在 Claude 視窗里用。",
                     "Its buttons work only in Claude's own window.",
                 ),
                 None,
@@ -97,7 +97,7 @@ impl crate::AgentHudCore {
             Some(replies) => replies.reaches(CLAUDE.id, session),
             None => Err(Unreachable::new(
                 crate::l10n::text(
-                    "Agent HUD 不能把回答发进 Claude 会话。",
+                    "Agent HUD 不能把回答發進 Claude 工作階段。",
                     "Agent HUD can't send answers into Claude sessions.",
                 ),
                 None,
@@ -126,7 +126,7 @@ impl crate::AgentHudCore {
             }
             let replies = self.session_replies.as_ref().ok_or_else(|| {
                 crate::l10n::text(
-                    "Agent HUD 不能把回答发进 Claude 会话。",
+                    "Agent HUD 不能把回答發進 Claude 工作階段。",
                     "Agent HUD can't send answers into Claude sessions.",
                 )
             })?;

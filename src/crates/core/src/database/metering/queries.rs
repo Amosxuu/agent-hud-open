@@ -152,7 +152,7 @@ pub(crate) fn query_statistics_data(
 > {
     let sql_error = |_: rusqlite::Error| -> String {
         l10n::text(
-            "无法从本地用量账本读取统计",
+            "無法從本地用量賬本讀取統計",
             "Statistics could not be read from the local usage ledger",
         )
     };

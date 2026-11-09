@@ -237,7 +237,7 @@ impl crate::AgentHudCore {
             .find(|log| log.id == id)
             .ok_or_else(|| {
                 l10n::text(
-                    "找不到这个会话，请先刷新",
+                    "找不到這個工作階段，請先更新",
                     "Session was not found; refresh first",
                 )
             })?;
@@ -254,7 +254,7 @@ impl crate::AgentHudCore {
             .any(|root| path.starts_with(root));
         if !allowed {
             return Err(l10n::text(
-                "这个会话日志已不在已启用客户端的目录中",
+                "這個工作階段紀錄已不在已啟用用戶端的目錄中",
                 "Transcript no longer belongs to an enabled local provider directory",
             ));
         }

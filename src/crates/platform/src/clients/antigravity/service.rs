@@ -102,7 +102,7 @@ impl Service {
             .send()
             .map_err(|_| {
                 l10n::text(
-                    "Antigravity 本地服务请求失败",
+                    "Antigravity 本地服務請求失敗",
                     "Antigravity local service request failed",
                 )
             })?;
@@ -131,7 +131,7 @@ impl Service {
                 .is_some_and(|at| at.elapsed() < Duration::from_secs(5))
             {
                 return Err(l10n::text(
-                    "启动并登录 Antigravity 后读取额度",
+                    "啓動並登入 Antigravity 後讀取額度",
                     "Start and sign in to Antigravity to use its local service",
                 ));
             }
@@ -184,7 +184,7 @@ impl Service {
         state.failed_at = found.is_empty().then(Instant::now);
         if strict && !complete {
             return Err(l10n::text(
-                "部分正在运行的 Antigravity 服务无法核实",
+                "部分正在運行的 Antigravity 服務無法核實",
                 "Not every running Antigravity service could be verified",
             ));
         }
@@ -265,7 +265,7 @@ pub fn call(method: &str, params: &Value) -> Result<Value, String> {
     // A service that answered with its own error is reachable; say what it said.
     Err(last.unwrap_or_else(|| {
         l10n::text(
-            "没有已登录且正在运行的 Antigravity 服务",
+            "沒有已登入且正在運行的 Antigravity 服務",
             "No authenticated already-running Antigravity service is available",
         )
     }))

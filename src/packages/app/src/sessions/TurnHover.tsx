@@ -20,7 +20,7 @@ export function turnNotes(entry: Entry, zh: boolean): string[] {
   if (entry.callCount != null)
     notes.push(
       zh
-        ? `${entry.callCount} 次调用`
+        ? `${entry.callCount} 次呼叫`
         : entry.callCount === 1
           ? "1 call"
           : `${integer(entry.callCount)} calls`,
@@ -33,7 +33,7 @@ export function turnNotes(entry: Entry, zh: boolean): string[] {
   if (entry.recached != null)
     notes.push(
       zh
-        ? `缓存过期，重发 ${compact(entry.recached)}`
+        ? `快取過期，重發 ${compact(entry.recached)}`
         : `Cache expired, ${compact(entry.recached)} sent again`,
     );
   if (entry.context != null)
@@ -41,14 +41,14 @@ export function turnNotes(entry: Entry, zh: boolean): string[] {
       (zh ? "上下文 " : "Context ") +
         compact(entry.context) +
         (entry.peakContext != null
-          ? (zh ? " · 轮中最高 " : " · peak ") + compact(entry.peakContext)
+          ? (zh ? " · 輪中最高 " : " · peak ") + compact(entry.peakContext)
           : ""),
     );
   const turnCost = entry.listCost ?? entry.pricedCost ?? null;
   if (turnCost != null)
     notes.push(
       cost(turnCost, zh, entry.listCost == null) +
-        (zh ? " 按 API 价" : " at API prices"),
+        (zh ? " 按 API 價" : " at API prices"),
     );
   return notes;
 }
@@ -80,7 +80,7 @@ export function TurnHover({ entry, theme }: { entry: Entry; theme: Theme }) {
         <span>{`T${entry.index} · ${timeLabel(entry.timestamp, zh)}`}</span>
         {entry.compacted && (
           <span style={{ color: theme.compaction, fontWeight: 600 }}>
-            {zh ? "已压缩" : "Compacted"}
+            {zh ? "已壓縮" : "Compacted"}
           </span>
         )}
       </div>

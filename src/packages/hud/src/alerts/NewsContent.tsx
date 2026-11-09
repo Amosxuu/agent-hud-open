@@ -26,7 +26,7 @@ export function NewsContent({
   light?: boolean;
   botLogos?: boolean;
 }) {
-  const zh = snapshotLanguage(snapshot) === "zh";
+  const zh = snapshotLanguage(snapshot).startsWith("zh");
   if (event.kind === "completion") {
     return (
       <CompletionAlertView

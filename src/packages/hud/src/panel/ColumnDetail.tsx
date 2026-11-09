@@ -32,7 +32,7 @@ export function ColumnDetail({
   const preferred =
     midpoint < width / 2 ? midpoint + 12 : midpoint - cardWidth - 12;
   const start = Date.parse(point.timestamp);
-  const locale = zh ? "zh-CN" : "en-US";
+  const locale = zh ? "zh-TW" : "en-US";
   const time = dateFormat(locale, {
     hour: "2-digit",
     minute: "2-digit",
@@ -109,7 +109,7 @@ export function ColumnDetail({
       ))}
       {point.tokens === 0 && (
         <span style={{ color: colors.secondary }}>
-          {zh ? "此时段没有 Token 消耗" : "No token usage in this period"}
+          {zh ? "此時段沒有 Token 消耗" : "No token usage in this period"}
         </span>
       )}
     </div>

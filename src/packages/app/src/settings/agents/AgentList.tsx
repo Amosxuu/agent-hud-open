@@ -28,17 +28,17 @@ export function AgentList({
       <HUDLogo source={provider.id} size={18} />
       <span className="agents-list-name">{provider.name}</span>
       {!provider.enabled && (
-        <span className="agents-list-state">{t("Off", "已关闭")}</span>
+        <span className="agents-list-state">{t("Off", "已關閉")}</span>
       )}
     </button>
   );
   return (
-    <nav className="agents-list" aria-label={t("Agents", "智能体")}>
+    <nav className="agents-list" aria-label={t("Agents", "Agent")}>
       {found.map(item)}
       {missing.length > 0 && (
         <>
           <div className="agents-list-label">
-            {t("Not on this computer", "未在这台电脑上发现")}
+            {t("Not on this computer", "未在這台電腦上發現")}
           </div>
           {missing.map(item)}
         </>

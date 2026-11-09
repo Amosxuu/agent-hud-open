@@ -52,7 +52,7 @@ export function AccountCard({
     profile?.name ??
     accountWindows[0]?.account ??
     profile?.label ??
-    t("Unknown account", "未知账户");
+    t("Unknown account", "未知帳戶");
   const checked =
     !block.hidden &&
     !(block.hiddenAccounts ?? []).includes(account) &&
@@ -85,7 +85,7 @@ export function AccountCard({
         <Switch
           checked={checked}
           disabled={pending}
-          aria-label={`${t("Show account", "显示账户")} ${name}`}
+          aria-label={`${t("Show account", "顯示帳戶")} ${name}`}
           onCheckedChange={showAccount}
         />
       </Row>
@@ -137,7 +137,7 @@ export function AccountCard({
               <Switch
                 checked={!quotaRowHidden(window, block.hiddenRows ?? [])}
                 disabled={pending}
-                aria-label={`${t("Show", "显示")} ${window.name}`}
+                aria-label={`${t("Show", "顯示")} ${window.name}`}
                 onCheckedChange={(show) =>
                   void changeBlock({
                     hiddenRows: show

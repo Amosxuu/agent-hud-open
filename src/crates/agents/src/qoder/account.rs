@@ -92,7 +92,7 @@ fn credits(
         .map_err(|failure| match failure {
             HttpFailure::Status(401 | 403) => Unread::SignedOut(l10n::text(
                 &format!(
-                    "{} 在 Agent HUD 中的登录已失效，请在它的额度处重新登录",
+                    "{} 在 Agent HUD 中的登入已失效，請在它的額度處重新登入",
                     site.name
                 ),
                 &format!(
@@ -104,7 +104,7 @@ fn credits(
         })?;
     let summary = parse(&body).ok_or_else(|| {
         Unread::from(l10n::text(
-            "Qoder 的额度格式无法识别",
+            "Qoder 的額度格式無法識別",
             "Qoder's credit usage has an unsupported format.",
         ))
     })?;

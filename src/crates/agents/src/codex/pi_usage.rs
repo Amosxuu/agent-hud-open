@@ -9,7 +9,7 @@ use std::time::Duration;
 
 fn pi_signed_out() -> Unread {
     Unread::SignedOut(l10n::text(
-        "请在 Pi 中重新登录 ChatGPT",
+        "請在 Pi 中重新登入 ChatGPT",
         "Sign in to ChatGPT again in Pi",
     ))
 }
@@ -56,7 +56,7 @@ pub(super) fn read_pi(host: &dyn Host) -> Result<Option<Reading>, Unread> {
         })
         .map_err(|failure| match failure {
             HttpFailure::Unreachable | HttpFailure::BadHeader => failure.unread_as(l10n::text(
-                "Pi 的 ChatGPT 用量请求失败",
+                "Pi 的 ChatGPT 用量請求失敗",
                 "Pi ChatGPT usage request failed",
             )),
             HttpFailure::Status(401) => pi_signed_out(),
@@ -68,7 +68,7 @@ pub(super) fn read_pi(host: &dyn Host) -> Result<Option<Reading>, Unread> {
             .is_none_or(|value| value.is_empty())
     {
         return Err(l10n::text(
-            "Pi 的 ChatGPT 用量返回了其他或未知的账户",
+            "Pi 的 ChatGPT 用量返回了其他或未知的賬戶",
             "Pi ChatGPT usage returned a different or unknown account",
         )
         .into());

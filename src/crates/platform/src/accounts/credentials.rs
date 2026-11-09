@@ -25,7 +25,7 @@ fn valid_provider(provider: &str) -> Result<(), String> {
         Ok(())
     } else {
         Err(l10n::text(
-            "此服务使用客户端已有的登录，没有可编辑的 API 凭据",
+            "此服務使用用戶端已有的登入，沒有可編輯的 API 憑據",
             "This provider uses its existing client login and has no editable API credential slot",
         ))
     }
@@ -39,7 +39,7 @@ fn private_folder(directory: &Path) -> Result<(), String> {
     crate::os::private_directory(directory).map_err(|error| {
         format!(
             "{}{error}",
-            l10n::text("凭据目录：", "Credential directory: ")
+            l10n::text("憑據目錄：", "Credential directory: ")
         )
     })
 }
@@ -51,20 +51,20 @@ pub(super) fn read(ctx: &AccountContext, provider: &str) -> Result<Option<Value>
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Ok(None),
         Err(_) => {
             return Err(l10n::text(
-                "无法读取已保存的 API 凭据",
+                "無法讀取已儲存的 API 憑據",
                 "Could not read saved API credentials",
             ))
         }
     };
     if !meta.is_file() || meta.file_type().is_symlink() || meta.len() > 64 * 1024 {
         return Err(l10n::text(
-            "已保存的 API 凭据不是有效的普通文件",
+            "已儲存的 API 憑據不是有效的普通檔案",
             "Saved API credential file is not a bounded regular file",
         ));
     }
     if !crate::os::owner_only(&path, &meta) {
         return Err(l10n::text(
-            "已保存的 API 凭据必须只允许本人读取",
+            "已儲存的 API 憑據必須只允許本人讀取",
             "Saved API credentials require owner-only permissions",
         ));
     }
@@ -73,13 +73,13 @@ pub(super) fn read(ctx: &AccountContext, provider: &str) -> Result<Option<Value>
         .and_then(|f| f.take(64 * 1024 + 1).read_to_end(&mut bytes))
         .map_err(|_| {
             l10n::text(
-                "无法读取已保存的 API 凭据",
+                "無法讀取已儲存的 API 憑據",
                 "Could not read saved API credentials",
             )
         })?;
     let value: Value = serde_json::from_slice(&bytes).map_err(|_| {
         l10n::text(
-            "已保存的 API 凭据格式无法识别",
+            "已儲存的 API 憑據格式無法識別",
             "Saved API credentials have an unsupported format",
         )
     })?;
@@ -95,7 +95,7 @@ fn validate(provider: &str, value: &Value) -> Result<(), String> {
         )
     }) {
         return Err(l10n::text(
-            "不支持的凭据字段",
+            "不支援的憑據字段",
             "Unsupported credential field",
         ));
     }
@@ -115,7 +115,7 @@ fn validate(provider: &str, value: &Value) -> Result<(), String> {
         if let Some(value) = value.get(key) {
             if provider != "glm" || !value.as_str().is_some_and(clean) {
                 return Err(l10n::text(
-                    "只有 GLM 团队套餐支持组织和项目",
+                    "只有 GLM 團隊套餐支援組織和專案",
                     "Organization and project are supported only for a GLM team plan",
                 ));
             }
@@ -123,7 +123,7 @@ fn validate(provider: &str, value: &Value) -> Result<(), String> {
     }
     if value.get("organization").is_some() != value.get("project").is_some() {
         return Err(l10n::text(
-            "GLM 团队套餐需要同时填写组织和项目",
+            "GLM 團隊套餐需要同時填寫組織和專案",
             "A GLM team plan requires both organization and project",
         ));
     }
@@ -164,7 +164,7 @@ pub(super) fn save(ctx: &AccountContext, params: &Value) -> Result<Value, String
     let result = (|| -> Result<(), String> {
         let mut file = crate::os::private_file(&temporary, true).map_err(|_| {
             l10n::text(
-                "无法创建 API 凭据文件",
+                "無法建立 API 憑據檔案",
                 "Could not create private API credentials",
             )
         })?;
@@ -172,13 +172,13 @@ pub(super) fn save(ctx: &AccountContext, params: &Value) -> Result<Value, String
             .and_then(|_| file.sync_all())
             .map_err(|_| {
                 l10n::text(
-                    "无法保存 API 凭据",
+                    "無法儲存 API 憑據",
                     "Could not save private API credentials",
                 )
             })?;
         fs::rename(&temporary, path(ctx, provider)).map_err(|_| {
             l10n::text(
-                "无法替换已保存的 API 凭据",
+                "無法替換已儲存的 API 憑據",
                 "Could not replace saved API credentials",
             )
         })?;
@@ -195,7 +195,7 @@ pub(super) fn remove(ctx: &AccountContext, params: &Value) -> Result<Value, Stri
     valid_provider(provider)?;
     if params.get("accountId").is_some() {
         return Err(l10n::text(
-            "此 API 凭据按服务保存，移除时不要指定 accountId",
+            "此 API 憑據按服務儲存，移除時不要指定 accountId",
             "This explicit API slot is provider-scoped; remove without accountId",
         ));
     }
@@ -204,7 +204,7 @@ pub(super) fn remove(ctx: &AccountContext, params: &Value) -> Result<Value, Stri
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
         Err(_) => {
             return Err(l10n::text(
-                "无法移除已保存的 API 凭据",
+                "無法移除已儲存的 API 憑據",
                 "Could not remove saved API credentials",
             ))
         }

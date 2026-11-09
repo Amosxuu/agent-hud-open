@@ -54,12 +54,12 @@ export function TurnPanel({
     span,
     summary && summary.subagentCalls > 0
       ? zh
-        ? `其中子 agent ${summary.subagentCalls} 次（${summary.subagentLogs} 个）`
+        ? `其中子 agent ${summary.subagentCalls} 次（${summary.subagentLogs} 個）`
         : `${summary.subagentCalls} by ${summary.subagentLogs === 1 ? "a sub-agent" : `${summary.subagentLogs} sub-agents`}`
       : null,
     summary?.largestNew != null && summary.largestShare != null
       ? zh
-        ? `新增最多的一次 ${compact(summary.largestNew)}，占 ${Math.round(summary.largestShare * 100)}%`
+        ? `新增最多的一次 ${compact(summary.largestNew)}，佔 ${Math.round(summary.largestShare * 100)}%`
         : `Largest call added ${compact(summary.largestNew)}, ${Math.round(summary.largestShare * 100)}%`
       : null,
     ...(entry.callCount != null ? notes.slice(1) : notes),
@@ -75,7 +75,7 @@ export function TurnPanel({
             {byPrompt
               ? `T${entry.index} · ${timeLabel(entry.timestamp, zh)}`
               : (zh
-                  ? `用量记录 ${entry.index}`
+                  ? `用量記錄 ${entry.index}`
                   : `Usage entry ${entry.index}`) +
                 ` · ${timeLabel(entry.timestamp, zh)}`}
           </strong>
@@ -90,7 +90,7 @@ export function TurnPanel({
                 borderRadius: 4,
               }}
             >
-              {zh ? "上下文压缩" : "Compacted"}
+              {zh ? "上下文壓縮" : "Compacted"}
             </span>
           )}
         </div>
@@ -106,7 +106,7 @@ export function TurnPanel({
           {close && (
             <button
               type="button"
-              aria-label={zh ? "收起这一轮" : "Close this turn"}
+              aria-label={zh ? "收起這一輪" : "Close this turn"}
               onClick={close}
               style={{ ...plain, color: theme.secondary }}
             >
@@ -176,7 +176,7 @@ export function TurnPanel({
       {calls && calls.length === 0 && (
         <div style={{ color: theme.secondary, fontSize: 11 }}>
           {zh
-            ? "用量库里没有这一轮的调用"
+            ? "用量庫里沒有這一輪的呼叫"
             : "The usage ledger holds no calls of this turn"}
         </div>
       )}

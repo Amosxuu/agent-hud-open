@@ -122,7 +122,7 @@ pub fn answer(kind: &Kind, decision: &Value) -> Result<Option<Value>, String> {
             Some("allow") => Ok(Some(json!("allowed-once"))),
             Some("deny") => Ok(Some(json!("rejected"))),
             _ => Err(l10n::text(
-                "DeepSeek Harness 的批准只能允许一次或拒绝",
+                "DeepSeek Harness 的批准只能允許一次或拒絕",
                 "DeepSeek Harness's approvals can only be allowed once or rejected.",
             )),
         },

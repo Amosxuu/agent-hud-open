@@ -254,26 +254,26 @@ export function useIslandNews(
 export const newsTitle = (event: IslandEvent, zh = false) =>
   event.kind === "completion"
     ? zh
-      ? "有新回复"
+      ? "有新回覆"
       : "New reply"
     : event.kind === "quota-reset"
       ? zh
-        ? "额度已重置"
+        ? "額度已重置"
         : "Quota reset"
       : event.kind === "reset-credits"
         ? zh
-          ? "获得使用重置"
+          ? "獲得使用重置"
           : "Usage resets added"
         : event.kind === "sign-in-needed"
           ? zh
-            ? "需要重新登录"
+            ? "需要重新登入"
             : "Sign in again"
           : event.kind === "hooks-review-needed"
             ? zh
-              ? "回调待允许"
+              ? "回呼待允許"
               : "Allow its hooks"
             : zh
-              ? "额度预警"
+              ? "額度預警"
               : "Running low";
 
 export const compactDuration = (seconds: number) => {

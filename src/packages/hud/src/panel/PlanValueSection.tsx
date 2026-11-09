@@ -49,7 +49,7 @@ export function PlanValueSection({
   bare?: boolean;
 }) {
   const { language } = useFormat();
-  const zh = language === "zh";
+  const zh = language.startsWith("zh");
   const colors = palette(useGround(light));
   const query = usePanelQuery<PlanValueResponse>(
     "plan_value",
@@ -73,21 +73,21 @@ export function PlanValueSection({
       }}
     >
       <AddedSectionHeading
-        title={zh ? "订阅价值" : "Plan value"}
+        title={zh ? "訂閱價值" : "Plan value"}
         colors={colors}
       >
         <span style={{ fontSize: 11, color: colors.tertiary }}>
-          {zh ? "近 30 天 · API 标价" : "30 days · API list prices"}
+          {zh ? "近 30 天 · API 標價" : "30 days · API list prices"}
         </span>
       </AddedSectionHeading>
       {!query.data && (
         <SectionNote colors={colors}>
-          {query.error ?? (zh ? "正在加载订阅价值…" : "Loading plan value…")}
+          {query.error ?? (zh ? "正在載入訂閱價值…" : "Loading plan value…")}
         </SectionNote>
       )}
       {query.data && !accounts.length && (
         <SectionNote colors={colors}>
-          {zh ? "没有可估值的订阅" : "No plans to value"}
+          {zh ? "沒有可估值的訂閱" : "No plans to value"}
         </SectionNote>
       )}
       {accounts.map((account) => {
@@ -121,7 +121,7 @@ export function PlanValueSection({
               <span
                 title={
                   zh
-                    ? "近 30 天 API 价值除以每月标价"
+                    ? "近 30 天 API 價值除以每月標價"
                     : "The 30-day API value divided by the monthly list price"
                 }
                 style={{ ...tabular, fontWeight: 600, color: colors.text }}
@@ -142,12 +142,12 @@ export function PlanValueSection({
                   ? `每月 ${usd(account.plan.monthlyUSD)}`
                   : `${usd(account.plan.monthlyUSD)}/mo`
                 : zh
-                  ? "没有官方月付标价"
+                  ? "沒有官方月付標價"
                   : "No monthly list price"}
               {" · "}
               {worth
                 ? zh
-                  ? `API 价值 ${worth}`
+                  ? `API 價值 ${worth}`
                   : `API value ${worth}`
                 : account.unavailable}
             </div>

@@ -35,11 +35,11 @@ export const kindLabels: Record<StatisticsTokenKind, string> = {
   cacheRead: "Cache read",
 };
 export const zhKindLabels: Record<StatisticsTokenKind, string> = {
-  input: "输入",
-  output: "输出",
+  input: "輸入",
+  output: "輸出",
   reasoning: "思考",
-  cacheWrite: "缓存写入",
-  cacheRead: "缓存读取",
+  cacheWrite: "快取寫入",
+  cacheRead: "快取讀取",
 };
 export function kindLabel(kind: StatisticsTokenKind, zh = false): string {
   return zh ? zhKindLabels[kind] : kindLabels[kind];
@@ -153,7 +153,7 @@ export function themeFor(light: boolean, zh = false): StatsTheme {
 export function dimensionsLabel(selected: StatisticsTokenKind[], zh = false) {
   if (selected.length === kinds.length) return zh ? "全部 Token" : "All tokens";
   if (selected.length === freshKinds.length && !selected.includes("cacheRead"))
-    return zh ? "不含缓存读取" : "Excl. cache reads";
+    return zh ? "不含快取讀取" : "Excl. cache reads";
   return kinds
     .filter((kind) => selected.includes(kind))
     .map((kind) => kindLabel(kind, zh))
@@ -187,7 +187,7 @@ export function modelColor(id: string) {
 }
 
 export function dateLabel(at: string | number, timeZone: string, zh = false) {
-  return dateFormat(zh ? "zh-CN" : "en-GB", {
+  return dateFormat(zh ? "zh-TW" : "en-GB", {
     timeZone,
     month: "short",
     day: "numeric",
@@ -223,7 +223,7 @@ export function costShort(cost: StatisticsCost | null, zh = false) {
 export function costHelp(cost: StatisticsCost | null, zh = false) {
   if (!cost)
     return zh
-      ? "当前筛选暂无目录价估算。"
+      ? "目前篩選暫無目錄價估算。"
       : "A list-price estimate is unavailable for this selection.";
   const unpriced = unpricedHelp(
     cost.unpricedTokens,
@@ -231,7 +231,7 @@ export function costHelp(cost: StatisticsCost | null, zh = false) {
     cost.unpricedNames ?? cost.unpricedModels,
   );
   return zh
-    ? `按各厂商 API 目录价估算所选 Token 类型，不同币种不做换算。${unpriced ? `${unpriced}。` : ""}`
+    ? `按各廠商 API 目錄價估算所選 Token 類型，不同幣種不做換算。${unpriced ? `${unpriced}。` : ""}`
     : `Selected token kinds at the vendors' API list prices; currencies are not converted.${unpriced ? ` ${unpriced}.` : ""}`;
 }
 

@@ -28,9 +28,9 @@ test("a run says how far back it has read, by day", () => {
       "Your logs go back to May 7 · tokens and costs are incomplete until it finishes",
   });
   const zh = indexingText({ ...facts, kind: "first" }, "zh", now);
-  assert.equal(zh?.title, "正在读取历史记录 · 已读到 9月12日");
+  assert.equal(zh?.title, "正在讀取歷史記錄 · 已讀到 9月12日");
   assert.equal(zh?.days, "55/184 天");
-  assert.equal(zh?.detail, "日志可追溯到 5月7日 · 完成前 Token 和费用不完整");
+  assert.equal(zh?.detail, "紀錄可追溯到 5月7日 · 完成前 Token 和費用不完整");
 });
 
 test("a first run starts at today and names another year", () => {
@@ -55,7 +55,7 @@ test("a run shows less than 100% until the core ends it", () => {
     now,
   );
   assert.equal(text?.fraction, 0.99);
-  assert.equal(text?.title, "正在重新读取历史记录 · 已读到 5月7日");
+  assert.equal(text?.title, "正在重新讀取歷史記錄 · 已讀到 5月7日");
 });
 
 test("without days it falls back on bytes", () => {
@@ -70,6 +70,6 @@ test("without days it falls back on bytes", () => {
   );
   assert.equal(
     indexingText({ kind: "first", bytesDone: 0, bytesTotal: 0 }, "zh")?.title,
-    "正在读取历史记录",
+    "正在讀取歷史記錄",
   );
 });

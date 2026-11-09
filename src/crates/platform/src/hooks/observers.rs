@@ -60,13 +60,13 @@ pub fn observer_plan(
         .find(|c| c.source == source)
         .ok_or_else(|| {
             l10n::text(
-                "这个客户端没有公开的会话观察接口",
+                "這個用戶端沒有公開的工作階段觀察接口",
                 "This client has no public session observer",
             )
         })?;
     if fs::symlink_metadata(&client.script).is_ok_and(|m| m.file_type().is_symlink()) {
         return Err(l10n::text(
-            "观察插件的路径是符号链接，客户端文件未作改动",
+            "觀察插件的路徑是符號鏈接，用戶端檔案未作改動",
             "The observer path is a symbolic link; no client file was changed",
         ));
     }
@@ -79,7 +79,7 @@ pub fn observer_plan(
         })
     {
         return Err(l10n::text(
-            "观察插件所在的文件夹是指向不存在位置的符号链接，客户端文件未作改动",
+            "觀察插件所在的資料夾是指向不存在位置的符號鏈接，用戶端檔案未作改動",
             "The observer's folder is a symbolic link to a place that does not exist; no client file was changed",
         ));
     }
@@ -88,7 +88,7 @@ pub fn observer_plan(
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => None,
         Err(_) => {
             return Err(l10n::text(
-                "观察插件文件不可用",
+                "觀察插件檔案不可用",
                 "The observer file is unavailable",
             ))
         }
@@ -98,7 +98,7 @@ pub fn observer_plan(
         .is_some_and(|b| !b.starts_with(client.marker.as_bytes()))
     {
         return Err(l10n::text(
-            "这个文件名属于另一个插件，未作改动",
+            "這個檔案名屬於另一個插件，未作改動",
             "The observer filename belongs to another plugin; it was not changed",
         ));
     }
@@ -122,14 +122,14 @@ pub fn apply_observer_plan(plan: &ObserverPlan) -> Result<bool, String> {
     }
     if fs::read(&plan.path).ok() != plan.original {
         return Err(l10n::text(
-            "观察插件文件在准备后发生了变化，请重新检查",
+            "觀察插件檔案在準備後發生了變化，請重新檢查",
             "The observer file changed after planning; review it again",
         ));
     }
     if !plan.enabled {
         return fs::remove_file(&plan.path)
             .map(|_| true)
-            .map_err(|_| l10n::text("无法移除观察插件", "The observer could not be removed"));
+            .map_err(|_| l10n::text("無法移除觀察插件", "The observer could not be removed"));
     }
     fs::create_dir_all(plan.path.parent().ok_or("Observer directory unavailable")?)
         .map_err(|_| "Observer directory unavailable")?;
@@ -141,7 +141,7 @@ pub fn apply_observer_plan(plan: &ObserverPlan) -> Result<bool, String> {
         let mut file = crate::os::private_file(&temporary, true)
             .map_err(|_| "Observer temporary file unavailable")?;
         file.write_all(plan.body.as_bytes()).map_err(|_| {
-            l10n::text("无法写入观察插件文件", "Observer file could not be written")
+            l10n::text("無法寫入觀察插件檔案", "Observer file could not be written")
         })?;
         fs::rename(&temporary, &plan.path).map_err(|_| "Observer file could not be committed")?;
         Ok(true)

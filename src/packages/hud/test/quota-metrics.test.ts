@@ -76,7 +76,7 @@ test("burn rate: sampling is the detail, a run-out before the reset is its time,
       quotaMetric(sampling, "burn", now, zh).value,
       quotaMetric(sampling, "burn", now, zh).detail,
     ],
-    ["—", "采样中"],
+    ["—", "採樣中"],
   );
   const runsOut = row({
     metrics: {
@@ -100,7 +100,7 @@ test("burn rate: sampling is the detail, a run-out before the reset is its time,
       replyRate: { tokensPerSecond: 42.7, calls: 9, tokensOut: 1200 },
     },
   });
-  assert.equal(quotaMetric(replies, "tokens", now, zh).detail, "9 次回复");
+  assert.equal(quotaMetric(replies, "tokens", now, zh).detail, "9 次回覆");
   assert.equal(quotaMetric(replies, "tokens", now, en).value, "42/s");
   assert.match(quotaMetric(replies, "tokens", now, en).hint, /own call/);
   // Replies timed only by the gaps between calls give a floor.
@@ -142,8 +142,8 @@ test("a forecast from the whole window says so, and the budget reads in points",
   assert.match(burn.hint, /Estimated from the whole window/);
   assert.match(burn.hint, /12 pts ahead of budget/);
   const zhBurn = quotaMetric(early, "burn", now, zh);
-  assert.match(zhBurn.hint, /按整个窗口估算/);
-  assert.match(zhBurn.hint, /比预算超前 12 个点/);
+  assert.match(zhBurn.hint, /按整個視窗估算/);
+  assert.match(zhBurn.hint, /比預算超前 12 個點/);
   const under = row({
     metrics: {
       burnRatePctPerHour: 2,
@@ -152,7 +152,7 @@ test("a forecast from the whole window says so, and the budget reads in points",
     },
   });
   assert.match(quotaMetric(under, "burn", now, en).hint, /At the recent pace/);
-  assert.match(quotaMetric(under, "quota", now, zh).hint, /比预算少用 8 个点/);
+  assert.match(quotaMetric(under, "quota", now, zh).hint, /比預算少用 8 個點/);
   assert.match(
     quotaMetric(
       row({

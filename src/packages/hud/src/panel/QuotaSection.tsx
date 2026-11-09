@@ -179,8 +179,8 @@ export const SourceProviderBlock = memo(function SourceProviderBlock({
               className="hud-source-recent"
               title={
                 recent.unpricedTokens > 0
-                  ? format.language === "zh"
-                    ? `其中 ${new Intl.NumberFormat("en").format(recent.unpricedTokens)} 个 Token 来自没有 API 价格的模型，未计入花费`
+                  ? format.language.startsWith("zh")
+                    ? `其中 ${new Intl.NumberFormat("en").format(recent.unpricedTokens)} 個 Token 來自沒有 API 價格的模型，未計入花費`
                     : `${new Intl.NumberFormat("en").format(recent.unpricedTokens)} of these tokens came from models with no API list price and are not in the cost`
                   : undefined
               }
@@ -192,7 +192,9 @@ export const SourceProviderBlock = memo(function SourceProviderBlock({
               }}
             >
               <span>
-                {format.language === "zh" ? "最近 24 小时" : "Last 24 hours"}
+                {format.language.startsWith("zh")
+                  ? "最近 24 小時"
+                  : "Last 24 hours"}
               </span>
               <strong style={{ color: colors.text }}>
                 {`${tokensShort(recent.tokens)} Token`}
@@ -207,7 +209,7 @@ export const SourceProviderBlock = memo(function SourceProviderBlock({
                 color: colors.secondary,
               }}
             >
-              <span>{format.language === "zh" ? "额度" : "Quota"}</span>
+              <span>{format.language.startsWith("zh") ? "額度" : "Quota"}</span>
               <strong>--</strong>
             </div>
           )}

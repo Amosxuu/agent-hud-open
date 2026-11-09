@@ -181,7 +181,7 @@ export const UsageChart = memo(function UsageChart({
         tabIndex={0}
         aria-label={
           zh
-            ? `已记录 ${integer(data.totals.selectedTokens)} Token。方向键可查看各时间段。`
+            ? `已記錄 ${integer(data.totals.selectedTokens)} Token。方向鍵可查看各時間段。`
             : `${integer(data.totals.selectedTokens)} recorded tokens. Arrow keys inspect time buckets.`
         }
         onKeyDown={(event) => {
@@ -243,15 +243,15 @@ export const UsageChart = memo(function UsageChart({
           >
             {data.coverage.state === "unavailable"
               ? zh
-                ? "当前筛选暂无用量数据"
+                ? "目前篩選暫無用量資料"
                 : "Usage is unavailable for this selection"
               : data.query.models?.length === 0 ||
                   data.query.providers?.length === 0
                 ? zh
-                  ? "未选择模型或智能体"
+                  ? "未選擇模型或Agent"
                   : "No models or agents selected"
                 : zh
-                  ? "该时间范围内无已记录的 Token 用量"
+                  ? "該時間範圍內無已記錄的 Token 用量"
                   : "No recorded token usage in this range"}
           </div>
         )}

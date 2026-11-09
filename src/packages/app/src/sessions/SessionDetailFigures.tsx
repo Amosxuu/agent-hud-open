@@ -64,25 +64,25 @@ export function DetailFigures({
       ),
       note: localOnly
         ? zh
-          ? "仅本机执行会话"
+          ? "僅本機執行工作階段"
           : "Local execution sessions only"
         : detail?.subagents
           ? (zh ? "含子 agent " : "Sub-agents ") +
             compact(detail.subagents.total)
           : totals
             ? zh
-              ? `不含缓存读取 ${compact(totals.total - totals.cacheRead)}`
+              ? `不含快取讀取 ${compact(totals.total - totals.cacheRead)}`
               : `Excl. cache reads ${compact(totals.total - totals.cacheRead)}`
             : zh
-              ? "不含缓存读取 —"
+              ? "不含快取讀取 —"
               : "Excl. cache reads —",
       help: zh
-        ? "五类合计，含缓存读取"
+        ? "五類合計，含快取讀取"
         : "All five kinds, cache reads included",
     },
     account
       ? {
-          title: zh ? "费用" : "Cost",
+          title: zh ? "費用" : "Cost",
           value: session.accountCost ? (
             <Tween
               value={session.accountCost.amount}
@@ -91,13 +91,13 @@ export function DetailFigures({
           ) : (
             "—"
           ),
-          note: zh ? "本会话" : "This session",
+          note: zh ? "本工作階段" : "This session",
           help: zh
-            ? "按账户价格估算的本会话费用"
+            ? "按帳戶價格估算的本工作階段費用"
             : "This session's cost at the account's prices",
         }
       : {
-          title: zh ? "费用" : "Cost",
+          title: zh ? "費用" : "Cost",
           value:
             money.value === null ? (
               "—"
@@ -109,14 +109,14 @@ export function DetailFigures({
               ? "—"
               : money.unpriced > 0
                 ? zh
-                  ? "部分 · 按 API 价"
+                  ? "部分 · 按 API 價"
                   : "Partial · at API prices"
                 : zh
-                  ? "按 API 价"
+                  ? "按 API 價"
                   : "At API prices",
           help: [
             zh
-              ? "同样的调用按厂商 API 公开价计算的费用，不是实际扣费"
+              ? "同樣的呼叫按廠商 API 公開價計算的費用，不是實際扣費"
               : "What the same calls cost at the vendor's API list price; not a charge",
             unpricedHelp(money.unpriced, zh, unpricedModels),
           ]
@@ -126,27 +126,27 @@ export function DetailFigures({
     ...(credits
       ? [
           {
-            title: zh ? "积分" : "Credits",
+            title: zh ? "積分" : "Credits",
             value: credits.text,
             note: credits.unattributedText
               ? zh
-                ? `未归因 ${credits.unattributedText}`
+                ? `未歸因 ${credits.unattributedText}`
                 : `Unattributed ${credits.unattributedText}`
               : zh
-                ? "已按模型归因"
+                ? "已按模型歸因"
                 : "Attributed to models",
             help: zh
-              ? "WorkBuddy 自身计量记录的会话积分消耗；无法唯一确定模型的积分单独列为未归因"
+              ? "WorkBuddy 自身計量記錄的工作階段積分消耗；無法唯一確定模型的積分單獨列為未歸因"
               : "Credits WorkBuddy's own metering charged the session; the part no one model could be pinned on shows as unattributed",
           },
           ...(credits.used != null && credits.size != null
             ? [
                 {
-                  title: zh ? "计量上下文" : "Metered context",
+                  title: zh ? "計量上下文" : "Metered context",
                   value: <Tween value={credits.used} format={tokensAt} />,
                   note: (zh ? "共 " : "Of ") + compact(credits.size),
                   help: zh
-                    ? "WorkBuddy 自身计量记录的上下文用量与上限"
+                    ? "WorkBuddy 自身計量記錄的上下文用量與上限"
                     : "The context usage and limit WorkBuddy's own metering recorded",
                 },
               ]
@@ -155,21 +155,21 @@ export function DetailFigures({
       : []),
     breakdown
       ? {
-          title: zh ? "轮次" : "Turns",
+          title: zh ? "輪次" : "Turns",
           value: detail?.turnCount ? (
             <Tween value={detail.turnCount} format={integerAt} />
           ) : (
             "—"
           ),
           note: zh
-            ? `${integer(calls)} 次调用`
+            ? `${integer(calls)} 次呼叫`
             : calls === 1
               ? "1 call"
               : `${integer(calls)} calls`,
-          help: zh ? "每个 prompt 开始一轮" : "Each prompt starts a turn",
+          help: zh ? "每個 prompt 開始一輪" : "Each prompt starts a turn",
         }
       : {
-          title: zh ? "用量记录" : "Usage entries",
+          title: zh ? "用量記錄" : "Usage entries",
           value: detail ? (
             <Tween value={detail.turns.length} format={integerAt} />
           ) : (
@@ -177,11 +177,11 @@ export function DetailFigures({
           ),
           note: detail
             ? zh
-              ? `已加载 ${detail.calls.length} 次调用`
+              ? `已載入 ${detail.calls.length} 次呼叫`
               : `${detail.calls.length} calls loaded`
             : "—",
           help: zh
-            ? "已记录的用量变动条目。"
+            ? "已記錄的用量變動條目。"
             : "Recorded usage changes; these are not assumed to be prompt-defined turns.",
         },
     {
@@ -200,15 +200,15 @@ export function DetailFigures({
             ? `共 ${compact(detail.contextWindow)}`
             : `Of ${compact(detail.contextWindow)}`
           : zh
-            ? "最近一次调用"
+            ? "最近一次呼叫"
             : "Latest call",
       help: zh
-        ? "最近一次模型调用的输入：新输入、缓存写入与缓存读取"
+        ? "最近一次模型呼叫的輸入：新輸入、快取寫入與快取讀取"
         : "The latest model call's input: fresh, cache writes and cache reads",
       warn: detail?.contextFill != null && detail.contextFill >= 0.8,
     },
     {
-      title: zh ? "缓存命中" : "Cache hits",
+      title: zh ? "快取命中" : "Cache hits",
       value:
         detail?.cacheHitRate != null ? (
           <Tween value={detail.cacheHitRate * 100} format={percentAt} />
@@ -217,13 +217,13 @@ export function DetailFigures({
         ),
       note: detail?.usage
         ? zh
-          ? `${compact(detail.usage.cacheRead)} 读取 · ${compact(detail.usage.cacheWrite)} 写入`
+          ? `${compact(detail.usage.cacheRead)} 讀取 · ${compact(detail.usage.cacheWrite)} 寫入`
           : `${compact(detail.usage.cacheRead)} read · ${compact(detail.usage.cacheWrite)} write`
         : zh
-          ? "提示读自缓存"
+          ? "提示讀自快取"
           : "Of prompts, from cache",
       help: zh
-        ? "缓存读取占全部提示的比例：新输入、缓存写入与缓存读取"
+        ? "快取讀取佔全部提示的比例：新輸入、快取寫入與快取讀取"
         : "Cache reads as a share of every prompt: fresh input, cache writes and cache reads",
     },
   ];

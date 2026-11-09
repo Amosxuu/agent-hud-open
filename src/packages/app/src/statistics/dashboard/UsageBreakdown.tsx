@@ -95,7 +95,7 @@ export function UsageBreakdown({
                 style={{ paddingLeft: 18, color: theme.tertiary, fontSize: 10 }}
               >
                 {zh
-                  ? `另有 ${group.models.length - MODELS} 个模型`
+                  ? `另有 ${group.models.length - MODELS} 個模型`
                   : `${group.models.length - MODELS} more models`}
               </span>
             )}
@@ -105,7 +105,7 @@ export function UsageBreakdown({
       {sorted.length > AGENTS && (
         <span style={{ color: theme.tertiary, fontSize: 10 }}>
           {zh
-            ? `另有 ${sorted.length - AGENTS} 个 Agent`
+            ? `另有 ${sorted.length - AGENTS} 個 Agent`
             : `${sorted.length - AGENTS} more agents`}
         </span>
       )}

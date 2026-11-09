@@ -112,21 +112,21 @@ fn sign_ins(host: &dyn Host) -> Vec<SignIn> {
 
 fn signed_out() -> Unread {
     Unread::SignedOut(l10n::text(
-        "登录 Grok CLI 后才能读取它的额度",
+        "登入 Grok CLI 後才能讀取它的額度",
         "Sign in to Grok CLI to read its credits",
     ))
 }
 
 fn expired() -> Unread {
     Unread::Failed(l10n::text(
-        "Grok CLI 下次运行时会续期登录，之后更新额度",
+        "Grok CLI 下次運行時會續期登入，之後更新額度",
         "Grok CLI renews its sign-in the next time it runs; the credits update then",
     ))
 }
 
 fn unsupported() -> Unread {
     Unread::Failed(l10n::text(
-        "Grok CLI 的额度格式无法识别",
+        "Grok CLI 的額度格式無法識別",
         "Grok CLI's credits have an unsupported format",
     ))
 }
@@ -149,7 +149,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
     let mut failures = Vec::new();
     for sign_in in fresh {
         if host.cancelled() {
-            return Err(l10n::text("账户读取已停止", "Account reading was stopped").into());
+            return Err(l10n::text("賬戶讀取已停止", "Account reading was stopped").into());
         }
         match credits(host, sign_in) {
             Ok((quotas, account)) => {
@@ -188,15 +188,15 @@ fn credits(host: &dyn Host, sign_in: &SignIn) -> Result<(Vec<Value>, Value), Unr
     let body = get(host, BILLING, &sign_in.key).map_err(|failure| match failure {
         // The service no longer takes the CLI's token.
         HttpFailure::Status(401) => Unread::SignedOut(l10n::text(
-            "Grok CLI 的登录已失效，运行 grok 重新登录",
+            "Grok CLI 的登入已失效，運行 grok 重新登入",
             "Grok CLI's sign-in is no longer accepted; run grok to sign in again",
         )),
         HttpFailure::BadHeader => Unread::Failed(l10n::text(
-            "Grok CLI 的登录凭据无法用于请求",
+            "Grok CLI 的登入憑據無法用於請求",
             "Grok CLI's sign-in cannot be used in a request",
         )),
         HttpFailure::Unreachable => failure.unread_as(l10n::text(
-            "无法连接 Grok CLI 的额度服务",
+            "無法連接 Grok CLI 的額度服務",
             "Grok CLI's credits could not be reached",
         )),
         other => other.unread(),

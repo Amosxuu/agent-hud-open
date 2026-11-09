@@ -170,7 +170,7 @@ export function lanes(
 
   const main: Lane = {
     key: ownLog ?? "own",
-    name: zh ? "主会话" : "Main session",
+    name: zh ? "主工作階段" : "Main session",
     sub: mostUsedModel(ownCalls.map((entry) => entry.call)) ?? "",
     depth: 0,
     color: theme.secondary,
@@ -245,7 +245,7 @@ export function tipLine(
     const tools = nearest.call.tools?.length
       ? nearest.call.tools.join(", ")
       : zh
-        ? "回复"
+        ? "回覆"
         : "reply";
     return `+${offset(nearest.at - start)} · ${tools} · ${compact(nearest.call.newTokens ?? 0)} ${zh ? "新增" : "new"}`;
   }
@@ -258,7 +258,7 @@ export function tipLine(
           : `Waiting on sub-agents ${length}`
         : step.kind === "live"
           ? zh
-            ? `进行中 ${length}`
+            ? `進行中 ${length}`
             : `Working ${length}`
           : zh
             ? `一步 ${length}`
@@ -266,5 +266,5 @@ export function tipLine(
     return `+${offset(at - start)} · ${text}`;
   }
   const calls = lane.calls.length;
-  return `+${offset(at - start)} · ${zh ? `${calls} 次调用` : `${calls} call${calls === 1 ? "" : "s"}`}`;
+  return `+${offset(at - start)} · ${zh ? `${calls} 次呼叫` : `${calls} call${calls === 1 ? "" : "s"}`}`;
 }

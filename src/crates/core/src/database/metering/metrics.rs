@@ -151,22 +151,22 @@ impl View {
         let mut unavailable = serde_json::Map::new();
         let reason = if !complete {
             l10n::text(
-                "本地用量账本仍在索引",
+                "本地用量賬本仍在索引",
                 "The local usage ledger is still indexing.",
             )
         } else if link.is_none() {
             l10n::text(
-                "这台电脑上没有记下这个服务的 token 用量",
+                "這台電腦上沒有記下這個服務的 token 用量",
                 "This provider's token usage isn't logged on this computer.",
             )
         } else if !consumer {
             l10n::text(
-                "日志中没有与此额度窗口关联的模型",
+                "紀錄中沒有與此額度視窗關聯的模型",
                 "No logged models are linked to this account window.",
             )
         } else {
             l10n::text(
-                "此额度窗口的当前周期未知",
+                "此額度視窗的目前週期未知",
                 "This quota window has no known current cycle.",
             )
         };
@@ -225,12 +225,12 @@ impl View {
                 "tokens".into(),
                 json!(if !reply_complete {
                     l10n::text(
-                        "本地用量账本仍在索引",
+                        "本地用量賬本仍在索引",
                         "The local usage ledger is still indexing.",
                     )
                 } else if consumer {
                     l10n::text(
-                        "最近七天可计时的回复调用不足 3 次或合计不足 5 秒",
+                        "最近七天可計時的回復呼叫不足 3 次或合計不足 5 秒",
                         "Fewer than 3 reply calls that could be timed, or under 5 seconds of them, were observed in the last seven days.",
                     )
                 } else {
@@ -246,7 +246,7 @@ impl View {
                 "cost".into(),
                 json!(if complete && consumer && cycle.is_some() {
                     l10n::text(
-                        "本周期日志中的模型没有已知的公开价格",
+                        "本週期紀錄中的模型沒有已知的公開價格",
                         "No list price is known for the logged models in this cycle.",
                     )
                 } else {
@@ -259,12 +259,12 @@ impl View {
                 "burn".into(),
                 json!(if cycle.is_none() {
                     l10n::text(
-                        "此额度窗口的当前周期未知",
+                        "此額度視窗的目前週期未知",
                         "This quota window has no known current cycle.",
                     )
                 } else {
                     l10n::text(
-                        "本周期还没有额度读数",
+                        "本週期還沒有額度讀數",
                         "No quota observations are available for this cycle.",
                     )
                 }),

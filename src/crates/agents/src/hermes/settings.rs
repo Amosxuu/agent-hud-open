@@ -39,14 +39,14 @@ pub fn patch(original: &str, edit: &TextEdit) -> Result<String, String> {
 
 fn unreadable() -> String {
     l10n::text(
-        "Hermes 的 config.yaml 不是 Agent HUD 能读懂的 YAML，未作改动",
+        "Hermes 的 config.yaml 不是 Agent HUD 能讀懂的 YAML，未作改動",
         "Hermes's config.yaml is not YAML Agent HUD can read; it was not changed",
     )
 }
 
 fn unsafe_layout() -> String {
     l10n::text(
-        "Hermes 的 config.yaml 里 hooks 的写法 Agent HUD 无法安全修改，未作改动",
+        "Hermes 的 config.yaml 里 hooks 的寫法 Agent HUD 無法安全修改，未作改動",
         "Agent HUD cannot safely change how Hermes's config.yaml lists its hooks; it was not changed",
     )
 }

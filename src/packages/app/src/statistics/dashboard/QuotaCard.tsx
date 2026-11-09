@@ -63,12 +63,12 @@ export function QuotaCard({
       </div>
       <span style={{ fontSize: 11, color: theme.secondary }}>
         {zh
-          ? "这台 Mac 上没有它的 Token 记录，只有额度读数"
+          ? "這台 Mac 上沒有它的 Token 記錄，只有額度讀數"
           : "No tokens recorded on this Mac, only its quota readings"}
       </span>
       <div style={{ display: "grid", gap: 4 }}>
         <span style={{ fontSize: 11, color: theme.secondary }}>
-          {zh ? "每天的额度" : "Quota by day"}
+          {zh ? "每天的額度" : "Quota by day"}
         </span>
         <QuotaRows
           rows={rows}

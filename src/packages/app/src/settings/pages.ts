@@ -93,14 +93,14 @@ const pages: {
   },
 ];
 export const chinesePages: Record<string, [string, string]> = {
-  general: ["通用", "外观、语言与启动。"],
-  display: ["显示", "每块屏幕上的 HUD 和它的面板。"],
-  agents: ["智能体", "Agent HUD 关注哪些智能体，以及它们的账户。"],
-  "agent-plugins": ["智能体插件", "Agent HUD 为这台电脑上的智能体添加的功能。"],
-  relays: ["中转站", "智能体经过的中转站。"],
-  prices: ["价格", "每个模型的价格，不对时可以自己改。"],
-  "local-network": ["局域网", "与已配对的手机共享额度和 token 用量。"],
-  updates: ["更新", "Agent HUD 的更新与 Beta 版本。"],
+  general: ["通用", "外觀、語言與啓動。"],
+  display: ["顯示", "每塊螢幕上的 HUD 和它的面板。"],
+  agents: ["Agent", "Agent HUD 關注哪些Agent，以及它們的帳戶。"],
+  "agent-plugins": ["Agent插件", "Agent HUD 為這台電腦上的Agent添加的功能。"],
+  relays: ["中轉站", "Agent經過的中轉站。"],
+  prices: ["價格", "每個模型的價格，不對時可以自己改。"],
+  "local-network": ["局域網", "與已配對的手機共享額度和 token 用量。"],
+  updates: ["更新", "Agent HUD 的更新與 Beta 版本。"],
 };
 
 export interface AppExtensionPage {

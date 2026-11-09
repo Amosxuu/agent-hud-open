@@ -159,7 +159,7 @@ export function PanelBlocks({
         <Switch
           checked={!(balanceBlock.hiddenRows ?? []).includes(item.id)}
           disabled={pending}
-          aria-label={`${t("Show balance", "显示余额")} ${item.label} ${amount}`}
+          aria-label={`${t("Show balance", "顯示餘額")} ${item.label} ${amount}`}
           onCheckedChange={(show) =>
             void changeBalanceBlock({
               hiddenRows: show
@@ -175,16 +175,16 @@ export function PanelBlocks({
   return (
     <Section
       plain
-      title={t("In the panel", "面板中显示")}
+      title={t("In the panel", "面板中顯示")}
       footer={t(
         "Applies to the screen chosen on the Display page.",
-        "作用于“显示”页面选中的屏幕。",
+        "作用於“顯示”頁面選中的螢幕。",
       )}
     >
       <Card>
         {blockRow(
           key,
-          t("Show in panel", "在面板中显示"),
+          t("Show in panel", "在面板中顯示"),
           source.name,
           block.hidden,
           changeBlock,
@@ -193,7 +193,7 @@ export function PanelBlocks({
         {!windows.length && !billing.length && (
           <Row
             muted
-            title={t("No quota or balance read yet", "还没有读到额度或余额")}
+            title={t("No quota or balance read yet", "還沒有讀到額度或餘額")}
           />
         )}
       </Card>
@@ -216,8 +216,8 @@ export function PanelBlocks({
         <Card>
           {blockRow(
             balanceKey,
-            t("Balances", "余额"),
-            `${source.name} ${t("balances", "余额")}`,
+            t("Balances", "餘額"),
+            `${source.name} ${t("balances", "餘額")}`,
             balanceBlock.hidden,
             changeBalanceBlock,
           )}

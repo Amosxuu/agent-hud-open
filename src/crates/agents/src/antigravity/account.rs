@@ -31,7 +31,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
         reading.notice = Some(format!(
             "{} ({})",
             l10n::text(
-                "此系统暂不支持查找 Antigravity 本地服务",
+                "此系統暫不支援查找 Antigravity 本地服務",
                 "Antigravity local-service discovery is not implemented here"
             ),
             host.os().name()
@@ -87,7 +87,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
                     }
                 } else if reading.account.is_none() {
                     return Err(l10n::text(
-                        "Antigravity 本地服务返回的账户格式无法识别",
+                        "Antigravity 本地服務返回的賬戶格式無法識別",
                         "Antigravity local service returned an unsupported account format.",
                     )
                     .into());
@@ -104,19 +104,19 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
             return Ok(super::cli::read(host, Path::new(&executable))?);
         }
         return Err(l10n::text(
-            "没有已登录且正在运行的 Antigravity 服务",
+            "沒有已登入且正在運行的 Antigravity 服務",
             "No authenticated already-running Antigravity service is available",
         )
         .into());
     }
     reading.notice = if partial {
         Some(l10n::text(
-            "部分 Antigravity 账户额度无法读取",
+            "部分 Antigravity 賬戶額度無法讀取",
             "Some Antigravity accounts could not be read.",
         ))
     } else if reading.quotas.is_empty() {
         Some(l10n::text(
-            "Antigravity 已连接，但未提供额度比例",
+            "Antigravity 已連接，但未提供額度比例",
             "Antigravity is connected but reports no quota percentage.",
         ))
     } else {

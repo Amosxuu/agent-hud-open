@@ -46,7 +46,7 @@ export function SourceMenu({
         <Button
           variant="ghost"
           size="icon"
-          aria-label={chinese ? "更多选项" : "More options"}
+          aria-label={chinese ? "更多選項" : "More options"}
         >
           <MoreHorizontal size={16} />
         </Button>
@@ -57,7 +57,7 @@ export function SourceMenu({
             void showStatistics();
           }}
         >
-          {chinese ? "用量统计…" : "Statistics…"}
+          {chinese ? "用量統計…" : "Statistics…"}
         </DropdownMenuItem>
         {statistics && (
           <DropdownMenuItem
@@ -65,17 +65,17 @@ export function SourceMenu({
               if (isTauri()) void invoke("hud_show_main");
             }}
           >
-            {chinese ? "设置…" : "Settings…"}
+            {chinese ? "設定…" : "Settings…"}
           </DropdownMenuItem>
         )}
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={toggleHUDVisibility}>
           {hudVisible
             ? chinese
-              ? "隐藏 HUD"
+              ? "隱藏 HUD"
               : "Hide HUD"
             : chinese
-              ? "显示 HUD"
+              ? "顯示 HUD"
               : "Show HUD"}
         </DropdownMenuItem>
         {isTauri() && (
@@ -86,7 +86,7 @@ export function SourceMenu({
                 void invoke("quit_app");
               }}
             >
-              {chinese ? "退出" : "Quit"}
+              {chinese ? "結束" : "Quit"}
             </DropdownMenuItem>
           </>
         )}

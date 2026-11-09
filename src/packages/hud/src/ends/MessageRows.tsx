@@ -35,7 +35,7 @@ export function MessagesHeader({
       <span
         style={{ fontSize: 11, fontWeight: 600, color: alertInk(0.55, ground) }}
       >
-        {zh ? "消息" : "Messages"}
+        {zh ? "訊息" : "Messages"}
       </span>
       <span
         style={{
@@ -180,7 +180,7 @@ function MessageRow({
       </button>
       <button
         type="button"
-        aria-label={zh ? "移除这条消息" : "Remove this message"}
+        aria-label={zh ? "移除這條訊息" : "Remove this message"}
         onClick={onDrop}
         style={{
           display: "inline-flex",

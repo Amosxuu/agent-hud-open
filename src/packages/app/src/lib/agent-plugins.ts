@@ -30,12 +30,12 @@ export interface RowState {
   next: { words: Words; command?: string } | null;
 }
 
-const checking: Words = ["Checking…", "正在检查…"];
+const checking: Words = ["Checking…", "正在檢查…"];
 
 export function sessionCount(count: number): Words {
   return [
     `Loaded in ${count} ${count === 1 ? "session" : "sessions"}`,
-    `已在 ${count} 个会话中加载`,
+    `已在 ${count} 個工作階段中載入`,
   ];
 }
 
@@ -44,14 +44,14 @@ export const reloadCommand = "/reload-plugins";
 /** The line under a row whose command failed: "Couldn't install: …". */
 export function failure(action: string, message: string): Words {
   const verbs: Record<string, Words> = {
-    install: ["install", "安装"],
+    install: ["install", "安裝"],
     remove: ["remove", "移除"],
     add: ["add", "添加"],
-    "turn-on": ["turn on", "打开"],
+    "turn-on": ["turn on", "打開"],
   };
   const [en, zh] = verbs[action] ?? ["finish", "完成"];
   const line = message.replace(/^Error:\s*/, "");
-  return [`Couldn't ${en}: ${line}`, `没能${zh}：${line}`];
+  return [`Couldn't ${en}: ${line}`, `沒能${zh}：${line}`];
 }
 
 export interface PluginInput {
@@ -81,7 +81,7 @@ export function pluginRow(
   };
   const busy: Words | null =
     input.running === "install"
-      ? ["Installing…", "正在安装…"]
+      ? ["Installing…", "正在安裝…"]
       : input.running === "remove"
         ? ["Removing…", "正在移除…"]
         : null;
@@ -91,21 +91,21 @@ export function pluginRow(
     return {
       ...base,
       tone: "off",
-      status: ["Not installed", "未安装"],
+      status: ["Not installed", "未安裝"],
       busy,
       action: {
         id: "install",
-        label: ["Install", "安装"],
+        label: ["Install", "安裝"],
         unavailable:
           input.clientFound === false
-            ? [`Install ${client} first.`, `请先安装 ${client}。`]
+            ? [`Install ${client} first.`, `請先安裝 ${client}。`]
             : undefined,
       },
     };
   const loaded = input.sessions > 0;
   return {
     tone: loaded ? "working" : "installed",
-    status: loaded ? sessionCount(input.sessions) : ["Installed", "已安装"],
+    status: loaded ? sessionCount(input.sessions) : ["Installed", "已安裝"],
     action: null,
     busy,
     menu: [
@@ -117,14 +117,14 @@ export function pluginRow(
         : {
             words: [
               `${client} loads it by itself within seconds, open sessions included. Open ${client} to use it.`,
-              `${client} 会在几秒内自动加载，已经打开的会话也一样。打开 ${client} 即可使用。`,
+              `${client} 會在幾秒內自動載入，已經打開的工作階段也一樣。打開 ${client} 即可使用。`,
             ],
           }
       : !loaded || input.justInstalled
         ? {
             words: [
               `New sessions load it. In an open session, run ${reloadCommand}.`,
-              `新会话会自动加载；已经打开的会话，在其中运行 ${reloadCommand}。`,
+              `新工作階段會自動載入；已經打開的工作階段，在其中運行 ${reloadCommand}。`,
             ],
             command: reloadCommand,
           }
@@ -164,18 +164,18 @@ export function mcpRow(input: McpInput): RowState {
         : null;
   const menu: RowState["menu"] = [];
   if (input.hasCommand)
-    menu.push({ id: "copy", label: ["Copy command", "复制命令"] });
+    menu.push({ id: "copy", label: ["Copy command", "複製命令"] });
   if (input.added && input.setupReady)
     menu.push({
       id: "remove",
-      label: [`Remove from ${client}`, `从 ${client} 移除`],
+      label: [`Remove from ${client}`, `從 ${client} 移除`],
       destructive: true,
     });
   const copied = input.copied
     ? {
         words: [
           "Command copied. Paste it into Terminal.",
-          "已复制命令，粘贴到终端运行。",
+          "已複製命令，粘貼到終端運行。",
         ] as Words,
       }
     : null;
@@ -192,10 +192,10 @@ export function mcpRow(input: McpInput): RowState {
     const unavailable: Words | undefined = !input.setupReady
       ? [
           "Adding HUD tools requires Agent HUD at its approved installation location and its MCP components.",
-          "添加 HUD 工具需要指定安装位置的 Agent HUD 和完整的 MCP 组件。",
+          "添加 HUD 工具需要指定安裝位置的 Agent HUD 和完整的 MCP 組件。",
         ]
       : !input.clientFound
-        ? [`Install ${client} first.`, `请先安装 ${client}。`]
+        ? [`Install ${client} first.`, `請先安裝 ${client}。`]
         : undefined;
     return {
       tone: "off",
@@ -211,10 +211,10 @@ export function mcpRow(input: McpInput): RowState {
   if (!input.toolsOn)
     return {
       tone: "attention",
-      status: ["Tools off", "工具已关闭"],
+      status: ["Tools off", "工具已關閉"],
       action: {
         id: "turn-on",
-        label: ["Turn on", "打开"],
+        label: ["Turn on", "打開"],
         unavailable: input.toolsUnavailable ?? undefined,
       },
       busy,
@@ -224,7 +224,7 @@ export function mcpRow(input: McpInput): RowState {
   if (!input.listening)
     return {
       tone: "failed",
-      status: ["Not running", "未运行"],
+      status: ["Not running", "未運行"],
       action: null,
       busy,
       menu,
@@ -242,7 +242,7 @@ export function mcpRow(input: McpInput): RowState {
         ? {
             words: [
               `Start a new ${client} session and ask it to change the HUD.`,
-              `在 ${client} 里新开一个会话，说“把 HUD 改成……”。`,
+              `在 ${client} 里新開一個工作階段，說“把 HUD 改成……”。`,
             ],
           }
         : null),
@@ -267,14 +267,14 @@ export function toolsSwitch(input: ToolsSwitchInput): {
     : !input.supported
       ? [
           "This system can't serve HUD tools yet.",
-          "这个系统暂时不能提供 HUD 工具。",
+          "這個系統暫時不能提供 HUD 工具。",
         ]
       : null;
   const problem: Words | null =
     input.supported && input.enabled && !input.listening
       ? [
           `Not running${input.notice ? `: ${input.notice}` : "."}`,
-          `未运行${input.notice ? `：${input.notice}` : "。"}`,
+          `未運行${input.notice ? `：${input.notice}` : "。"}`,
         ]
       : !input.supported && !input.demo
         ? unavailable

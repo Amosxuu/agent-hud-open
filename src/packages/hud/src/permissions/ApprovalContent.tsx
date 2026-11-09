@@ -49,10 +49,10 @@ export function RequestDeliveryNotice({
       <strong style={{ fontWeight: 550 }}>{delivery.source} · </strong>
       {delivery.state === "failed"
         ? zh
-          ? "回答未能送达客户端。"
+          ? "回答未能送達用戶端。"
           : "The response could not be delivered to the client."
         : zh
-          ? "尚未确认客户端收到回答，请在客户端核对。"
+          ? "尚未確認用戶端收到回答，請在用戶端核對。"
           : "Delivery is unconfirmed. Check the client."}
       {delivery.reason && <span> {delivery.reason}</span>}
     </p>
@@ -81,7 +81,7 @@ function BackToSession({
       title={
         failed
           ? zh
-            ? "无法回到会话，请重试"
+            ? "無法回到工作階段，請重試"
             : "Couldn't return to session. Try again."
           : undefined
       }
@@ -96,10 +96,10 @@ function BackToSession({
       )}
       {failed
         ? zh
-          ? "重试会话跳转"
+          ? "重試工作階段跳轉"
           : "Retry session"
         : zh
-          ? "回到会话"
+          ? "回到工作階段"
           : "Return to session"}
     </CardButton>
   );

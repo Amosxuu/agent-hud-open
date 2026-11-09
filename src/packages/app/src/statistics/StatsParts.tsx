@@ -35,11 +35,11 @@ export function RefreshFailed({
       }}
     >
       <span>
-        {zh ? "刷新失败：" : "Refresh failed: "}
+        {zh ? "更新失敗：" : "Refresh failed: "}
         {error}
       </span>
       <Button variant="ghost" size="sm" onClick={onRetry}>
-        {zh ? "重试" : "Retry"}
+        {zh ? "重試" : "Retry"}
       </Button>
     </div>
   );
@@ -58,10 +58,10 @@ export function Coverage({
     coverage.notice ??
     (coverage.state === "unavailable"
       ? zh
-        ? "当前筛选暂无账本数据。"
+        ? "目前篩選暫無賬本資料。"
         : "No ledger data is available for this selection."
       : zh
-        ? `已记录用量尚不完整${coverage.pendingSources ? ` · ${integer(coverage.pendingSources)} 个文件待解析` : ""}。`
+        ? `已記錄用量尚不完整${coverage.pendingSources ? ` · ${integer(coverage.pendingSources)} 個檔案待解析` : ""}。`
         : `Recorded usage is partial${coverage.pendingSources ? ` · ${integer(coverage.pendingSources)} files pending` : ""}.`);
   return (
     <div
@@ -71,7 +71,7 @@ export function Coverage({
       {detail}
       {coverage.unavailableProviders.length
         ? zh
-          ? ` 暂不可用：${coverage.unavailableProviders.join("、")}。`
+          ? ` 暫不可用：${coverage.unavailableProviders.join("、")}。`
           : ` Unavailable: ${coverage.unavailableProviders.join(", ")}.`
         : ""}
     </div>
@@ -205,7 +205,7 @@ export function TotalSummary({
       <div
         title={
           zh
-            ? "所选时间范围、智能体、模型和类型的已记录 Token 数"
+            ? "所選時間範圍、Agent、模型和類型的已記錄 Token 數"
             : "Recorded tokens for exactly the selected range, agents, models and kinds"
         }
         style={{ fontSize: 20, fontWeight: 600, lineHeight: 1.2, ...number }}
@@ -217,7 +217,7 @@ export function TotalSummary({
         style={{ color: theme.secondary, fontSize: 11, marginTop: 2 }}
       >
         {zh
-          ? `按 API 价格估算 ${costText(value.cost, zh)}`
+          ? `按 API 價格估算 ${costText(value.cost, zh)}`
           : `At API prices ${costText(value.cost, zh)}`}
       </div>
     </div>

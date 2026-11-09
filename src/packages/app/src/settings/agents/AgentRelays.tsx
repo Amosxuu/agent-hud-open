@@ -21,11 +21,11 @@ export function AgentRelays({
   if (!relays.length) return null;
   return (
     <Section
-      title={t("Relays", "中转站")}
+      title={t("Relays", "中轉站")}
       action={
         openPage && (
           <LinkButton onClick={() => openPage("relays")}>
-            {t("Relay settings", "中转站设置")}
+            {t("Relay settings", "中轉站設定")}
           </LinkButton>
         )
       }
@@ -36,15 +36,15 @@ export function AgentRelays({
           title={relay.name ?? relay.provider}
           subtitle={
             relay.balance
-              ? t("Balance ", "余额 ") +
+              ? t("Balance ", "餘額 ") +
                 moneyAmount(
                   relay.balance.amount,
                   relay.balance.currency,
                   snapshotLanguage(snapshot),
                 )
               : !relay.consented
-                ? t("Balance not read", "未开启读取余额")
-                : (relay.notice ?? t("Balance not read yet", "余额还没读到"))
+                ? t("Balance not read", "未開啓讀取餘額")
+                : (relay.notice ?? t("Balance not read yet", "餘額還沒讀到"))
           }
         />
       ))}

@@ -519,7 +519,7 @@ impl AgentHudCore {
             Err(format!(
                 "{} ({}): {}",
                 l10n::text(
-                    "部分本地会话无法读取",
+                    "部分本地工作階段無法讀取",
                     "Some local transcripts could not be read"
                 ),
                 errors.len(),

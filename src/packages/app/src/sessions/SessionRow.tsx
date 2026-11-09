@@ -44,7 +44,7 @@ function ContextFigure({ session, theme }: { session: Session; theme: Theme }) {
       style={{ ...row, gap: 6, justifyContent: "flex-end" }}
       title={
         zh
-          ? "最近一次调用的上下文占模型窗口的比例"
+          ? "最近一次呼叫的上下文佔模型視窗的比例"
           : "The latest call's context as a share of the model's window"
       }
     >
@@ -159,7 +159,7 @@ export function SessionRow({
     >
       <span style={{ display: "grid", gap: 4, minWidth: 0 }}>
         <strong style={{ ...clipped, fontSize: 13, fontWeight: 600 }}>
-          {session.title || (zh ? "未命名会话" : "Untitled session")}
+          {session.title || (zh ? "未命名工作階段" : "Untitled session")}
         </strong>
         <span style={{ ...line, ...clipped }}>
           {sessionWhere(session, client).join(" · ")}
@@ -175,7 +175,7 @@ export function SessionRow({
             theme={theme}
             label={
               zh
-                ? `最近 ${bars.length} 轮每轮新增的 Token`
+                ? `最近 ${bars.length} 輪每輪新增的 Token`
                 : `New tokens of the last ${bars.length} ${session.turnBars?.by === "period" ? "periods" : "turns"}`
             }
           />

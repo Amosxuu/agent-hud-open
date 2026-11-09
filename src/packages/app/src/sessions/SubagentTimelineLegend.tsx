@@ -34,7 +34,7 @@ export function SubagentTimelineLegend({
             background: theme.secondary,
           }}
         />
-        {zh ? "模型调用" : "Model call"}
+        {zh ? "模型呼叫" : "Model call"}
       </Key>
       <Key>
         <span
@@ -45,7 +45,7 @@ export function SubagentTimelineLegend({
             background: theme.secondary,
           }}
         />
-        {zh ? "连续调用" : "Calls in a row"}
+        {zh ? "連續呼叫" : "Calls in a row"}
       </Key>
       <Key>
         <span
@@ -55,13 +55,13 @@ export function SubagentTimelineLegend({
             background: `color-mix(in srgb, ${theme.secondary} 55%, transparent)`,
           }}
         />
-        {zh ? "长步骤（一步 ≥15 秒）" : "Long step (≥15 s)"}
+        {zh ? "長步驟（一步 ≥15 秒）" : "Long step (≥15 s)"}
       </Key>
       <Key>
         <span
           style={{ width: 14, borderTop: `1.5px dotted ${theme.tertiary}` }}
         />
-        {zh ? "主会话等待" : "Session waiting"}
+        {zh ? "主工作階段等待" : "Session waiting"}
       </Key>
       <Key>
         <span
@@ -76,20 +76,20 @@ export function SubagentTimelineLegend({
       </Key>
       {zoomed !== null ? (
         <span style={{ ...row, gap: 14, marginLeft: "auto" }}>
-          {zh ? "左右滑动平移" : "Swipe sideways to pan"}
+          {zh ? "左右滑動平移" : "Swipe sideways to pan"}
           <button
             type="button"
             onClick={onShowAll}
             style={{ ...plain, color: theme.action }}
           >
             {zh
-              ? `已放大 ${offset(zoomed)} · 还原整轮`
+              ? `已放大 ${offset(zoomed)} · 還原整輪`
               : `Zoomed to ${offset(zoomed)} · Show the whole turn`}
           </button>
         </span>
       ) : (
         <span style={{ marginLeft: "auto" }}>
-          {zh ? "拖选一段放大" : "Drag across to zoom"}
+          {zh ? "拖選一段放大" : "Drag across to zoom"}
         </span>
       )}
     </div>

@@ -179,7 +179,7 @@ export default function SessionStatistics({
     <>
       {(listHidden || parent) && (
         <SessionBackBar
-          label={parent?.title ?? t("All sessions", "全部会话")}
+          label={parent?.title ?? t("All sessions", "全部工作階段")}
           top={split ? 0 : 44}
           onBack={() =>
             parent ? show(parent.id) : split ? setPick(null) : show(null)
@@ -231,7 +231,7 @@ export default function SessionStatistics({
   return (
     <SessionColumns
       sectionRef={ref}
-      label={t("Session statistics", "会话统计")}
+      label={t("Session statistics", "工作階段統計")}
       style={contentStyle}
       split={split}
       shown={shown}

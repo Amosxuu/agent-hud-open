@@ -150,7 +150,7 @@ pub(crate) fn project(
         }
         if vendor.quotas.is_empty() && vendor.balance.is_none() {
             let title = if zh {
-                "暂无额度读数"
+                "暫無額度讀數"
             } else {
                 "No quota reading"
             };
@@ -165,7 +165,7 @@ pub(crate) fn project(
         if !quota_vendors.is_empty() || index > 0 {
             entries.push(Entry::Separator);
         }
-        let title = format!("{} · {}", vendor.name, if zh { "余额" } else { "Balance" });
+        let title = format!("{} · {}", vendor.name, if zh { "餘額" } else { "Balance" });
         entries.push(item(&title, vendor.balance.as_deref().unwrap_or(""), true));
     }
     let used_percent = vendors

@@ -13,7 +13,7 @@ use std::path::{Path, PathBuf};
 
 fn unreadable() -> String {
     l10n::text(
-        "无法读取 DeepSeek 设置或凭据",
+        "無法讀取 DeepSeek 設定或憑據",
         "DeepSeek settings or credentials could not be read.",
     )
 }
@@ -26,7 +26,7 @@ fn yaml(host: &dyn Host, path: &Path) -> Result<Value, String> {
     };
     if bytes.len() as u64 > LIMIT {
         return Err(l10n::text(
-            "DeepSeek 设置或凭据文件过大",
+            "DeepSeek 設定或憑據檔案過大",
             "DeepSeek settings or credentials exceeded the size limit.",
         ));
     }
@@ -34,7 +34,7 @@ fn yaml(host: &dyn Host, path: &Path) -> Result<Value, String> {
     // A YAML error can quote the offending secret line. Only return fixed diagnostics.
     serde_saphyr::from_str(&text).map_err(|_| {
         l10n::text(
-            "DeepSeek 设置或凭据的 YAML 格式无法识别",
+            "DeepSeek 設定或憑據的 YAML 格式無法識別",
             "DeepSeek settings or credentials have an unsupported YAML format.",
         )
     })
@@ -102,7 +102,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
     let checked = Utc::now().to_rfc3339();
     for route in routed {
         if host.cancelled() {
-            return Err(l10n::text("账户读取已停止", "Account reading was stopped").into());
+            return Err(l10n::text("賬戶讀取已停止", "Account reading was stopped").into());
         }
         let names = client_names(&route.clients);
         let id = account_id("deepseek", &["api-key", &route.key]);
@@ -114,7 +114,7 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
             }
         };
         let label = if l10n::chinese() {
-            format!("{names} 的 API 余额")
+            format!("{names} 的 API 餘額")
         } else {
             format!("API balance ({names})")
         };
@@ -219,7 +219,7 @@ fn read_text(host: &dyn Host, routed: &mut Vec<Routed>) -> Result<Reading, Unrea
                     }))
             {
                 return Err(l10n::text(
-                    "DeepSeek 凭据文件格式无法识别",
+                    "DeepSeek 憑據檔案格式無法識別",
                     "DeepSeek credentials have an unsupported document format.",
                 )
                 .into());
@@ -233,13 +233,13 @@ fn read_text(host: &dyn Host, routed: &mut Vec<Routed>) -> Result<Reading, Unrea
         }
         let mut reading = Reading::empty("deepseek");
         reading.notice = Some(l10n::text(
-            "请在 Harness 中配置 DeepSeek API Key 以读取余额",
+            "請在 Harness 中配置 DeepSeek API Key 以讀取餘額",
             "Configure a DeepSeek API key in Harness to read its balance.",
         ));
         return Ok(reading);
     };
     let endpoint = url::Url::parse(endpoint)
-        .map_err(|_| l10n::text("DeepSeek API 地址无效", "DeepSeek API address is invalid."))?;
+        .map_err(|_| l10n::text("DeepSeek API 地址無效", "DeepSeek API address is invalid."))?;
     if endpoint.scheme() != "https"
         || endpoint.host_str() != Some("api.deepseek.com")
         || !endpoint.username().is_empty()
@@ -247,7 +247,7 @@ fn read_text(host: &dyn Host, routed: &mut Vec<Routed>) -> Result<Reading, Unrea
         || endpoint.port_or_known_default() != Some(443)
     {
         return Err(l10n::text(
-            "自定义 API 地址无法读取 DeepSeek 官方余额",
+            "自定義 API 地址無法讀取 DeepSeek 官方餘額",
             "Official DeepSeek balance is unavailable for a custom API endpoint.",
         )
         .into());
@@ -269,7 +269,7 @@ fn read_text(host: &dyn Host, routed: &mut Vec<Routed>) -> Result<Reading, Unrea
     let account_identity = legacy_unresolved("DeepSeek", &scope.to_string_lossy());
     let mut billing = Vec::new();
     for (currency, amount) in &balances.amounts {
-        let mut row = json!({"id":format!("{id}:{currency}"),"vendor":"deepseek","accountId":account_identity,"consumerRoutes":["deepseek-official"],"consumerHome":scope,"label":l10n::text("API 余额", "API balance"),"amount":amount,"currency":currency,"available":balances.available,
+        let mut row = json!({"id":format!("{id}:{currency}"),"vendor":"deepseek","accountId":account_identity,"consumerRoutes":["deepseek-official"],"consumerHome":scope,"label":l10n::text("API 餘額", "API balance"),"amount":amount,"currency":currency,"available":balances.available,
             "notice":balances.notice()});
         if !shared.is_empty() {
             row["clients"] = json!(["deepseek"].iter().chain(&shared).collect::<Vec<_>>());

@@ -1,3 +1,4 @@
+import { text as localizedText } from "@agent-hud/ui/format";
 import { useEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
@@ -48,7 +49,8 @@ export function SourceTokenChart({
   /** No line above it: it heads a column of its own. */
   bare?: boolean;
 }) {
-  const zh = useFormat().language === "zh";
+  const language = useFormat().language;
+  const zh = language.startsWith("zh");
   const initial =
     layout.period === "week" ? "7d" : layout.period === "month" ? "30d" : "24h";
   const [period, setPeriod] = useState<Period>(initial);
@@ -169,7 +171,7 @@ export function SourceTokenChart({
         }}
       >
         <strong style={{ fontSize: 13, fontWeight: 600, color: colors.text }}>
-          {zh ? "Token 消耗" : "Tokens"}
+          {localizedText(language, "Token 消耗", "Tokens")}
         </strong>
         <span style={{ flex: 1 }} />
         <div style={{ display: "flex", gap: 2 }}>
@@ -184,12 +186,16 @@ export function SourceTokenChart({
                 disabled={!available}
                 title={
                   available
-                    ? zh
-                      ? `最近 ${p.label}`
-                      : `Last ${p.label}`
-                    : zh
-                      ? `这份快照没有 ${p.label} 的历史`
-                      : `${p.label} history is not provided by this snapshot`
+                    ? localizedText(
+                        language,
+                        `最近 ${p.label}`,
+                        `Last ${p.label}`,
+                      )
+                    : localizedText(
+                        language,
+                        `這份快照沒有 ${p.label} 的歷史`,
+                        `${p.label} history is not provided by this snapshot`,
+                      )
                 }
                 onClick={() => setPeriod(p.label)}
                 style={{
@@ -223,9 +229,11 @@ export function SourceTokenChart({
           }}
           title={
             notice ??
-            (zh
-              ? "本机账本记录的用量"
-              : "Recorded usage from the shared ledger")
+            localizedText(
+              language,
+              "本機賬本記錄的用量",
+              "Recorded usage from the shared ledger",
+            )
           }
         >
           {period} · {known ? <TokenCount tokens={total} still={still} /> : "—"}{" "}
@@ -307,12 +315,16 @@ export function SourceTokenChart({
                     : layout.hiddenModels?.length &&
                         (query.data?.totals.selectedTokens ?? 0) > 0 &&
                         total === 0
-                      ? zh
-                        ? "这段时间的模型消耗已隐藏"
-                        : "Model usage in this range is hidden"
-                      : zh
-                        ? "这段时间没有 token 消耗"
-                        : "No token usage in this range"}
+                      ? localizedText(
+                          language,
+                          "這段時間的模型消耗已隱藏",
+                          "Model usage in this range is hidden",
+                        )
+                      : localizedText(
+                          language,
+                          "這段時間沒有 token 消耗",
+                          "No token usage in this range",
+                        )}
                 </motion.span>
               )}
         </AnimatePresence>

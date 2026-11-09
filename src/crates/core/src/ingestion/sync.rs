@@ -121,7 +121,7 @@ impl AgentHudCore {
         let (mut log, bytes) = checkpoints::read(
             self.database.as_ref().ok_or_else(|| {
                 l10n::text(
-                    "会话解析进度暂时无法保存",
+                    "工作階段解析進度暫時無法儲存",
                     "Parser checkpoint storage is unavailable",
                 )
             })?,

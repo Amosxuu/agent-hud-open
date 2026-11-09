@@ -32,7 +32,7 @@ export function compactAlertLabels(
           : "Question"
         : request.kind === "plan"
           ? zh
-            ? "计划待审"
+            ? "計劃待審"
             : "Plan"
           : zh
             ? "待批准"
@@ -47,19 +47,19 @@ export function compactAlertLabels(
   if (event.kind === "completion") {
     return {
       who: clientDisplayName(event.source),
-      status: zh ? "有新回复" : "New reply",
+      status: zh ? "有新回覆" : "New reply",
     };
   }
   if (event.kind === "sign-in-needed") {
     return {
       who: event.title ?? agentVendorName(event.source),
-      status: zh ? "需要重新登录" : "Sign in again",
+      status: zh ? "需要重新登入" : "Sign in again",
     };
   }
   if (event.kind === "hooks-review-needed") {
     return {
       who: event.title ?? agentVendorName(event.source),
-      status: zh ? "回调待允许" : "Allow its hooks",
+      status: zh ? "回呼待允許" : "Allow its hooks",
     };
   }
   if (event.kind === "reset-credits") {

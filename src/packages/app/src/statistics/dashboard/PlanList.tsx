@@ -58,15 +58,15 @@ export function PlanList({
       area="plans"
       pending={[pending]}
       theme={theme}
-      title={t("Subscriptions and balances", "订阅与余额")}
+      title={t("Subscriptions and balances", "訂閱與餘額")}
       meta={t(
         `Each plan's worth at API list prices ${range?.words ?? "in the last 30 days"}, against its price for those days; what each API balance has left`,
-        `每个订阅${range?.words ?? "近 30 天"}按 API 目录价折合，对比同样天数的月费；每个 API 余额还剩多少`,
+        `每個訂閱${range?.words ?? "近 30 天"}按 API 目錄價折合，對比同樣天數的月費；每個 API 餘額還剩多少`,
       )}
     >
       {data && !accounts.length && !balances.length && (
         <span style={{ fontSize: 12, color: theme.secondary }}>
-          {t("No signed-in plan for this agent", "这个 Agent 没有登录的订阅")}
+          {t("No signed-in plan for this agent", "這個 Agent 沒有登入的訂閱")}
         </span>
       )}
       <div
@@ -149,7 +149,7 @@ export function PlanList({
                       `${listPrice(account.plan.monthlyUSD, "USD", language)}/mo`,
                       `每月 ${listPrice(account.plan.monthlyUSD, "USD", language)}`,
                     )
-                  : t("No monthly list price", "没有月付标价")}
+                  : t("No monthly list price", "沒有月付標價")}
                 {worth
                   ? t(` · worth ${worth}`, ` · 折合 ${worth}`)
                   : account.unavailable
@@ -189,7 +189,7 @@ export function PlanList({
                   {names.get(balance.vendor) ?? balance.label}
                 </span>
                 <span style={{ fontSize: 11, color: theme.secondary }}>
-                  {t("API balance", "API 余额")}
+                  {t("API balance", "API 餘額")}
                 </span>
               </span>
               <span style={{ ...number, fontSize: 17, fontWeight: 600 }}>
@@ -201,8 +201,8 @@ export function PlanList({
                 (balance.level === "critical"
                   ? t("Used up", "已用完")
                   : balance.level === "warning"
-                    ? t("Running low", "余额不多")
-                    : t("Prepaid, spent per call", "预付，按调用扣费"))}
+                    ? t("Running low", "餘額不多")
+                    : t("Prepaid, spent per call", "預付，按呼叫扣費"))}
             </span>
           </div>
         ))}
@@ -211,7 +211,7 @@ export function PlanList({
         <span style={{ fontSize: 10, color: theme.tertiary }}>
           {t(
             `Monthly list prices checked ${data.checked}. Calls through a relay or a coding plan are left out.`,
-            `月付标价核对于 ${data.checked}。经中转或 Coding Plan 的调用不计入。`,
+            `月付標價核對於 ${data.checked}。經中轉或 Coding Plan 的呼叫不計入。`,
           )}
         </span>
       )}

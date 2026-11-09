@@ -80,7 +80,7 @@ export function CompletionClosedRow({
             fontVariantNumeric: "tabular-nums",
           }}
         >
-          {zh ? "有新回复" : "New reply"}
+          {zh ? "有新回覆" : "New reply"}
         </span>
       </span>
       <span

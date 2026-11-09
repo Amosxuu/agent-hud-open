@@ -103,14 +103,14 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
                 15,
                 17,
                 "daily",
-                l10n::text("每日额度", "Daily limit"),
+                l10n::text("每日額度", "Daily limit"),
                 86400,
             ),
             (
                 14,
                 18,
                 "weekly",
-                l10n::text("每周额度", "Weekly limit"),
+                l10n::text("每周額度", "Weekly limit"),
                 604800,
             ),
         ] {
@@ -134,13 +134,13 @@ pub fn read(host: &dyn Host) -> Result<Reading, Unread> {
             json!({"id":id,"provider":"devin","label":email.or_else(||text(&root,3)),"plan":plan,"checkedAt":observed.and_then(iso)}),
         );
         reading.notice = Some(l10n::text(
-            "额度来自 Devin CLI 缓存；在 CLI 中刷新可更新读数",
+            "額度來自 Devin CLI 快取；在 CLI 中更新可更新讀數",
             "Quota from Devin CLI cache; refresh in CLI to update",
         ));
         return Ok(reading);
     }
     reading.notice = Some(l10n::text(
-        "Devin CLI 缓存额度不可用，请在 CLI 中刷新",
+        "Devin CLI 快取額度不可用，請在 CLI 中更新",
         "Devin CLI has no readable account status cache",
     ));
     Ok(reading)

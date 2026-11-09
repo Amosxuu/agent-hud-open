@@ -138,7 +138,7 @@ function AppContent({
   const glowHidden = presentation?.glowHidden ?? false;
   const hudVisible = snapshot?.settings.hudVisible !== false;
   const theme = useWindowTheme(snapshot, store, monitors, surface);
-  const chinese = snapshotLanguage(snapshot) === "zh";
+  const chinese = snapshotLanguage(snapshot).startsWith("zh");
   const sourceMenu = (
     <SourceMenu
       chinese={chinese}

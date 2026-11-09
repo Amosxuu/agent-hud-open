@@ -39,14 +39,14 @@ export function RelaysPane({ snapshot, action }: SettingsPaneProps) {
     newapi: "New API",
     sub2api: "Sub2API",
     openrouter: "OpenRouter",
-    custom: t("Custom endpoint", "自定义接口"),
+    custom: t("Custom endpoint", "自定義接口"),
   };
   /** Where the relay came from, next to its name. */
   const origin = (relay: RelaySource) => {
-    if (relay.manual) return t("Added by hand", "手动添加");
+    if (relay.manual) return t("Added by hand", "手動添加");
     const clients = relay.clients ?? [];
     if (clients.length === 0) return undefined;
-    return t(`Found in ${names(clients)}`, `来自 ${names(clients)}`);
+    return t(`Found in ${names(clients)}`, `來自 ${names(clients)}`);
   };
   /** Who uses it, beyond the clients its tag already names. */
   const users = (relay: RelaySource) => {
@@ -55,7 +55,7 @@ export function RelaysPane({ snapshot, action }: SettingsPaneProps) {
     if (relay.manual || clients.length === 0)
       return agents.length
         ? t(`Used by ${names(agents)}`, `${names(agents)} 在用`)
-        : t("Not used yet", "还没有智能体在用");
+        : t("Not used yet", "還沒有Agent在用");
     const others = agents.filter((agent) => !clients.includes(agent));
     return others.length
       ? t(`Also used by ${names(others)}`, `${names(others)} 也在用`)
@@ -65,7 +65,7 @@ export function RelaysPane({ snapshot, action }: SettingsPaneProps) {
     const shown = relay.chosen ?? relay.kind;
     if (!shown || !kinds[shown]) return undefined;
     return relay.chosen
-      ? t(`${kinds[shown]} (chosen)`, `${kinds[shown]}（手选）`)
+      ? t(`${kinds[shown]} (chosen)`, `${kinds[shown]}（手選）`)
       : kinds[shown];
   };
   /** What it has left; nothing while reading it is off. A missing balance
@@ -75,16 +75,16 @@ export function RelaysPane({ snapshot, action }: SettingsPaneProps) {
     if (relay.balance)
       return t(
         `Balance ${moneyAmount(relay.balance.amount, relay.balance.currency, language)}`,
-        `余额 ${moneyAmount(relay.balance.amount, relay.balance.currency, language)}`,
+        `餘額 ${moneyAmount(relay.balance.amount, relay.balance.currency, language)}`,
       );
     if (relay.notice)
       return (
         <Unavailable reason={relay.notice}>
-          {t("No balance", "未读到余额")}
+          {t("No balance", "未讀到餘額")}
           <Info className="ml-1 size-3 self-center" aria-hidden />
         </Unavailable>
       );
-    return t("Balance not read yet", "余额还没读到");
+    return t("Balance not read yet", "餘額還沒讀到");
   };
   const facts = (relay: RelaySource, agreed: boolean) =>
     [
@@ -112,7 +112,7 @@ export function RelaysPane({ snapshot, action }: SettingsPaneProps) {
               disabled={pending || adding}
               onClick={() => setAdding(true)}
             >
-              {t("Add a relay", "添加中转站")}
+              {t("Add a relay", "添加中轉站")}
             </SmallButton>
           </span>
         }
@@ -120,11 +120,11 @@ export function RelaysPane({ snapshot, action }: SettingsPaneProps) {
           relays.some((relay) => !relay.manual)
             ? t(
                 "Turn a relay on to read its balance with its own key. The key stays on this computer and goes only to that relay.",
-                "打开开关即用中转站自己的 Key 读取余额。Key 只留在本机，只发给这个中转站。",
+                "打開開關即用中轉站自己的 Key 讀取餘額。Key 只留在本機，只發給這個中轉站。",
               )
             : t(
                 "Balances are read with each relay's own key. The key stays on this computer and goes only to that relay.",
-                "余额用中转站自己的 Key 读取。Key 只留在本机，只发给这个中转站。",
+                "餘額用中轉站自己的 Key 讀取。Key 只留在本機，只發給這個中轉站。",
               )
         }
       >
@@ -160,8 +160,8 @@ export function RelaysPane({ snapshot, action }: SettingsPaneProps) {
                     onClick={() => setChoosing(relay.provider)}
                   >
                     {relay.chosen
-                      ? t("Change type", "更改类型")
-                      : t("Choose type", "选择类型")}
+                      ? t("Change type", "更改類型")
+                      : t("Choose type", "選擇類型")}
                   </LinkButton>
                 )}
                 {relay.manual ? (
@@ -181,7 +181,7 @@ export function RelaysPane({ snapshot, action }: SettingsPaneProps) {
                     disabled={pending}
                     aria-label={t(
                       `Read ${relay.provider}'s balance`,
-                      `读取 ${relay.provider} 的余额`,
+                      `讀取 ${relay.provider} 的餘額`,
                     )}
                     onCheckedChange={(value) =>
                       void perform(() =>
@@ -221,7 +221,7 @@ export function RelaysPane({ snapshot, action }: SettingsPaneProps) {
           );
         })}
         {relays.length === 0 && !adding && (
-          <Row muted title={t("No relays yet", "还没有中转站")} />
+          <Row muted title={t("No relays yet", "還沒有中轉站")} />
         )}
       </Section>
     </Page>

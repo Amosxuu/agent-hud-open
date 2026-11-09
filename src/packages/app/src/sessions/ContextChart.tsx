@@ -63,7 +63,7 @@ export function ContextChart({
           width={width}
           height={total}
           role="img"
-          aria-label={zh ? "上下文窗口" : "Context window"}
+          aria-label={zh ? "上下文視窗" : "Context window"}
           style={{ display: "block", overflow: "visible" }}
         >
           {picked >= 0 && (
@@ -190,7 +190,7 @@ export function ContextChart({
                   fill={theme.compaction}
                   fontWeight={600}
                 >
-                  {zh ? "已压缩" : "Compacted"}
+                  {zh ? "已壓縮" : "Compacted"}
                 </Halo>
               </g>
             );

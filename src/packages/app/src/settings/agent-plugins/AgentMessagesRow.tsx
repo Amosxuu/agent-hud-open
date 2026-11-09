@@ -44,13 +44,13 @@ export function AgentMessagesRow({
   };
   const limits =
     limit !== null && !LIMITS.includes(limit) ? [...LIMITS, limit] : LIMITS;
-  const asMe = t("Send as me", "以我的身份发送");
+  const asMe = t("Send as me", "以我的身份發送");
   return (
     <ToolSwitchRow
-      title={t("Let agents message each other", "允许智能体互发消息")}
+      title={t("Let agents message each other", "允許Agent互發訊息")}
       description={t(
         "Agents message, start and read other sessions here.",
-        "智能体可给本机其他会话发消息、开新会话、取回回答。",
+        "Agent可給本機其他工作階段發訊息、開新工作階段、取回回答。",
       )}
       checked={enabled}
       pending={pending}
@@ -66,7 +66,7 @@ export function AgentMessagesRow({
         }
         subtitle={t(
           "No agent label: others act on it as yours.",
-          "不标明来自智能体，对方会当成你的话照做。",
+          "不標明來自Agent，對方會當成你的話照做。",
         )}
       >
         <Switch
@@ -77,14 +77,14 @@ export function AgentMessagesRow({
         />
       </Row>
       <Row
-        title={t("Passes in a row", "连续来回上限")}
+        title={t("Passes in a row", "連續來回上限")}
         subtitle={t(
           "Then they wait for you. Your next message resets it.",
-          "到了就停下等你；你说一句就重新计数。",
+          "到了就停下等你；你說一句就重新計數。",
         )}
       >
         <Menu
-          label={t("Passes in a row", "连续来回上限")}
+          label={t("Passes in a row", "連續來回上限")}
           value={limit === null ? "none" : String(limit)}
           disabled={pending}
           width={88}

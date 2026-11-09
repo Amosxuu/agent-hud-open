@@ -1,9 +1,9 @@
 // The interface language.
 
-export type Language = "en" | "zh";
+export type Language = "en" | "zh" | "zh-TW";
 
 export const text = (language: Language, zh: string, en: string) =>
-  language === "zh" ? zh : en;
+  language === "en" ? en : zh;
 
 /** The interface language for a setting: "zh…" is Chinese, "system" follows the system's first language. */
 export function resolveLanguage(
@@ -11,7 +11,7 @@ export function resolveLanguage(
   system: string,
 ): Language {
   const language = !setting || setting === "system" ? system : setting;
-  return language.toLowerCase().startsWith("zh") ? "zh" : "en";
+  return language.toLowerCase().startsWith("zh") ? "zh-TW" : "en";
 }
 
 /** The interface language of a snapshot: the one Core resolved and writes
@@ -20,7 +20,15 @@ export function snapshotLanguage(
   snapshot:
     { language?: string; settings: { language: string } } | null | undefined,
 ): Language {
-  if (snapshot?.language === "zh" || snapshot?.language === "en")
+  if (snapshot?.settings.language === "system") {
+    const system = interfaceLanguage("system");
+    if (system === "zh-TW") return system;
+  }
+  if (
+    snapshot?.language === "zh-TW" ||
+    snapshot?.language === "zh" ||
+    snapshot?.language === "en"
+  )
     return snapshot.language;
   return interfaceLanguage(snapshot?.settings.language);
 }

@@ -15,9 +15,9 @@ export function adviceText(
   const busiest = Math.round(advice.busiestPercent);
   if (advice.kind === "upgrade")
     return zh
-      ? `${window}：近 ${advice.cycles} 个周期有 ${advice.ranOut} 个用到 95% 以上。换 ${advice.plan.name}（每月 ${price}，多 ${delta}），最忙的周期也不超过 80%。`
+      ? `${window}：近 ${advice.cycles} 個週期有 ${advice.ranOut} 個用到 95% 以上。換 ${advice.plan.name}（每月 ${price}，多 ${delta}），最忙的週期也不超過 80%。`
       : `${window} reached 95% in ${advice.ranOut} of the last ${advice.cycles} cycles. ${advice.plan.name} (${price}/mo, ${delta} more) would have kept the busiest under 80%.`;
   return zh
-    ? `${window}：近 ${advice.cycles} 个周期，各窗口最多用到 ${busiest}%。换 ${advice.plan.name}（每月 ${price}，省 ${delta}），也不超过 80%。`
+    ? `${window}：近 ${advice.cycles} 個週期，各視窗最多用到 ${busiest}%。換 ${advice.plan.name}（每月 ${price}，省 ${delta}），也不超過 80%。`
     : `${window}: over the last ${advice.cycles} cycles no window went past ${busiest}%. ${advice.plan.name} (${price}/mo, ${delta} less) would still have stayed under 80%.`;
 }

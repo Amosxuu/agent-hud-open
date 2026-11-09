@@ -181,7 +181,7 @@ pub fn desktop_ask_view(
         "mcp__ccd_turn__wrap_up"
     };
     let header = if ask.kind == "offer" {
-        crate::l10n::text("新任务", "New task")
+        crate::l10n::text("新任務", "New task")
     } else {
         crate::l10n::text("下一步", "Next step")
     };

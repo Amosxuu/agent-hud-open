@@ -114,12 +114,12 @@ export function SessionListControls({
       <div style={{ ...row, gap: 12, minHeight: 26 }}>
         <Segments
           small
-          label={t("Session arrangement", "会话排列")}
+          label={t("Session arrangement", "工作階段排列")}
           value={arrangement}
           onChange={(value) => onArrangement(value as Arrangement)}
           choices={[
             { value: "day", label: t("Day", "按日期") },
-            { value: "active", label: t("Active", "活跃") },
+            { value: "active", label: t("Active", "活躍") },
           ]}
           theme={theme}
         />
@@ -133,17 +133,17 @@ export function SessionListControls({
           }}
         >
           {zh
-            ? `${arrangement === "active" ? "24 小时" : "7 天"}内 ${page?.total ?? 0} 个`
+            ? `${arrangement === "active" ? "24 小時" : "7 天"}內 ${page?.total ?? 0} 個`
             : `${page?.total ?? 0} in ${arrangement === "active" ? "24 hours" : "7 days"}`}
         </span>
         <SourceSelect
-          label={t("Session source", "会话来源")}
+          label={t("Session source", "工作階段來源")}
           value={source}
           onChange={onSource}
           width={185}
           theme={theme}
         >
-          <SelectItem value={ALL}>{t("All sources", "全部来源")}</SelectItem>
+          <SelectItem value={ALL}>{t("All sources", "全部來源")}</SelectItem>
           {sources.map((name) => (
             <SelectItem key={name} value={name}>
               {name}
@@ -153,13 +153,13 @@ export function SessionListControls({
       </div>
       <div style={{ ...row, gap: 12, height: 26 }}>
         <SourceSelect
-          label={t("Project path", "项目路径")}
+          label={t("Project path", "專案路徑")}
           value={project}
           onChange={onProject}
           width={260}
           theme={theme}
         >
-          <SelectItem value={ALL}>{t("All projects", "全部项目")}</SelectItem>
+          <SelectItem value={ALL}>{t("All projects", "全部專案")}</SelectItem>
           {projects.map((path) => (
             <SelectItem key={path} value={path}>
               {page?.projectLabels?.[path] ?? projectName(path, zh)}
@@ -167,7 +167,7 @@ export function SessionListControls({
           ))}
           {page?.projects.includes(null) && (
             <SelectItem value="__unassigned__">
-              {t("Unassigned", "未归属项目")}
+              {t("Unassigned", "未歸屬專案")}
             </SelectItem>
           )}
         </SourceSelect>
@@ -187,8 +187,8 @@ export function SessionListControls({
           <Input
             value={query}
             onChange={(event) => onQuery(event.target.value)}
-            placeholder={t("Search sessions or paths", "搜索会话标题或路径")}
-            aria-label={t("Search sessions", "搜索会话")}
+            placeholder={t("Search sessions or paths", "搜索工作階段標題或路徑")}
+            aria-label={t("Search sessions", "搜索工作階段")}
             style={{
               border: 0,
               background: "transparent",

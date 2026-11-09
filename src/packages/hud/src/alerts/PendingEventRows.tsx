@@ -202,7 +202,7 @@ export function WaitingHeader({
       }}
     >
       <span style={{ fontSize: 11, fontWeight: 600, color: secondary }}>
-        {zh ? "待审批" : "Waiting"}
+        {zh ? "待審批" : "Waiting"}
       </span>
       <span
         style={{

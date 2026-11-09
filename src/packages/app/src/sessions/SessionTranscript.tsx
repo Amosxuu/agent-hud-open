@@ -68,7 +68,7 @@ export function SessionTranscript({
         <Folded
           title={
             zh
-              ? `对话记录（${detail.messages.length}）`
+              ? `對話記錄（${detail.messages.length}）`
               : `Conversation (${detail.messages.length})`
           }
           theme={theme}
@@ -119,7 +119,7 @@ export function SessionTranscript({
                   <details style={{ fontSize: 11, paddingTop: 5 }}>
                     <summary>
                       {zh
-                        ? `工具调用 ${message.toolCallId ?? ""}`
+                        ? `工具呼叫 ${message.toolCallId ?? ""}`
                         : `Tool call ${message.toolCallId ?? ""}`}
                     </summary>
                     <pre
@@ -143,13 +143,13 @@ export function SessionTranscript({
               disabled={loadingMessages}
               onClick={loadMessages}
             >
-              {zh ? "加载更多消息" : "Load more messages"}
+              {zh ? "載入更多訊息" : "Load more messages"}
             </Button>
           )}
           {detail.messagesPending && (
             <p style={{ fontSize: 11, color: theme.secondary, margin: 0 }}>
               {zh
-                ? "正在索引更多对话内容。"
+                ? "正在索引更多對話內容。"
                 : "More transcript content is being indexed."}
             </p>
           )}
@@ -159,7 +159,7 @@ export function SessionTranscript({
         <Folded
           title={
             zh
-              ? `已记录的调用（${detail.calls.length}）`
+              ? `已記錄的呼叫（${detail.calls.length}）`
               : `Recorded calls (${detail.calls.length})`
           }
           theme={theme}

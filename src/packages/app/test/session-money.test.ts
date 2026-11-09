@@ -34,6 +34,6 @@ test("the tooltip names what a cost leaves out", () => {
   );
   assert.equal(
     unpricedHelp(12_000, true),
-    "另有 12,000 个 Token 来自没有 API 价格的模型，未计入",
+    "另有 12,000 個 Token 來自沒有 API 價格的模型，未計入",
   );
 });

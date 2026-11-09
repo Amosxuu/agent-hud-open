@@ -112,7 +112,7 @@ pub(super) fn parse(scope: &str, body: &Value, summary: &Value) -> Result<Readin
         .as_array()
         .ok_or_else(|| {
             l10n::text(
-                "Antigravity 本地服务返回的额度格式无法识别",
+                "Antigravity 本地服務返回的額度格式無法識別",
                 "Antigravity local service returned an unsupported quota format.",
             )
         })?;
@@ -219,7 +219,7 @@ pub(super) fn parse(scope: &str, body: &Value, summary: &Value) -> Result<Readin
     };
     let notice = quotas.is_empty().then(|| {
         l10n::text(
-            "Antigravity 已连接，但本地服务未提供额度比例",
+            "Antigravity 已連接，但本地服務未提供額度比例",
             "Antigravity is connected; its local service reports no quota percentage.",
         )
     });

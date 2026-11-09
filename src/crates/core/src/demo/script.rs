@@ -136,7 +136,7 @@ impl DemoScript {
                     Reply(
                         "s2".into(),
                         Some(l10n::text(
-                            "沙盒收据的校验已经补上，生产环境的购买流程没有变化。",
+                            "沙盒收據的校驗已經補上，生產環境的購買流程沒有變化。",
                             "Sandbox receipts are validated now; purchases in production go through as before.",
                         )),
                     ),

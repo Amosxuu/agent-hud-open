@@ -136,7 +136,7 @@ export function SessionList({
         >
           <span>{list.error}</span>
           <Button variant="ghost" size="sm" onClick={list.retry}>
-            {t("Retry", "重试")}
+            {t("Retry", "重試")}
           </Button>
         </div>
       )}
@@ -150,7 +150,7 @@ export function SessionList({
           }}
         >
           {zh
-            ? `已显示 ${filtered.length} / ${list.page!.total} 个会话。`
+            ? `已顯示 ${filtered.length} / ${list.page!.total} 個工作階段。`
             : `Showing ${filtered.length} of ${list.page!.total} sessions.`}
         </div>
       )}
@@ -161,7 +161,7 @@ export function SessionList({
         ? filtered.length > 0 && (
             <div className={reveal}>
               <DayHeader
-                title={t("Last 24 hours", "最近 24 小时")}
+                title={t("Last 24 hours", "最近 24 小時")}
                 count={list.page!.total}
                 open
                 folded=""
@@ -222,13 +222,13 @@ export function SessionList({
         <Card style={card(theme)} className={reveal}>
           <span style={{ color: theme.secondary, fontSize: 12 }}>
             {filtering
-              ? t("No matching sessions", "没有匹配的会话")
+              ? t("No matching sessions", "沒有匹配的工作階段")
               : arrangement === "active"
                 ? t(
                     "No sessions active in the last 24 hours",
-                    "最近 24 小时内无活跃会话",
+                    "最近 24 小時內無活躍工作階段",
                   )
-                : t("No sessions in the last 7 days", "最近 7 天内无会话")}
+                : t("No sessions in the last 7 days", "最近 7 天內無工作階段")}
           </span>
         </Card>
       )}
@@ -254,7 +254,7 @@ export function SessionList({
             }}
           >
             {zh
-              ? `加载更多（剩余 ${Math.max(0, list.page.total - filtered.length)} 个）`
+              ? `載入更多（剩餘 ${Math.max(0, list.page.total - filtered.length)} 個）`
               : `Load more (${Math.max(0, list.page.total - filtered.length)} remaining)`}
           </Button>
         </div>

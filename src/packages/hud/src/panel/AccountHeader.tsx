@@ -1,3 +1,4 @@
+import { text as localizedText } from "@agent-hud/ui/format";
 import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import type { Account } from "@agent-hud/protocol";
 import { accountReadLabel } from "./account-labels";
@@ -135,14 +136,17 @@ export function WebSignInNotice({
 }) {
   const colors = palette(useGround(light));
   const { language } = useFormat();
-  const zh = language === "zh";
   const lead = again
-    ? zh
-      ? "重新登录以继续读取额度："
-      : "Sign in again to keep reading the quota: "
-    : zh
-      ? "登录后显示额度："
-      : "Sign in to show the quota: ";
+    ? localizedText(
+        language,
+        "重新登入以繼續讀取額度：",
+        "Sign in again to keep reading the quota: ",
+      )
+    : localizedText(
+        language,
+        "登入後顯示額度：",
+        "Sign in to show the quota: ",
+      );
   return (
     <div
       className="hud-source-web-sign-in"
@@ -159,11 +163,11 @@ export function WebSignInNotice({
           {index > 0 && " · "}
           <button
             type="button"
-            title={
-              zh
-                ? `在 Agent HUD 的窗口中登录 ${site.host}`
-                : `Sign in to ${site.host} in Agent HUD's own window`
-            }
+            title={localizedText(
+              language,
+              `在 Agent HUD 的視窗中登入 ${site.host}`,
+              `Sign in to ${site.host} in Agent HUD's own window`,
+            )}
             onClick={(event) => {
               event.stopPropagation();
               signIn(site.host);
@@ -176,7 +180,9 @@ export function WebSignInNotice({
               cursor: "pointer",
             }}
           >
-            {sites.length > 1 ? site.name : zh ? "登录" : "Sign in"}
+            {sites.length > 1
+              ? site.name
+              : localizedText(language, "登入", "Sign in")}
           </button>
         </span>
       ))}

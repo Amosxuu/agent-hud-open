@@ -72,18 +72,18 @@ export function DayFactList({
       }}
     >
       <Fact
-        label={t("Active days", "活跃天数")}
+        label={t("Active days", "活躍天數")}
         value={
           <>
             <Tween value={facts.activeDays} format={whole} /> /{" "}
             <Tween value={facts.recordedDays} format={whole} />
           </>
         }
-        caption={t("Days with any tokens", "有用量的天数")}
+        caption={t("Days with any tokens", "有用量的天數")}
         theme={theme}
       />
       <Fact
-        label={t("An active day", "活跃日平均")}
+        label={t("An active day", "活躍日平均")}
         value={
           facts.average === null ? (
             "—"
@@ -107,14 +107,14 @@ export function DayFactList({
         theme={theme}
       />
       <Fact
-        label={t("Streak", "连续使用")}
+        label={t("Streak", "連續使用")}
         value={
           <Tween
             value={facts.streak}
             format={(value) => t(`${whole(value)} days`, `${whole(value)} 天`)}
           />
         }
-        caption={t(`Longest ${facts.longest} days`, `最长 ${facts.longest} 天`)}
+        caption={t(`Longest ${facts.longest} days`, `最長 ${facts.longest} 天`)}
         theme={theme}
       />
     </div>
@@ -134,7 +134,7 @@ export function HourFactList({
   const zh = Boolean(theme.zh);
   const t = (en: string, cn: string) => (zh ? cn : en);
   const days = zh
-    ? ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+    ? ["週一", "週二", "週三", "週四", "週五", "週六", "周日"]
     : ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   let total = 0;
   let work = 0;
@@ -166,7 +166,7 @@ export function HourFactList({
       }}
     >
       <Fact
-        label={t("Busiest hour", "最忙的时段")}
+        label={t("Busiest hour", "最忙的時段")}
         value={peak.day < 0 ? "—" : `${days[peak.day]} ${hour(peak.hour)}`}
         caption={peak.day < 0 ? undefined : `${compact(peak.value)} Token`}
         theme={theme}
@@ -178,7 +178,7 @@ export function HourFactList({
         theme={theme}
       />
       <Fact
-        label={t("Working hours", "工作时间")}
+        label={t("Working hours", "工作時間")}
         value={share(work)}
         caption={t("Weekdays 9:00–18:00", "工作日 9:00–18:00")}
         theme={theme}

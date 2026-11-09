@@ -8,7 +8,7 @@ fn antigravity_cli_unsupported_host_reports_unavailable_without_mutating_setting
     let unavailable = status(&mut runtime);
     assert_eq!(unavailable["installable"], false);
     let notice = unavailable["notice"].as_str().unwrap();
-    assert!(notice.contains("unavailable on this system") || notice.contains("此系统暂不支持"));
+    assert!(notice.contains("unavailable on this system") || notice.contains("此系統暫不支援"));
     let path = temp.path().join("home/settings.json");
     let original = b"{ \"theme\" : \"dark\" }\n";
     fs::write(&path, original).unwrap();

@@ -131,10 +131,10 @@ export function EndPill({
       aria-label={
         head
           ? zh
-            ? `${count} 个请求待处理`
+            ? `${count} 個請求待處理`
             : `${count} requests waiting`
           : zh
-            ? `${count} 条消息`
+            ? `${count} 條訊息`
             : `${count} messages`
       }
       // Only opacity and scale move: they run on the compositor, so the pop

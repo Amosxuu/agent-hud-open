@@ -131,7 +131,7 @@ export function ModelFilter({
             >
               <Check size={11} style={{ opacity: everything ? 1 : 0 }} />
               {t("All models", "全部模型")}
-              {!everything && t(" · Show all", " · 全部显示")}
+              {!everything && t(" · Show all", " · 全部顯示")}
             </button>
           )}
           {groups.map(({ agent, models }) => {
@@ -146,7 +146,7 @@ export function ModelFilter({
                   aria-checked={mark}
                   aria-label={t(
                     `Show ${agent.name}'s models`,
-                    `显示 ${agent.name} 的模型`,
+                    `顯示 ${agent.name} 的模型`,
                   )}
                   onClick={() =>
                     state.setModels(
@@ -188,7 +188,7 @@ export function ModelFilter({
                         aria-checked={checked}
                         aria-label={t(
                           `Show ${model.name} from ${agent.name}`,
-                          `显示 ${agent.name} 的 ${model.name}`,
+                          `顯示 ${agent.name} 的 ${model.name}`,
                         )}
                         title={`${agent.name} · ${model.name}`}
                         onClick={() => state.setModels([model.id], !checked)}
@@ -226,8 +226,8 @@ export function ModelFilter({
           {!groups.length && (
             <span style={{ color: theme.secondary, fontSize: 11 }}>
               {loading
-                ? t("Loading models…", "正在加载模型…")
-                : t("No recorded models", "暂无已记录的模型")}
+                ? t("Loading models…", "正在載入模型…")
+                : t("No recorded models", "暫無已記錄的模型")}
             </span>
           )}
         </div>

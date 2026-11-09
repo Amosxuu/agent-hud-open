@@ -16,7 +16,7 @@ fn workspace_uri(cwd: Option<&str>) -> Option<String> {
 pub(super) fn open(home: &Path, id: &str, cwd: Option<&str>) -> Result<bool, String> {
     if !crate::os::ACTIVATES_APPS {
         return Err(l10n::text(
-            "此系统暂不支持打开 Antigravity 会话",
+            "此系統暫不支援打開 Antigravity 工作階段",
             "Antigravity native session navigation is not implemented for this operating system",
         ));
     }

@@ -28,10 +28,10 @@ export function AgentWebSignIn({
   const ended = source.accountStatus?.failure === "signedOut";
   return (
     <Section
-      title={t("Quota sign-in", "额度登录")}
+      title={t("Quota sign-in", "額度登入")}
       footer={t(
         "This quota is shown only on the vendor's site. Sign in there in Agent HUD's own window; Agent HUD keeps that sign-in on this computer and never reads your browser's. Google may refuse to sign in inside such a window; another way the site offers works.",
-        "这项额度只在厂商网站上显示。在 Agent HUD 自己的窗口里登录后，Agent HUD 只在这台电脑上保存这次登录，不会读取浏览器里的登录。Google 可能拒绝在这种窗口里登录，可改用网站提供的其他方式。",
+        "這項額度只在廠商網站上顯示。在 Agent HUD 自己的視窗里登入後，Agent HUD 只在這台電腦上儲存這次登入，不會讀取瀏覽器里的登入。Google 可能拒絕在這種視窗里登入，可改用網站提供的其他方式。",
       )}
     >
       {web.sites.map((site) => (
@@ -41,9 +41,9 @@ export function AgentWebSignIn({
           subtitle={
             site.signedIn
               ? ended
-                ? t("Sign-in ended; sign in again", "登录已失效，请重新登录")
-                : t(`Signed in on ${site.host}`, `已在 ${site.host} 登录`)
-              : t(`Not signed in on ${site.host}`, `未在 ${site.host} 登录`)
+                ? t("Sign-in ended; sign in again", "登入已失效，請重新登入")
+                : t(`Signed in on ${site.host}`, `已在 ${site.host} 登入`)
+              : t(`Not signed in on ${site.host}`, `未在 ${site.host} 登入`)
           }
         >
           <div style={{ display: "flex", gap: 6 }}>
@@ -60,7 +60,7 @@ export function AgentWebSignIn({
                   )
                 }
               >
-                {t("Sign in", "登录")}
+                {t("Sign in", "登入")}
               </Button>
             )}
             {site.signedIn && (
@@ -77,7 +77,7 @@ export function AgentWebSignIn({
                   )
                 }
               >
-                {t("Sign out", "退出登录")}
+                {t("Sign out", "結束登入")}
               </Button>
             )}
           </div>

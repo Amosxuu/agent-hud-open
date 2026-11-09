@@ -36,7 +36,7 @@ export function DayCalendar({
 }) {
   const zh = Boolean(theme.zh);
   const t = (en: string, cn: string) => (zh ? cn : en);
-  const language = zh ? "zh-CN" : "en-US";
+  const language = zh ? "zh-TW" : "en-US";
   const { ref, width } = useWidth();
   // The cells first draw empty and take their colours a frame later, so the
   // colour sweeps in when the days arrive.
@@ -239,7 +239,7 @@ export function DayCalendar({
           >
             <span style={{ marginRight: "auto" }}>
               {since
-                ? t(`Recorded since ${since}`, `自 ${since} 起有记录`)
+                ? t(`Recorded since ${since}`, `自 ${since} 起有記錄`)
                 : ""}
             </span>
             <span>{t("Less", "少")}</span>

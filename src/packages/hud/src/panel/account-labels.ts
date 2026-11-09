@@ -9,26 +9,28 @@ import {
 } from "@agent-hud/ui/format";
 
 export const say = (language: Language, zh: string, en: string) =>
-  language === "zh" ? zh : en;
+  language.startsWith("zh") ? zh : en;
 
 /** Whether the account is the one signed in, or when it was last read
  * (Open's ReadingAssessment.accountLabel). */
 export function accountReadLabel(
   account: Account,
   now: number,
-  language: "en" | "zh",
+  language: "en" | "zh" | "zh-TW",
 ) {
   if (account.current !== false && !account.stale)
-    return language === "zh" ? "当前账户" : "Current account";
+    return language.startsWith("zh") ? "目前帳戶" : "Current account";
   const checked = account.checkedAt ? Date.parse(account.checkedAt) : NaN;
   const ago = countdownRough(
     Math.max(0, (now - (Number.isFinite(checked) ? checked : now)) / 1000),
   );
-  return language === "zh" ? `上次读取 ${ago} 前` : `Last read ${ago} ago`;
+  return language.startsWith("zh")
+    ? `上次讀取 ${ago} 前`
+    : `Last read ${ago} ago`;
 }
 
 /** What the vendor's status page says about the components the agent
- * depends on, while one is not operational: "官方状态：部分故障 · <incident>".
+ * depends on, while one is not operational: "官方狀態：部分故障 · <incident>".
  * Null while all is well. */
 export function serviceNotice(
   providers: readonly Pick<Provider, "id" | "accountStatus">[],
@@ -39,13 +41,13 @@ export function serviceNotice(
     ?.accountStatus?.service;
   if (!service) return null;
   const words: Record<string, [string, string]> = {
-    under_maintenance: ["维护中", "under maintenance"],
+    under_maintenance: ["維護中", "under maintenance"],
     degraded_performance: ["性能下降", "degraded performance"],
     partial_outage: ["部分故障", "partial outage"],
-    major_outage: ["严重故障", "major outage"],
+    major_outage: ["嚴重故障", "major outage"],
   };
   const [zh, en] = words[service.status] ?? [service.status, service.status];
-  const head = say(language, `官方状态：${zh}`, `Vendor status: ${en}`);
+  const head = say(language, `官方狀態：${zh}`, `Vendor status: ${en}`);
   return service.incident ? `${head} · ${service.incident}` : head;
 }
 
@@ -100,7 +102,7 @@ export function nextExpiryLabel(resets: ResetCredits, language: Language) {
     const label = say(language, "部分有效期可查看", "Partial expiry details");
     return { full: label, short: label };
   }
-  const day = dateFormat(language === "zh" ? "zh-CN" : "en-US", {
+  const day = dateFormat(language.startsWith("zh") ? "zh-TW" : "en-US", {
     month: "short",
     day: "numeric",
   }).format(dates[0]);
@@ -118,7 +120,7 @@ export function expiryLabel(
   const date = expiresAt ? new Date(expiresAt) : null;
   if (!date || !Number.isFinite(date.getTime()))
     return say(language, "有效期未提供", "Expiry unavailable");
-  return dateFormat(language === "zh" ? "zh-CN" : "en-US", {
+  return dateFormat(language.startsWith("zh") ? "zh-TW" : "en-US", {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",

@@ -46,7 +46,7 @@ export function GeneralPane({ snapshot, action }: SettingsPaneProps) {
     ? undefined
     : t(
         login?.notice ?? "Not available in this build.",
-        "此版本不支持登录时启动。",
+        "此版本不支援登入時啓動。",
       );
   // Only states the person can act on; other notices are platform plumbing.
   const loginNote = !login?.supported
@@ -55,20 +55,20 @@ export function GeneralPane({ snapshot, action }: SettingsPaneProps) {
       ? t(
           login.notice ??
             "Allow it in System Settings → General → Login Items.",
-          "需在「系统设置 → 通用 → 登录项」中允许。",
+          "需在「系統設定 → 通用 → 登入項」中允許。",
         )
       : login.status === "unavailable" && login.notice
-        ? t(login.notice, "此版本找不到登录服务。")
+        ? t(login.notice, "此版本找不到登入服務。")
         : null;
 
   const appearance = (
     <Segments
-      label={t("Appearance", "外观")}
+      label={t("Appearance", "外觀")}
       value={settings.appearance}
       disabled={followsScreen}
       options={[
-        ["system", t("System", "跟随系统")],
-        ["light", t("Light", "浅色")],
+        ["system", t("System", "跟隨系統")],
+        ["light", t("Light", "淺色")],
         ["dark", t("Dark", "深色")],
       ]}
       change={setting("appearance")}
@@ -77,13 +77,13 @@ export function GeneralPane({ snapshot, action }: SettingsPaneProps) {
 
   return (
     <Page>
-      <Section title={t("Appearance & language", "外观与语言")}>
-        <Row title={t("Appearance", "外观")}>
+      <Section title={t("Appearance & language", "外觀與語言")}>
+        <Row title={t("Appearance", "外觀")}>
           {followsScreen ? (
             <Unavailable
               reason={t(
                 "Turn off Match screen to choose.",
-                "关闭「跟随所在屏幕」后可选。",
+                "關閉「跟隨所在螢幕」後可選。",
               )}
             >
               {appearance}
@@ -93,24 +93,26 @@ export function GeneralPane({ snapshot, action }: SettingsPaneProps) {
           )}
         </Row>
         <ToggleRow
-          title={t("Match screen", "跟随所在屏幕")}
-          tag={t("Experimental", "实验")}
+          title={t("Match screen", "跟隨所在螢幕")}
+          tag={t("Experimental", "實驗")}
           subtitle={t(
             "Windows take the HUD look of their screen.",
-            "窗口外观跟随所在屏幕的 HUD。",
+            "視窗外觀跟隨所在螢幕的 HUD。",
           )}
           checked={settings.appearanceFollowsScreen ?? false}
           change={setting("appearanceFollowsScreen")}
         />
-        <Row title={t("Language", "语言")}>
+        <Row title={t("Language", "語言")}>
           <Menu
-            label={t("Language", "语言")}
+            label={t("Language", "語言")}
             value={
-              settings.language === "zh-Hans" ? "zh-CN" : settings.language
+              ["zh-Hans", "zh-CN"].includes(settings.language)
+                ? "zh-TW"
+                : settings.language
             }
             options={[
-              ["system", t("System", "跟随系统")],
-              ["zh-CN", "中文"],
+              ["system", t("System", "跟隨系統")],
+              ["zh-TW", "繁體中文"],
               ["en", "English"],
             ]}
             change={setting("language")}
@@ -118,23 +120,23 @@ export function GeneralPane({ snapshot, action }: SettingsPaneProps) {
         </Row>
         {problem(appearanceKeys)}
       </Section>
-      <Section title={t("Usage display", "用量显示")}>
-        <Row title={t("Quota percentage", "额度百分比")}>
+      <Section title={t("Usage display", "用量顯示")}>
+        <Row title={t("Quota percentage", "額度百分比")}>
           <Menu
-            label={t("Quota percentage", "额度百分比")}
+            label={t("Quota percentage", "額度百分比")}
             value={settings.quotaDisplay ?? "consumed"}
             options={[
               ["consumed", t("Used", "已用")],
-              ["remaining", t("Remaining", "剩余")],
+              ["remaining", t("Remaining", "剩餘")],
             ]}
             change={setting("quotaDisplay")}
           />
         </Row>
         {problem(usageKeys)}
       </Section>
-      <Section title={t("Startup & menu bar", "启动与菜单栏")}>
+      <Section title={t("Startup & menu bar", "啓動與菜單欄")}>
         <ToggleRow
-          title={t("Launch at login", "登录时启动")}
+          title={t("Launch at login", "登入時啓動")}
           checked={login?.enabled ?? settings.launchAtLogin}
           disabled={pending || !login?.supported}
           reason={loginReason}
@@ -142,7 +144,7 @@ export function GeneralPane({ snapshot, action }: SettingsPaneProps) {
         />
         {loginNote && <Notice tone="warning">{loginNote}</Notice>}
         <ToggleRow
-          title={t("Show menu bar icon", "显示菜单栏图标")}
+          title={t("Show menu bar icon", "顯示菜單欄圖標")}
           checked={settings.showMenuBarIcon !== false}
           change={setting("showMenuBarIcon")}
         />
