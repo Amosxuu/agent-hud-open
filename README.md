@@ -1,3 +1,20 @@
+# Agent HUD 繁體中文版（zh-TW）
+
+這是 [Agent HUD](https://github.com/jazzenchen/agent-hud-open) 的社群繁體中文 fork。啟動後，在設定的語言選單選擇「繁體中文」。macOS 原生選單仍有部分英文，agent 的對話與供應商回傳的文字會保留原文。
+
+繁中版可在 macOS 從原始碼建置。請先準備 Node.js 24+、pnpm、Bun、Rust 1.90+ 與 Xcode Command Line Tools。
+
+```sh
+git clone https://github.com/Amosxuu/agent-hud-open.git
+cd agent-hud-open
+pnpm install --frozen-lockfile
+pnpm run build:macos -- --bundle
+```
+
+建置後可在 `target/release/bundle/macos/` 找到 App。下方的官網下載與安裝連結指向上游發行版。
+
+---
+
 <h1 align="center">Agent HUD</h1>
 
 <p align="center">
